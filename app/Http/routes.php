@@ -20,6 +20,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/{user_id}', [
+    'uses' => 'ProfileController@index',
+]);
+
 Route::get('/admin/search_company',function(){
    return view('admin/search_company');
 });
