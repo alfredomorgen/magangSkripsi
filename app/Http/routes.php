@@ -20,15 +20,16 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/admin/search_company',function(){
-   return view('admin/search_company');
+Route::get('admin/search',function(){
+    $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
+    $route = "admin/search_company/$search";
+    return redirect($route);
 });
-
+Route::get('admin/search_company/{search}','AdminController@searchCompany');
+Route::get('admin/view_search','AdminController@index');
 
 Route::group(['middleware' => ['web']], function () {
     //
-
-
 
 });
 
