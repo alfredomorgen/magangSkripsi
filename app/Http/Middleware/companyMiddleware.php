@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use App\Constant;
 class companyMiddleware
 {
     /**
@@ -15,7 +15,11 @@ class companyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($re)
-        return $next($request);
+        if(Auth::user()->role == Constant::user_company )
+        {
+            return $next($request);
+        }
+
+        return redirect('/home');
     }
 }

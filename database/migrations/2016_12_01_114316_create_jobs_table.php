@@ -16,6 +16,7 @@ class CreateJobsTable extends Migration
             $table->increments('id');
             $table->integer('company_id')->unsigned()->index();
             $table->integer('jobcategory_id')->unsigned()->index();
+            $table->string('title');
             $table->integer('type');
             $table->integer('salary');
             $table->integer('period');
