@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Constant;
-class companyMiddleware
+
+class JobseekerMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,6 @@ class companyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role == Constant::user_company )
-        {
-            return $next($request);
-        }
-
-        return redirect('/home');
+        return $next($request);
     }
 }
