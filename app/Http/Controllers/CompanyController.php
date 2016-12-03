@@ -49,16 +49,42 @@ class CompanyController extends Controller
     public function manage_post()
     {
         $columns = [
+            'id',
             'title',
             'created_at',
         ];
 
-        $job = Job::select($columns)->paginate(3);
+        $job = Job::select('*')->paginate(3);
 
         $data = ['jobs' => $job];
 
 
         return view('company.manage_post', $data);
+    }
+
+
+    public function manage_post_edit($id)
+    {
+        $job = Job::find($id);
+        $data = ['job' => $job];
+
+        return view('company.manage_post_edit',$data);
+    }
+
+    public function manage_post_update($id)
+    {
+        $job = Job::find($id);
+        $job->jobcategory_id = Input::get('jobcategory_id');
+        $job->title = Input::get('title');
+        $job->type = Input::get('type');
+        $job->salary = Input::get('salary');
+        $job->period = Input::get('period');
+        $job->benefit = Input::get('benefit');
+        $job->requirement = Input::get('requirement');
+        $job->description = Input::get('description');
+        $job->save();
+
+        return redirect('/');
     }
 
 }

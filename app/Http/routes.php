@@ -58,3 +58,15 @@ Route::get('company/manage_post',[
    'uses' => 'CompanyController@manage_post',
     'as' => 'company.manage_post'
 ]);
+
+Route::get('/company/post_job/edit/{id}',[
+    'uses' => 'CompanyController@manage_post_edit',
+    'as' => 'company.manage_post_edit'
+
+]);
+
+Route::post('/company/post_job/update/{id}',[
+    'uses' => 'CompanyController@manage_post_update',
+    'as' => 'company.manage_post_update'
+
+]);

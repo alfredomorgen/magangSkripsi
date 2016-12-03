@@ -9,7 +9,7 @@
                 <h4 class="col s12 valign blue-text">Manage Job</h4>
                 <div class="row"></div>
                 <div class="row"></div>
-                <table class="striped responsive-table">
+                <table class="striped responsive-table" style="word-wrap:break-word ">
                     <thead>
                     <tr>
                         <th data-field="title">Title Job</th>
@@ -24,8 +24,9 @@
                         <tr>
                             <td>{{ $job->title }}</td>
                             <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
-                            <td>$0.87</td>
+                            <td>{{$job->id }}</td>
                             <td>On Going</td>
+                            <td><a class="btn orange" href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>
                         </tr>
                     @endforeach
                     </tbody>
