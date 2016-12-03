@@ -84,7 +84,15 @@ class CompanyController extends Controller
         $job->description = Input::get('description');
         $job->save();
 
-        return redirect('/');
+        return redirect('/company/manage_post/');
     }
+
+    public function manage_post_delete($id)
+    {
+        $job = Job::find($id);
+        $job->delete();
+        return redirect('/company/manage_post/')->with('success','Job Deleted');
+    }
+
 
 }

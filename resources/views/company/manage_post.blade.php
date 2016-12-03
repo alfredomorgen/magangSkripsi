@@ -4,6 +4,13 @@
 
     <div class="container" style="background-color: white;margin-top:30px">
 
+        @if(session('success'))
+            <script>Materialize.toast('{{session('success')}}', 4000, 'rounded');</script>
+        @elseif(session('error'))
+            <div class="red-text">
+                {{session('error')}}
+            </div>
+        @endif
         <div class="row" style="padding:60px;">
             <div class="col l8 push-l2">
                 <h4 class="col s12 valign blue-text">Manage Job</h4>
@@ -16,7 +23,7 @@
                         <th data-field="created_at">Created</th>
                         <th data-field="candidates">Candidates</th>
                         <th data-field="status">Status</th>
-                        <th colspan="2" data-field="action">Action</th>
+                        <th data-field="action" colspan="2"><div align="center">Action</div></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,7 +33,8 @@
                             <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
                             <td>{{$job->id }}</td>
                             <td>On Going</td>
-                            <td><a class="btn orange" href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>
+                            <td><a class="btn btn-block blue" href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>
+                            <td><a class="btn btn-block red" href="{{ url('/company/post_job/delete/'.$job->id) }}">Delete</a></td>
                         </tr>
                     @endforeach
                     </tbody>

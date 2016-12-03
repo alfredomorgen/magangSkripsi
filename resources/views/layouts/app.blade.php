@@ -22,6 +22,10 @@
                 'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <script type="text/javascript" src="{{ asset('https://code.jquery.com/jquery-2.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script src="{{asset('/js/init.js')}}"></script>
 </head>
 <body style="background-color:#eeeeee">
 <nav class="light-blue lighten-1" role="navigation">
@@ -92,9 +96,6 @@
 
 
         <!-- Scripts -->
-<script type="text/javascript" src="{{ asset('https://code.jquery.com/jquery-2.1.1.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
-<script src="{{asset('/js/init.js')}}"></script>
 
 @yield('scripts')
 

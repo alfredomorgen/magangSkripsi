@@ -8,6 +8,17 @@
 
             <div class="col l8 push-l2">
                 <h4 class="col s12 valign blue-text">Post Job</h4>
+
+                    @if(session('success'))
+                    <div class="green-text">
+                        {{session('success')}}
+                    </div>
+                    @elseif(session('error'))
+                    <div class="red-text">
+                        {{session('error')}}
+                    </div>
+                    @endif
+
                 <form class="col s12" method="POST" action="{{ url('/company/post_job/update/   '.$job->id) }}"
                       enctype="multipart/form-data" files="true">
                     {{ csrf_field() }}

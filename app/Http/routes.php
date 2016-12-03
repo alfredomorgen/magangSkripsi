@@ -70,3 +70,8 @@ Route::post('/company/post_job/update/{id}',[
     'as' => 'company.manage_post_update'
 
 ]);
+
+Route::get('/company/post_job/delete/{id}',[
+    'uses' => 'CompanyController@manage_post_delete',
+    'aa' => 'company.manage_post_delete'
+]);
