@@ -17,14 +17,18 @@
                             <div class="card-content grey-text text-darken-2">
                                 <div class="row">
                                     <div class="col l3">
-                                        <img src="" style="width:150px; height:150px">
+                                        @if(Auth::user()->photo == NULL)
+                                            <img src="{{ asset('images/profile_default.jpg') }}" style="width:150px; height:150px">
+                                        @else
+                                            <img src="{{ asset('images/'.Auth::user()->photo) }}" style="width:150px; height:150px">
+                                        @endif
                                     </div>
                                     <div class="col s12 m12 l9">
                                         <a class="btn-floating btn-large red right">
                                             <i class="material-icons">mode_edit</i>
                                         </a>
                                         <span class="card-title"><b></b></span>
-                                        <h6>Study at </h6>
+                                        <h6>Study at</h6>
                                         <h6><i class="tiny material-icons">location_on</i><b> Indonesia</b></h6>
                                         <h6><i class="tiny material-icons">mail</i></h6>
                                         <br>
@@ -39,7 +43,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -50,8 +53,8 @@
                     <div class="col s12">
                         <ul class="tabs red">
                             <li class="tab col s3"><a class="active white-text" href="#test1">Education</a></li>
-                            <li class="tab col s3"><a class="white-text"href="#test2">Languages</a></li>
-                            <li class="tab col s3"><a class="white-text"href="#test3">About Me</a></li>
+                            <li class="tab col s3"><a class="white-text" href="#test2">Languages</a></li>
+                            <li class="tab col s3"><a class="white-text" href="#test3">About Me</a></li>
                             {{--<li class="tab col s3"><a href="#test4">Test 4</a></li>--}}
                         </ul>
                     </div>
@@ -60,7 +63,8 @@
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
                                     <li class="collection-header blue white-text"><h6><b>Education</b></h6></li>
-                                    <li class="collection-item"><p><span style="font-size:1.5em;"></span><br>Bachelor's Degree, Computer Science</p></li>
+                                    <li class="collection-item"><p><span style="font-size:1.5em;"></span><br>Bachelor's
+                                            Degree, Computer Science</p></li>
                                 </ul>
                             </div>
                         </div>
@@ -69,7 +73,8 @@
                         <div class="row">
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
-                                    <li class="collection-header  cyan darken-1 white-text"><h6><b>Languages</b></h6></li>
+                                    <li class="collection-header  cyan darken-1 white-text"><h6><b>Languages</b></h6>
+                                    </li>
                                     <li class="collection-item"><p>
                                         <h6>Bahasa Indonesia</h6>
                                         <h6>English</h6>
@@ -82,7 +87,8 @@
                         <div class="row">
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
-                                    <li class="collection-header  amber darken-4 white-text"><h6><b>About Me</b></h6></li>
+                                    <li class="collection-header  amber darken-4 white-text"><h6><b>About Me</b></h6>
+                                    </li>
                                     <li class="collection-item">
                                         <p><span style="font-size: 1em">GPA :</span></p>
                                     </li>
