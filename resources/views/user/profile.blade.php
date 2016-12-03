@@ -10,13 +10,11 @@
         </div>
         <div class="row">
             <div class="col s12">
-
                 <!-- Teal page content  -->
                 <div class="row">
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-content grey-text text-darken-2">
-
                                 <div class="row">
                                     <div class="col l3">
                                         <img src="" style="width:150px; height:150px">
@@ -62,9 +60,7 @@
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
                                     <li class="collection-header blue white-text"><h6><b>Education</b></h6></li>
-                                    <li class="collection-item"><p><span
-                                                    style="font-size:1.5em;">{</span><br>
-                                            Bachelor's Degree, Computer Science</p></li>
+                                    <li class="collection-item"><p><span style="font-size:1.5em;"></span><br>Bachelor's Degree, Computer Science</p></li>
                                 </ul>
                             </div>
                         </div>
@@ -87,35 +83,15 @@
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
                                     <li class="collection-header  amber darken-4 white-text"><h6><b>About Me</b></h6></li>
-                                    <li class="collection-item"><p>
-                                        <span style="font-size: 1em">GPA :</span>
-                                        </P>
-
+                                    <li class="collection-item">
+                                        <p><span style="font-size: 1em">GPA :</span></p>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    {{--<div id="test4" class="col s12">Test 4</div>--}}
                 </div>
             </div>
-            {{--<ul class="collapsible z-depth-1" data-collapsible="accordion">--}}
-            {{--<li>--}}
-            {{--<div class="collapsible-header cyan darken-1 white-text"><i class="material-icons">filter_drama</i><b>Education</b></div>--}}
-            {{--<div class="collapsible-body white"><P><h5>Universitas Bina Nusantara</h5>--}}
-            {{--Bachelor's Degree, Computer Science</p></div>--}}
-            {{--</li>--}}
-            {{--<li>--}}
-            {{--<div class="collapsible-header  amber darken-4 white-text"><i class="material-icons">place</i><b>Languages</b></div>--}}
-            {{--<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>--}}
-            {{--</li>--}}
-            {{--<li>--}}
-            {{--<div class="collapsible-header deep-orange darken-2 white-text"><i class="material-icons">whatshot</i><b>Skills</b></div>--}}
-            {{--<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>--}}
-            {{--</li>--}}
-            {{--</ul>--}}
-
-
         </div>
     </div>
 @endsection
