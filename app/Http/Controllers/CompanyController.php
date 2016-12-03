@@ -22,6 +22,7 @@ class CompanyController extends Controller
         $this->middleware('company');
     }
 
+
     public function post_job()
     {
         return view('company.post_job');
@@ -38,9 +39,26 @@ class CompanyController extends Controller
         $job->period = Input::get('period');
         $job->benefit = Input::get('benefit');
         $job->requirement = Input::get('requirement');
+        $job->description = Input::get('description');
         $job->save();
 
         return redirect('/');
+    }
+
+
+    public function manage_post()
+    {
+        $columns = [
+            'title',
+            'created_at',
+        ];
+
+        $job = Job::select($columns)->paginate(3);
+
+        $data = ['jobs' => $job];
+
+
+        return view('company.manage_post', $data);
     }
 
 }

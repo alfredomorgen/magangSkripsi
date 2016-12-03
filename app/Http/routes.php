@@ -53,3 +53,8 @@ Route::post('company/post_job/store',[
     'uses' => 'CompanyController@store',
     'as' => 'company.store'
 ]);
+
+Route::get('company/manage_post',[
+   'uses' => 'CompanyController@manage_post',
+    'as' => 'company.manage_post'
+]);
