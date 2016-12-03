@@ -4,19 +4,22 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Constant;
+use Illuminate\Support\Facades\Auth;
+
 class companyMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role == Constant::user_company )
-        {
+        if (Auth::Guest()) {
+            return redirect('/');
+        } else if (Auth::user()->role == Constant::user_company) {
             return $next($request);
         }
 

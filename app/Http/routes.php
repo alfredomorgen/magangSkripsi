@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::auth();
 
 Route::get('/', function () {
@@ -21,7 +20,7 @@ Route::get('/home', function () {
 });
 
 
-Route::get('admin/search',function() {
+Route::get('admin/search', function () {
     $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
     $route = "admin/search_company/$search";
     return redirect($route);
@@ -31,20 +30,26 @@ Route::get('/{user_id}', [
     'uses' => 'ProfileController@index',
 ]);
 
-Route::get('/admin/search_company',function(){
-   return view('admin/search_company');
+Route::get('/admin/search_company', function () {
+    return view('admin/search_company');
 });
 
-Route::get('admin/search_company/{search}','AdminController@searchCompany');
-Route::get('admin/view_search','AdminController@index');
+Route::get('admin/search_company/{search}', 'AdminController@searchCompany');
+Route::get('admin/view_search', 'AdminController@index');
 
 Route::group(['middleware' => ['web']], function () {
     //
 });
 
-Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/company/post_job', function(){
-    return view('company.post_job');
-});
+
+Route::get('/company/post_job', [
+    'uses' => 'CompanyController@post_job',
+    'as' => 'company.post_job'
+]);
+
+Route::post('company/post_job/store',[
+    'uses' => 'CompanyController@store',
+    'as' => 'company.store'
+]);
