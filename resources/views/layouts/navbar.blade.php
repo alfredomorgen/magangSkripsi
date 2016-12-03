@@ -25,7 +25,7 @@
         @if(Auth::guest())
 
         @else
-            <li class="tab"><a target="_self" href="" style="color:#757575">Profile</a></li>
+            <li class="tab"><a target="_self" href="{{ Auth::user()->id }}" style="color:#757575">Profile</a></li>
         @endif
         <li class="tab"><a href="#test3" style="color:#757575">Applied Jobs </a></li>
 
