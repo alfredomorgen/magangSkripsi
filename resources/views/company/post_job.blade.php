@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="title" type="text" name="title" placeholder="Job Title"
-                                  >
+                            >
                             @if ($errors->has('title'))
                                 <strong>{{ $errors->first('title') }}</strong>
                             @endif
@@ -29,6 +29,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <select name="jobcategory_id" id="jobcategory_id">
+                                <option value="" disabled selected>Choose your option</option>
                                 <option value="0">IT</option>
                                 <option value="1">Accounting</option>
                                 <option value="2">Marketing</option>
@@ -42,6 +43,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <select name="type" id="type">
+                                <option value="" disabled selected>Choose your option</option>
                                 <option value="0">Part Time</option>
                                 <option value="1">Full Time</option>
                             </select>
@@ -52,6 +54,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <select name="salary" id="salary">
+                                <option value="" disabled selected>Choose your option</option>
                                 <option value="0">Paid</option>
                                 <option value="1">Not Paid</option>
                             </select>

@@ -30,8 +30,8 @@ class Post_jobRequest extends Request
             'type' => 'required',
             'salary' => 'required|in:0,1',
             'period' => 'required',
-            'benefit' => 'required',
-            'requirement' => 'required',
+            'benefit' => '',
+            'requirement' => '',
         ];
     }
 }
