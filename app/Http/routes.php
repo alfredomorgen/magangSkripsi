@@ -28,6 +28,16 @@ Route::get('admin/search', function () {
 
 Route::get('/{user_id}', [
     'uses' => 'ProfileController@index',
+    'as' => 'user.profile',
+]);
+
+Route::get('/{user_id}/edit', [
+    'uses' => 'ProfileController@edit',
+]);
+
+Route::post('/{user_id}/update',[
+    'uses' => 'ProfileController@update',
+    'as' => 'user.update',
 ]);
 
 Route::get('/admin/search_company', function () {
@@ -62,13 +72,11 @@ Route::get('company/manage_post',[
 Route::get('/company/post_job/edit/{id}',[
     'uses' => 'CompanyController@manage_post_edit',
     'as' => 'company.manage_post_edit'
-
 ]);
 
 Route::post('/company/post_job/update/{id}',[
     'uses' => 'CompanyController@manage_post_update',
     'as' => 'company.manage_post_update'
-
 ]);
 
 Route::get('/company/post_job/delete/{id}',[

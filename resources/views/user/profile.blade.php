@@ -17,20 +17,24 @@
                             <div class="card-content grey-text text-darken-2">
                                 <div class="row">
                                     <div class="col l3">
-                                        @if(Auth::user()->photo == NULL)
+                                        @if($user->photo == NULL)
                                             <img src="{{ asset('images/profile_default.jpg') }}" style="width:150px; height:150px">
                                         @else
-                                            <img src="{{ asset('images/'.Auth::user()->photo) }}" style="width:150px; height:150px">
+                                            <img src="{{ asset('images/'.$user->photo) }}" style="width:150px; height:150px">
                                         @endif
                                     </div>
                                     <div class="col s12 m12 l9">
-                                        <a class="btn-floating btn-large red right">
+                                        <a href="{{ url('/'.$user->id.'/edit') }}" class="btn-floating btn-large red right">
                                             <i class="material-icons">mode_edit</i>
                                         </a>
-                                        <span class="card-title"><b></b></span>
+                                        <span class="card-title"><b>{{ $user->name }}</b></span>
                                         <h6>Study at</h6>
-                                        <h6><i class="tiny material-icons">location_on</i><b> Indonesia</b></h6>
-                                        <h6><i class="tiny material-icons">mail</i></h6>
+                                        <h6><i class="tiny material-icons">location_on</i> Indonesia</h6>
+                                        <h6><i class="tiny material-icons">mail</i> {{ $user->email }}</h6>
+                                        <h6><i class="tiny material-icons">phone</i> {{ $user->phone }}</h6>
+                                        <p>
+                                            {{ $user->description }}
+                                        </p>
                                         <br>
                                         <div class="right right-align">Show Profile
                                             <div class="switch">
