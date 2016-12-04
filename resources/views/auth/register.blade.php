@@ -8,7 +8,8 @@
 
             <div class="col l8 push-l2">
                 <h4 class="col s12 valign blue-text">Register</h4>
-                <form class="col s12" method="POST" action="{{ url('/register') }}" enctype="multipart/form-data" files="true">
+                <form class="col s12" method="POST" action="{{ url('/register') }}" enctype="multipart/form-data"
+                      files="true">
                     {{ csrf_field() }}
 
                     {{--<div class="form-group{{ $errors->has('user_name') ? ' has-error' : '' }}">--}}
@@ -60,13 +61,15 @@
                         </div>
                     </div>
 
-                    <div class="input-field col s12">
-                        <select id="role" name="role">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="{{\App\Constant::user_jobseeker}}">Jobseeker</option>
-                            <option value="{{\App\Constant::user_company}}">Company</option>
-                        </select>
-                        <label>Materialize Select</label>
+                    <h6>Role</h6>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="role" name="role">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="{{\App\Constant::user_jobseeker}}">Jobseeker</option>
+                                <option value="{{\App\Constant::user_company}}">Company</option>
+                            </select>
+                        </div>
                     </div>
 
 

@@ -28,7 +28,7 @@ class CompanyController extends Controller
         return view('company.post_job');
     }
 
-    public function store(Request $request)
+    public function store(Post_jobRequest $request)
     {
         $job = new Job();
         $job->company_id = Auth::user()->id;
@@ -68,7 +68,7 @@ class CompanyController extends Controller
         $job = Job::find($id);
         $data = ['job' => $job];
 
-        return view('company.manage_post_edit',$data);
+        return view('company.manage_post_edit', $data);
     }
 
     public function manage_post_update($id)
@@ -91,7 +91,7 @@ class CompanyController extends Controller
     {
         $job = Job::find($id);
         $job->delete();
-        return redirect('/company/manage_post/')->with('success','Job Deleted');
+        return redirect('/company/manage_post/')->with('success', 'Job Deleted');
     }
 
 
