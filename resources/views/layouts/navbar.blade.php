@@ -21,7 +21,7 @@
         <ul class="tabs tabs-transparent z-depth-1">
 
             @if(Auth::guest())
-                <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
+                <li class="tab"><a target="_self" href="{{url('/')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a href="#test2" style="color:#757575">Search Company</a></li>
             @elseif(Auth::user()->role == '1')
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
