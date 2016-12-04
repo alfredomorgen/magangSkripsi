@@ -27,7 +27,7 @@
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a href="#test2" style="color:#757575">Search User</a></li>
                 <li class="tab"><a href="#test3" style="color:#757575">Bookmark Users</a></li>
-                <li class="tab"><a href="#test3" style="color:#757575">View Posts</a></li>
+                <li class="tab"><a target="_self" href="{{ url('/company/view/post_job') }}" style="color:#757575">View Posts</a></li>
                 <li class="tab"><a target="_self" href="{{ url('/company/manage_post') }}" style="color:#757575">Manage Posts</a></li>
                 <li class="tab"><a target="_self" href="{{ url('/'.Auth::user()->id ) }}" style="color:#757575">Profile</a></li>
             @elseif(Auth::user()->role == '2')

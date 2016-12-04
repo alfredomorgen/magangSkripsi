@@ -94,5 +94,22 @@ class CompanyController extends Controller
         return redirect('/company/manage_post/')->with('success', 'Job Deleted');
     }
 
+    public function view_post()
+    {
+        $columns = [
+            'id',
+            'title',
+            'created_at',
+        ];
+
+        $job = Job::select('*')->paginate(3);
+
+        $data = ['jobs' => $job];
+
+
+
+        return view('/company/view_post_job',$data);
+    }
+
 
 }
