@@ -26,7 +26,7 @@
 
     <div class="container">
         <div class="row">
-            <table class="striped responsive-table" style="word-wrap:break-word">
+            <table class="bordered highlight responsive-table" style="word-wrap:break-word">
                 <thead>
                 <tr>
                     <th data-field="title">Title Job</th>
@@ -62,9 +62,7 @@
         <div class="row"></div>
         <div class="row">
             <div class="col-md-8 col-md-offset-4 center-align">
-                <button type="submit" class="btn blue">
-                    Post Job Now
-                </button>
+                <a class="btn btn-block green" href="{{ url('/company/post_job/') }}">Create new Post Job</a>
             </div>
         </div>
     </div>
