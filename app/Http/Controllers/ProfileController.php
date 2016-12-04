@@ -35,7 +35,6 @@ class ProfileController extends Controller
     public function update($user_id, UserRequest $request){
         $user = User::find($user_id);
         if($user != null){
-            $user->email = $request->get('email');
             $user->phone = $request->get('phone');
             $user->description = $request->get('description');
 
