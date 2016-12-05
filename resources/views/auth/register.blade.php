@@ -2,22 +2,21 @@
 
 @section('content')
 
-    <div class="container" style="background-color: white;margin-top:30px">
+    <div class="valign-wrapper" style="margin-top:30px">
 
-        <div class="row" style="padding:60px;">
-
-            <div class="col l8 push-l2">
+        <div class="row z-depth-1" style="background-color: white;">
+            <div class="col l12">
                 <h4 class="col s12 valign blue-text">Register</h4>
                 <form class="col s12" method="POST" action="{{ url('/register') }}" enctype="multipart/form-data"
                       files="true">
                     {{ csrf_field() }}
 
                     {{--<div class="form-group{{ $errors->has('user_name') ? ' has-error' : '' }}">--}}
-                    <h6>Name</h6>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="name" type="text" class="validate" name="name" placeholder="Name"
+                            <input id="name" type="text" class="validate" name="name"
                                    value="{{ old('name') }}">
+                            <label for="name">Name</label>
                             @if ($errors->has('name'))
                                 <strong>{{ $errors->first('name') }}</strong>
                             @endif
@@ -25,43 +24,40 @@
                     </div>
                     {{--</div>--}}
 
-
-                    <h6>Email</h6>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="email" type="email" class="validate" name="email" placeholder="Email"
+                            <input id="email" type="email" class="validate" name="email"
                                    value="{{ old('email') }}">
+                            <label for="email">Email</label>
                             @if ($errors->has('email'))
                                 <strong>{{ $errors->first('email') }}</strong>
                             @endif
                         </div>
                     </div>
 
-                    <h6>Password</h6>
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="password" type="password" class="validate" name="password"
-                                   placeholder="Password" value="{{ old('password') }}">
+                                   value="{{ old('password') }}">
+                            <label for="password">Password</label>
                             @if ($errors->has('password'))
                                 <strong>{{ $errors->first('password') }}</strong>
                             @endif
                         </div>
                     </div>
 
-
-                    <h6>Password Confirmation</h6>
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="password_confirmation" type="password" class="validate"
-                                   name="password_confirmation" placeholder="Confirm Password"
+                                   name="password_confirmation"
                                    value="{{ old('password_confirmation') }}">
+                            <label for="password_confirmation">Password Confirmation</label>
                             @if ($errors->has('password_confirmation'))
                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
                             @endif
                         </div>
                     </div>
 
-                    <h6>Role</h6>
                     <div class="row">
                         <div class="input-field col s12">
                             <select id="role" name="role">
@@ -69,6 +65,7 @@
                                 <option value="{{\App\Constant::user_jobseeker}}">Jobseeker</option>
                                 <option value="{{\App\Constant::user_company}}">Company</option>
                             </select>
+                            <label for="role">Role</label>
                         </div>
                     </div>
 

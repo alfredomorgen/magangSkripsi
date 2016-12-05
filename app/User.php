@@ -28,4 +28,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('\App\Company');
     }
+
+    public function jobseeker()
+    {
+        return $this->hasOne('\App\Jobseeker');
+    }
+
 }
