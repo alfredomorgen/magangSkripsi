@@ -5,7 +5,7 @@
 </style>
 <div class="nav-extended">
     <div class="nav-wrapper">
-        <ul class="tabs tabs-transparent z-depth-1">
+        <ul class="tabs tabs-fixed-width z-depth-1">
 
             @if(Auth::guest())
                 <li class="tab"><a target="_self" href="{{url('/')}}" style="color:#757575">Home</a></li>
