@@ -23,7 +23,7 @@
                     <div class="nav-wrapper">
                         <form action="{{url('admin/searchJobseeker') }}" role="search" accept-charset="UTF-8">
                             <div class="input-field">
-                                <input class="tooltipped" data-position="right" data-delay="50" data-tooltip="Search Jobseeker" name="search" id="search" placeholder="Search a jobseeker" type="search" required>
+                                <input class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Search Jobseeker" name="search" id="search" placeholder="Search a jobseeker" type="search" required>
                                 <label for="search"><i class="material-icons grey-text">search</i></label>
                                 <i class="material-icons">close</i>
                             </div>

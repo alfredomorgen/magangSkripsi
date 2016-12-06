@@ -31,7 +31,7 @@ class CompanyController extends Controller
     public function store(Post_jobRequest $request)
     {
         $job = new Job();
-        $job->company_id = Auth::user()->id;
+        $job->company_id = Auth::user()->company->id;
         $job->jobcategory_id = Input::get('jobcategory_id');
         $job->title = Input::get('title');
         $job->type = Input::get('type');

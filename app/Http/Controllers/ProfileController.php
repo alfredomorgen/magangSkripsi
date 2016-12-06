@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constant;
 use App\Jobseeker;
 use App\User;
 use Illuminate\Http\Request;
@@ -54,5 +55,11 @@ class ProfileController extends Controller
         } else {
             return redirect('/');
         }
+    }
+
+    public function loginType($user_type)
+    {
+        $data = ['user_types' =>$user_type];
+        return view('auth.login',$data);
     }
 }

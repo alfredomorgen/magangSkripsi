@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -25,5 +26,10 @@ class Job extends Model
     public function company()
     {
         return $this->belongsTo('\App\Company');
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return date('d/m/Y',strtotime($this->attributes['created_at']));
     }
 }

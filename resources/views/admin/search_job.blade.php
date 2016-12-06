@@ -23,7 +23,7 @@
                     <div class="nav-wrapper">
                         <form action="{{url('admin/searchJob') }}" role="search" accept-charset="UTF-8">
                             <div class="input-field">
-                                <input class="tooltipped" data-position="right" data-delay="50" data-tooltip="Search Company" name="search" id="search" placeholder="Search a job" type="search" required>
+                                <input class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Search Job" name="search" id="search" placeholder="Search a job" type="search" required>
                                 <label for="search"><i class="material-icons grey-text">search</i></label>
                                 <i class="material-icons">close</i>
                             </div>
@@ -43,7 +43,7 @@
                             <th data-field="id">Id</th>
                             <th data-field="company_name">Company Name</th>
                             <th data-field="job">Title</th>
-                            <th data-field="email">Email</th>
+                            <th data-field="email">Created Date</th>
                             <th data-field="action">Action</th>
                         </tr>
                         </thead>
@@ -53,8 +53,8 @@
                         @foreach($jobs as $job)
                             <tr>
                                 <td>{{ $job->id }}</td>
-                                {{--<td>{{ $job->company->name->first() }}</td>--}}
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/admin/view_job/'.$job->id)}}">{{ $job->title }}</a></td>
+                                <td>{{ $job->company->user->name}}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/admin/view_job/'.$job->id)}}">{{ $job->title }}</a></td>
                                 <td>{{ $job->created_at }}</td>
                                 <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
                             </tr>
@@ -73,7 +73,7 @@
                             <th data-field="id">Id</th>
                             <th data-field="company_name">Company Name</th>
                             <th data-field="job">Title</th>
-                            <th data-field="email">Email</th>
+                            <th data-field="email">Created Date</th>
                             <th data-field="action">Action</th>
                         </tr>
                         </thead>
@@ -83,8 +83,8 @@
                         @foreach($jobs as $job)
                             <tr>
                                 <td>{{ $job->id }}</td>
-                                {{--<td>{{ $job->company->name->first() }}</td>--}}
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/admin/view_job/'.$job->id)}}">{{ $job->title }}</a></td>
+                                <td>{{ $job->company->user->name }}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{url('/admin/view_job/'.$job->id)}}">{{ $job->title }}</a></td>
                                 <td>{{ $job->created_at }}</td>
                                 <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
                             </tr>

@@ -38,6 +38,10 @@ Route::get('admin/searchJob',function(){
     return redirect($route);
 });
 
+Route::get('/{user_type}',[
+   'uses' => 'ProfileController@loginType'
+]);
+
 Route::get('/{user_id}', [
     'uses' => 'ProfileController@index',
     'as' => 'user.profile',

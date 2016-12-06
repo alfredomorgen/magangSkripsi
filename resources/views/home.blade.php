@@ -16,7 +16,7 @@
                 <!-- Teal page content  -->
 
                 <div class="row">
-                    <div class="col l12">
+                    <div class="col l12 m12 s12">
                         <div class="card-panel content ">
                             <div class="row" style="margin-bottom: 0px">
                                 <div class="input-field col s5 m5 l5">
@@ -24,13 +24,13 @@
                                     <input id="icon_prefix" type="text" class="validate">
                                     <label for="icon_prefix">Title Jobs</label>
                                 </div>
-                                <div class="input-field col s4 m4 l4">
+                                <div class="input-field col s4 m5 l5">
 
                                     <input id="icon_telephone" type="tel" class="validate">
                                     <label for="icon_telephone">Location</label>
                                 </div>
-                                <div class="input-field col s1 m2 l2">
-                                    <button class="btn waves-effect waves-light" type="submit" name="action">Find
+                                <div class="input-field col s3 m2 l2">
+                                    <button class="btn waves-effect waves-light" style="width:100%"type="submit" name="action">Find
 
                                     </button>
                                 </div>

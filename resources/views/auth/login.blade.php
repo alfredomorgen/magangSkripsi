@@ -1,12 +1,14 @@
+
 @extends('layouts.app')
 
 @section('content')
+
     <div class="valign-wrapper" style="margin-top:70px">
 
         <div class="row z-depth-3" style="background-color: white; width:340px;">
 
             <div class="col l12">
-                <h4 class="col s12 valign blue-text center">Login</h4>
+                <h4 class="col s12 valign grey-text text-darken-2 center">@if(($user_types)=='1')Company @elseif(($user_types)=='2') Jobseeker @endif</h4>
                 <form class="col s12" style="padding-bottom:20px;" method="POST" action="{{ url('/login') }}">
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -65,4 +67,18 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('nav').removeClass();
+
+            @if(($user_types)=='1')
+                $('nav').addClass('orange darken-3');
+            @elseif(($user_types)=='2')
+                $('nav').addClass('light-blue lighten-1');
+            @endif
+        });
+    </script>
 @endsection

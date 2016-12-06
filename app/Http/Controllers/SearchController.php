@@ -15,7 +15,7 @@ class SearchController extends Controller
     {
         $company = User::select('*')
             ->where('role','=','1')
-            ->paginate(2);
+            ->paginate(3);
         $data = ['companies' => $company];
         return view('admin.search_company', $data);
     }
@@ -23,7 +23,7 @@ class SearchController extends Controller
     {
         $jobseeker = User::select('*')
             ->where('role','=','2')
-            ->paginate(2);
+            ->paginate(3);
         $data = ['jobseekers' => $jobseeker];
         return view('admin.search_jobseeker', $data);
     }
@@ -31,7 +31,7 @@ class SearchController extends Controller
     public function indexJob()
     {
         $job = Job::select('*')
-            ->paginate(1);
+            ->paginate(3);
         $data = ['jobs' => $job];
         return view('admin.search_job',$data);
     }
@@ -41,7 +41,7 @@ class SearchController extends Controller
         $jobs = Job::select('*')
             ->where('title','LIKE', '%'.$search.'%')
             ->orderBy('id')
-            ->paginate(2);
+            ->paginate(3);
         if (count($jobs) == 0 ){
             return view('admin.search_job')
                 ->with('message','Job not Found')
@@ -60,7 +60,7 @@ class SearchController extends Controller
             ->where('name','LIKE', '%'.$search.'%')
             ->Where('role','=','1')
             ->orderBy('id')
-            ->paginate(2);
+            ->paginate(3);
         if (count($companies) == 0 ){
             return view('admin.search_company')
                 ->with('message','Company not Found')
@@ -78,7 +78,7 @@ class SearchController extends Controller
             ->where('name','LIKE', '%'.$search.'%')
             ->Where('role','=','2')
             ->orderBy('id')
-            ->paginate(2);
+            ->paginate(3);
         if (count($jobseekers) == 0 ){
             return view('admin.search_jobseeker')
                 ->with('message','Jobseeker not Found')
