@@ -3,14 +3,14 @@
 @section('content')
     <div class="valign-wrapper" style="margin-top:70px">
 
-        <div class="row z-depth-3" style="background-color: white; width:280px;">
+        <div class="row z-depth-3" style="background-color: white; width:340px;">
 
             <div class="col l12">
                 <h4 class="col s12 valign blue-text center">Login</h4>
                 <form class="col s12" style="padding-bottom:20px;" method="POST" action="{{ url('/login') }}">
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <div class="row">
+                        <div class="row" style="margin:0px;">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">perm_identity</i>
                                 <input id="email" type="email" class="validate" name="email" value="{{ old('email') }}">

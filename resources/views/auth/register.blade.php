@@ -6,8 +6,8 @@
 
         <div class="row z-depth-1" style="background-color: white;">
             <div class="col l12">
-                <h4 class="col s12 valign blue-text">Register</h4>
-                <form class="col s12" method="POST" action="{{ url('/register') }}" enctype="multipart/form-data"
+                <h4 class="col s12 valign blue-text center">Register</h4>
+                <form class="col s12" style="padding-bottom:20px" method="POST" action="{{ url('/register') }}" enctype="multipart/form-data"
                       files="true">
                     {{ csrf_field() }}
 

@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
-    //
+    use SoftDeletes;
     protected $table = 'jobs';
     protected $primaryKey = "id";
 
@@ -21,4 +22,8 @@ class Job extends Model
         'requirement'
     ];
 
+    public function company()
+    {
+        return $this->belongsTo('\App\Company');
+    }
 }

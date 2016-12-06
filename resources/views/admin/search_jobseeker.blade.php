@@ -23,7 +23,7 @@
                     <div class="nav-wrapper">
                         <form action="{{url('admin/searchJobseeker') }}" role="search" accept-charset="UTF-8">
                             <div class="input-field">
-                                <input name="search" id="search" placeholder="Search a jobseeker" type="search" required>
+                                <input class="tooltipped" data-position="right" data-delay="50" data-tooltip="Search Jobseeker" name="search" id="search" placeholder="Search a jobseeker" type="search" required>
                                 <label for="search"><i class="material-icons grey-text">search</i></label>
                                 <i class="material-icons">close</i>
                             </div>
@@ -40,9 +40,8 @@
                     <table class="centered white">
                         <thead>
                         <tr>
-                            <th data-field="photo">Photo</th>
                             <th data-field="id">Id</th>
-                            <th data-field="company">Jobseeker</th>
+                            <th data-field="jobseeker">Jobseeker</th>
                             <th data-field="email">Email</th>
                             <th data-field="action">Action</th>
                         </tr>
@@ -52,9 +51,8 @@
 
                         @foreach($jobseekers as $jobseeker)
                             <tr>
-                                <td></td>
                                 <td>{{ $jobseeker->id }}</td>
-                                <td>{{ $jobseeker->name }}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/admin/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
                                 <td>{{ $jobseeker->email }}</td>
                                 <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
                             </tr>
@@ -70,9 +68,8 @@
                     <table class="centered white">
                         <thead>
                         <tr>
-                            <th data-field="photo">Photo</th>
                             <th data-field="id">Id</th>
-                            <th data-field="company">Company</th>
+                            <th data-field="jobseeker">Jobseeker</th>
                             <th data-field="email">Email</th>
                             <th data-field="action">Action</th>
                         </tr>
@@ -82,9 +79,8 @@
 
                         @foreach($jobseekers as $jobseeker)
                             <tr>
-                                <td></td>
                                 <td>{{ $jobseeker->id }}</td>
-                                <td>{{ $jobseeker->name }}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/admin/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
                                 <td>{{ $jobseeker->email }}</td>
                                 <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
                             </tr>

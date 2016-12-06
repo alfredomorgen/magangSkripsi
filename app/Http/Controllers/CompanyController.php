@@ -105,9 +105,7 @@ class CompanyController extends Controller
         $job = Job::select('*')->paginate(3);
 
         $data = ['jobs' => $job];
-
-
-
+        
         return view('/company/view_post_job',$data);
     }
 

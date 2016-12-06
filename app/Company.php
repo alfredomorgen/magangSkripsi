@@ -21,4 +21,9 @@ class Company extends Model
     {
         return $this->belongsTo('\App\User');
     }
+
+    public function job()
+    {
+        return $this->hasMany('\App\Job');
+    }
 }
