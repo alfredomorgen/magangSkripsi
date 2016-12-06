@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Company;
+use App\Constant;
+use App\Jobseeker;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -64,11 +67,23 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'role' => $data['role']
         ]);
+
+        if($data['role'] == Constant::user_company){
+            Company::create([
+                'user_id' => $user->id,
+            ]);
+        } else if($data['role'] == Constant::user_jobseeker){
+            Jobseeker::create([
+                'user_id' => $user->id,
+            ]);
+        }
+
+        return $user;
     }
 }
