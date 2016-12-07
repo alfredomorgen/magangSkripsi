@@ -109,5 +109,12 @@ class CompanyController extends Controller
         return view('/company/view_post_job',$data);
     }
 
-
+    public function view_job_detail($id)
+    {
+        $job = Job::find($id);
+        $data = [
+            'job' => $job,
+        ];
+        return view('company.view_job_detail', $data);
+    }
 }
