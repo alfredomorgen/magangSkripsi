@@ -28,7 +28,15 @@ class SearchController extends Controller
             ->where('role', '=', '2')
             ->paginate(3);
         $data = ['jobseekers' => $jobseeker];
-        return view('admin.search_jobseeker', $data);
+        if(Auth::user()->role == constant::user_admin)
+        {
+            return view('admin.search_jobseeker', $data);
+        }
+        else if (Auth::user()->role == constant::user_company)
+        {
+            return view('company.company_search_jobseeker', $data);
+        }
+
     }
 
     public function indexJob()
