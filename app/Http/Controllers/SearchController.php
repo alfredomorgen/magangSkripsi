@@ -34,7 +34,7 @@ class SearchController extends Controller
         }
         else if (Auth::user()->role == constant::user_company)
         {
-            return view('company.company_search_jobseeker', $data);
+            return view('company.search_jobseeker', $data);
         }
 
     }
@@ -97,7 +97,7 @@ class SearchController extends Controller
                     ->with('message', 'Jobseeker not Found')
                     ->with('search', $search);
             } else if (Auth::user()->role == constant::user_company) {
-                return view('company.company_search_jobseeker')
+                return view('company.search_jobseeker')
                     ->with('message', 'Jobseeker not Found')
                     ->with('search', $search);
             }
@@ -107,7 +107,7 @@ class SearchController extends Controller
                     ->with('jobseekers', $jobseekers)
                     ->with('search', 'Looking for' . ' ' . $search);
             } else if (Auth::user()->role == constant::user_company) {
-                return view('company.company_search_jobseeker')
+                return view('company.search_jobseeker')
                     ->with('jobseekers', $jobseekers)
                     ->with('search', 'Looking for' . ' ' . $search);
             }
