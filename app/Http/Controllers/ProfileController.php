@@ -62,4 +62,14 @@ class ProfileController extends Controller
         $data = ['user_types' =>$user_type];
         return view('auth.login',$data);
     }
+
+    public function registerType($user_type)
+    {
+        if($user_type=='1'){
+            return view('auth.register_company');
+        }elseif($user_type=='2') {
+            return view('auth.register_jobseeker');
+        }
+    }
+
 }

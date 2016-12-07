@@ -51,12 +51,26 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'role' => 'required'
-        ]);
+        if($data['role']== Constant::user_jobseeker) {
+            return Validator::make($data, [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+                'role' => 'required'
+            ]);
+        }elseif($data['role']==Constant::user_company){
+            return Validator::make($data, [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+                'role' => 'required',
+                'description' => 'required',
+                'phone'=> 'required|numeric',
+                'address' => 'required',
+                'industry' => 'required',
+                'website' => 'required'
+            ]);
+        }
     }
 
     /**
@@ -67,18 +81,32 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'role' => $data['role']
-        ]);
+
 
         if($data['role'] == Constant::user_company){
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'role' => $data['role'],
+                'description' =>$data['description'],
+                'phone' => $data['phone'],
+
+            ]);
             Company::create([
                 'user_id' => $user->id,
+                'address' => $data['address'],
+                'size' => $data['size'],
+                'industry' => $data['industry'],
+                'website' => $data['website']
             ]);
         } else if($data['role'] == Constant::user_jobseeker){
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'role' => $data['role']
+            ]);
             Jobseeker::create([
                 'user_id' => $user->id,
             ]);

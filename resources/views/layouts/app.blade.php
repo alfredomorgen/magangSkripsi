@@ -39,14 +39,14 @@
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <ul class="dropdown-menu" role="menu" >
-                                <li><a href="{{ url('/1') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>As Company</h6></a></li>
+                                <li><a href="{{ url('/login/1') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>As Company</h6></a></li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/2') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>As Jobseeker</h6></a></li>
+                                <li><a href="{{ url('/login/2') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>As Jobseeker</h6></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -54,7 +54,27 @@
 
                 <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Login <span
                             class="caret"></span><i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-                <li><a href="{{ url('/register') }}">Register</a></li>
+                {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
+                <ul id="dropdown3" class="dropdown-content white" style="margin-top:64px;">
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <ul class="dropdown-menu" role="menu" >
+                                <li><a href="{{ url('/register/1') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>Company</h6></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/register/2') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>Jobseeker</h6></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Register<span
+                                class="caret"></span><i class="mdi-navigation-arrow-drop-down right"></i></a></li>
             @else
                 <ul id="dropdown2" class="dropdown-content orange lighten-4" style="margin-top:64px;">
 
@@ -74,23 +94,62 @@
 
         <ul id="nav-mobile" class="side-nav">
             @if (Auth::guest())
-                <li><a href="{{ url('/login') }}">Login</a></li>
-                <li><a href="{{ url('/register') }}">Register</a></li>
+                {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
+                <ul id="dropdown4" class="dropdown-content white" style="margin-top:64px;">
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <ul class="dropdown-menu" role="menu" >
+                                <li><a href="{{ url('/login/1') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>As Company</h6></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/login/2') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>As Jobseeker</h6></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Login <span
+                                class="caret"></span><i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
+                <ul id="dropdown5" class="dropdown-content white" style="margin-top:64px;">
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <ul class="dropdown-menu" role="menu" >
+                                <li><a href="{{ url('/register/1') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>Company</h6></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/register/2') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i><h6>Jobseeker</h6></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown5">Register<span
+                                class="caret"></span><i class="mdi-navigation-arrow-drop-down right"></i></a></li>
             @else
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
+                <ul id="dropdown6" class="dropdown-content orange lighten-4" style="margin-top:64px;">
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{ url('/logout') }}" class="black-text"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </ul>
+                <a class="dropdown-button" href="#!" data-activates="dropdown6">{{ Auth::user()->name }} <span
+                            class="caret"></span><i class="mdi-navigation-arrow-drop-down right"></i></a>
             @endif
         </ul>
 

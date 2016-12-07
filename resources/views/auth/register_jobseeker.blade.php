@@ -58,16 +58,17 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select id="role" name="role">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="{{\App\Constant::user_jobseeker}}">Jobseeker</option>
-                                <option value="{{\App\Constant::user_company}}">Company</option>
-                            </select>
-                            <label for="role">Role</label>
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="input-field col s12">--}}
+                            {{--<select id="role" name="role">--}}
+                                {{--<option value="" disabled selected>Choose your option</option>--}}
+                                {{--<option value="{{\App\Constant::user_jobseeker}}">Jobseeker</option>--}}
+                                {{--<option value="{{\App\Constant::user_company}}">Company</option>--}}
+                            {{--</select>--}}
+                            {{--<label for="role">Role</label>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    <input type="hidden" name="role" value="{{\App\Constant::user_jobseeker}}">
 
 
                     <div class="col-md-8 col-md-offset-4 center-align">

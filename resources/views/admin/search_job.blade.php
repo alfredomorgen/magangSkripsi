@@ -56,7 +56,7 @@
                                 <td>{{ $job->company->user->name}}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/admin/view_job/'.$job->id)}}">{{ $job->title }}</a></td>
                                 <td>{{ $job->created_at }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
+                                <td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_job/'.$job->id)}}>Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -86,7 +86,7 @@
                                 <td>{{ $job->company->user->name }}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{url('/admin/view_job/'.$job->id)}}">{{ $job->title }}</a></td>
                                 <td>{{ $job->created_at }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
+                                <td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_job/'.$job->id)}}>Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>

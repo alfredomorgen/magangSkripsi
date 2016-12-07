@@ -38,8 +38,12 @@ Route::get('admin/searchJob',function(){
     return redirect($route);
 });
 
-Route::get('/{user_type}',[
-   'uses' => 'ProfileController@loginType'
+Route::get('/login/{user_type}',[
+    'uses' => 'ProfileController@loginType'
+]);
+
+Route::get('/register/{user_type}',[
+    'uses' => 'ProfileController@registerType'
 ]);
 
 Route::get('user/{user_id}', [
@@ -82,6 +86,10 @@ Route::get('/admin/search_job', [
 
 Route::get('admin/search_job/{search}', [
     'uses' => 'SearchController@searchJob'
+]);
+
+Route::get('/admin/delete_job/{id}',[
+    'uses' => 'AdminController@deleteJob'
 ]);
 //Route::get('/admin/view_job/{id}',[
 //    'uses' => 'ProfileController@index'
