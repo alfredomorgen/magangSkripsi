@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Constant;
-use App\Jobseeker;
-use App\User;
-use Illuminate\Http\Request;
+use App\Job;
 
-use App\Http\Requests;
-use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Input;
-
-class ProfileController extends Controller
+class SiteController extends Controller
 {
+    public function index()
+    {
+        $jobs = Job::select('*')->orderBy('created_at', 'desc')->paginate(5);
+        $data = [
+            'jobs' => $jobs,
+        ];
+        return view('home', $data);
+    }
+
     public function loginType($user_type)
     {
         $data = ['user_types' =>$user_type];

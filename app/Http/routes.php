@@ -16,20 +16,20 @@
 ///////////////
 Route::auth();
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [
+    'uses' => 'SiteController@index',
+]);
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/home', [
+    'uses' => 'SiteController@index',
+]);
 
 Route::get('/login/{user_type}',[
-    'uses' => 'ProfileController@loginType'
+    'uses' => 'SiteController@loginType'
 ]);
 
 Route::get('/register/{user_type}',[
-    'uses' => 'ProfileController@registerType'
+    'uses' => 'SiteController@registerType'
 ]);
 
 Route::get('/job/{id}', [
@@ -59,7 +59,7 @@ Route::get('admin/searchJob',function(){
 });
 
 Route::get('/admin/view_jobseeker/{id}',[
-   'uses' => 'ProfileController@index'
+   'uses' => 'SiteController@index'
 ]);
 
 Route::get('/admin/search_company', [
