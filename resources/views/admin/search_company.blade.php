@@ -37,7 +37,7 @@
                 {{$search}}
 
                 <ul class="collection z-depth-1 grey-text text-darken-2">
-                    <table class="centered white">
+                    <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
                             <th data-field="id">Id</th>
@@ -65,7 +65,7 @@
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
-                    <table class="centered white">
+                    <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
                             <th data-field="id">Id</th>

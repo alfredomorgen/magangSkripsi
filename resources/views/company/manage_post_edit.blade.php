@@ -122,7 +122,9 @@
                         <button type="submit" class="btn blue">
                             Post Job Now
                         </button>
+                        <a href="{{ url()->previous() }}" class="btn btn-default">Cancel</a>
                     </div>
+
 
                 </form>
             </div>

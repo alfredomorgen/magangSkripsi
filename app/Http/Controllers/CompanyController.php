@@ -105,7 +105,7 @@ class CompanyController extends Controller
         $job = Job::select('*')->paginate(3);
 
         $data = ['jobs' => $job];
-        
+
         return view('/company/view_post_job',$data);
     }
 
@@ -116,5 +116,33 @@ class CompanyController extends Controller
             'job' => $job,
         ];
         return view('company.view_job_detail', $data);
+    }
+
+    public function indexJobseeker()
+    {
+        $jobseeker = User::select('*')
+            ->where('role','=','2')
+            ->paginate(3);
+        $data = ['jobseekers' => $jobseeker];
+        return view('company.search_jobseeker', $data);
+    }
+
+    public function searchJobseeker($search)
+    {
+
+        $jobseekers = User::select('*')
+            ->where('name','LIKE', '%'.$search.'%')
+            ->Where('role','=','2')
+            ->orderBy('id')
+            ->paginate(3);
+        if (count($jobseekers) == 0 ){
+            return view('company.company_search_jobseeker')
+                ->with('message','Jobseeker not Found')
+                ->with('search',$search);
+        }else{
+            return view('company.company_search_jobseeker')
+                ->with('jobseekers',$jobseekers)
+                ->with('search','Looking for'.' '. $search);
+        }
     }
 }

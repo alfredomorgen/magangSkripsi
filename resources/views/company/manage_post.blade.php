@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        ul li span {
+            font-size: 20px;
+        }
+
+        ul li .active {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+    </style>
     <div class="container">
         <div class="row">
             <!-- Grey navigation panel -->
@@ -26,37 +36,39 @@
 
     <div class="container">
         <div class="row">
-            <table class="bordered highlight responsive-table" style="word-wrap:break-word">
-                <thead>
-                <tr>
-                    <th data-field="title">Title Job</th>
-                    <th data-field="created_at">Created</th>
-                    <th data-field="candidates">Candidates</th>
-                    <th data-field="status">Status</th>
-                    <th data-field="action" colspan="2">
-                        <div align="center">Action</div>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($jobs as $job)
+            <ul class="collection z-depth-1 grey-text text-darken-2">
+                <table class="centered bordered highlight responsive-table white" style="word-wrap:break-word">
+                    <thead>
                     <tr>
-                        <td>{{ $job->title }}</td>
-                        <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
-                        <td>{{$job->id }}</td>
-                        <td>On Going</td>
-                        <td><a class="btn btn-block blue"
-                               href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>
-                        <td><a class="btn btn-block red"
-                               href="{{ url('/company/post_job/delete/'.$job->id) }}">Delete</a>
-                        </td>
+                        <th data-field="title">Title Job</th>
+                        <th data-field="created_at">Created</th>
+                        <th data-field="candidates">Candidates</th>
+                        <th data-field="status">Status</th>
+                        <th data-field="action" colspan="2">
+                            <div align="center">Action</div>
+                        </th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <div class="pagination center">
-                <b>{{$jobs->render()}}</b>
-            </div>
+                    </thead>
+                    <tbody>
+                    @foreach($jobs as $job)
+                        <tr>
+                            <td>{{ $job->title }}</td>
+                            <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
+                            <td>{{$job->id }}</td>
+                            <td>On Going</td>
+                            <td><a class="btn btn-block blue"
+                                   href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>
+                            <td><a class="btn btn-block red"
+                                   href="{{ url('/company/post_job/delete/'.$job->id) }}">Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </ul>
+            <ul class="pagination center">
+                <li class="waves-effect">{{ $jobs->render() }}</li>
+            </ul>
         </div>
         <div class="row"></div>
         <div class="row"></div>

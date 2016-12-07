@@ -138,3 +138,19 @@ Route::get('job/{id}/apply', [
     'uses' => 'JobseekerController@apply',
     'as' => 'jobseeker.apply'
 ]);
+
+Route::get('company/searchJobseeker',function(){
+    $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
+    $route = "company/search_jobseeker/$search";
+    return redirect($route);
+});
+
+Route::get('/company/search_jobseeker',[
+    'uses' => 'SearchController@indexJobseeker',
+    'as' => 'company.search_jobseeker'
+]);
+
+Route::get('/company/search_jobseeker/{search}',[
+    'uses' => 'SearchController@searchJobseeker',
+    'as' => 'company.search_jobseeker'
+]);
