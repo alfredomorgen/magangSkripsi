@@ -3,12 +3,13 @@
 
 @section('content')
     <style>
-        ul li span{
-            font-size:20px;
+        ul li span {
+            font-size: 20px;
         }
-        ul li .active{
+
+        ul li .active {
             padding-left: 8px;
-            padding-right:8px;
+            padding-right: 8px;
         }
     </style>
     <div class="container">
@@ -23,7 +24,9 @@
                     <div class="nav-wrapper">
                         <form action="{{url('admin/searchJobseeker') }}" role="search" accept-charset="UTF-8">
                             <div class="input-field">
-                                <input class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Search Jobseeker" name="search" id="search" placeholder="Search a jobseeker" type="search" required>
+                                <input class="tooltipped" data-position="bottom" data-delay="50"
+                                       data-tooltip="Search Jobseeker" name="search" id="search"
+                                       placeholder="Search a jobseeker" type="search" required>
                                 <label for="search"><i class="material-icons grey-text">search</i></label>
                                 <i class="material-icons">close</i>
                             </div>
@@ -52,7 +55,10 @@
                         @foreach($jobseekers as $jobseeker)
                             <tr>
                                 <td>{{ $jobseeker->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/admin/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50"
+                                       data-tooltip="View Profile"
+                                       href="{{url('/admin/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a>
+                                </td>
                                 <td>{{ $jobseeker->email }}</td>
                                 <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
                             </tr>
@@ -80,7 +86,10 @@
                         @foreach($jobseekers as $jobseeker)
                             <tr>
                                 <td>{{ $jobseeker->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/admin/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50"
+                                       data-tooltip="View Profile"
+                                       href="{{url('/admin/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a>
+                                </td>
                                 <td>{{ $jobseeker->email }}</td>
                                 <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
                             </tr>

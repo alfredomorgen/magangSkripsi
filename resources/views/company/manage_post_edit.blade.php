@@ -120,7 +120,7 @@
 
                     <div class="col-md-8 col-md-offset-4 center-align">
                         <button type="submit" class="btn blue">
-                            Post Job Now
+                            Update Post Job
                         </button>
                         <a href="{{ url()->previous() }}" class="btn btn-default">Cancel</a>
                     </div>

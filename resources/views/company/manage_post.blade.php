@@ -21,7 +21,7 @@
     </div>
     <div class="container" style="background-color: transparent;margin-top:30px">
         @if(session('success'))
-            <script>Materialize.toast('{{session('success')}}', 4000, 'rounded');</script>
+            <script>Materialize.toast('{{session('success')}}', 5000, 'rounded');</script>
         @elseif(session('error'))
             <div class="red-text">
                 {{session('error')}}

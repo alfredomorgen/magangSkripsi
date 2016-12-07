@@ -42,7 +42,7 @@ class CompanyController extends Controller
         $job->description = Input::get('description');
         $job->save();
 
-        return redirect('/');
+        return redirect('/company/manage_post')->with('success', 'New Job Added');
     }
 
     public function manage_post()
@@ -74,7 +74,7 @@ class CompanyController extends Controller
         $job->description = Input::get('description');
         $job->save();
 
-        return redirect('/company/manage_post/');
+        return redirect('/company/manage_post/')->with('success','Job Updated');
     }
 
     public function manage_post_delete($id)
