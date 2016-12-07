@@ -42,7 +42,7 @@ Route::get('/{user_type}',[
    'uses' => 'ProfileController@loginType'
 ]);
 
-Route::get('/{user_id}', [
+Route::get('user/{user_id}', [
     'uses' => 'ProfileController@index',
     'as' => 'user.profile',
 ]);
@@ -124,7 +124,8 @@ Route::get('/company/post_job/delete/{id}',[
     'as' => 'company.manage_post_delete'
 ]);
 
-Route::get('/company/view/post_job',[
+Route::get('/company/view_post_job',[
    'uses' => 'CompanyController@view_post',
-    'as' => 'company.view_post'
+    'as' => 'company.view_post_job'
 ]);
+

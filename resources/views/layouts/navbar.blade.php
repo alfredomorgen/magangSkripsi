@@ -17,16 +17,16 @@
                 <li class="tab"><a target="_self" href="{{url('/admin/search_job')}}" style="color:#757575">Search Job</a></li>
             @elseif(Auth::user()->role == '1')
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
-                <li class="tab"><a href="#test2" style="color:#757575">Search User</a></li>
-                <li class="tab"><a href="#test3" style="color:#757575">Bookmark Users</a></li>
-                <li class="tab"><a target="_self" href="{{ url('/company/view/post_job') }}" style="color:#757575">View Posts</a></li>
+                <li class="tab"><a href="#test2" style="color:#757575">Search Job Seeker</a></li>
+                <li class="tab"><a href="#test3" style="color:#757575">Bookmark Job Seeker</a></li>
+                <li class="tab"><a target="_self" href="{{ url('/company/view_post_job') }}" style="color:#757575">View Posts</a></li>
                 <li class="tab"><a target="_self" href="{{ url('/company/manage_post') }}" style="color:#757575">Manage Posts</a></li>
-                <li class="tab"><a target="_self" href="{{ url('/'.Auth::user()->id ) }}" style="color:#757575">Profile</a></li>
+                <li class="tab"><a target="_self" href="{{ url('user/'.Auth::user()->id ) }}" style="color:#757575">Profile</a></li>
             @elseif(Auth::user()->role == '2')
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a href="#test2" style="color:#757575">Search Company</a></li>
                 <li class="tab"><a href="#test3" style="color:#757575">Bookmark Jobs</a></li>
-                <li class="tab"><a target="_self" href="{{ url('/'.Auth::user()->id) }}" style="color:#757575">Profile</a></li>
+                <li class="tab"><a target="_self" href="{{ url('user/'.Auth::user()->id) }}" style="color:#757575">Profile</a></li>
                 <li class="tab"><a target="_self" href="{{url('/')}}" style="color:#757575">Applied Jobs </a></li>
             @endif
 
