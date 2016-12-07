@@ -23,7 +23,12 @@
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
                         <span class="card-title">{{ $job->title }}</span>
+                        <h5>Description</h5>
                         <p>{!! nl2br($job->description) !!}</p>
+                        <h5>Benefit</h5>
+                        <p>{!! nl2br($job->benefit) !!}</p>
+                        <h5>Requirement</h5>
+                        <p>{!! nl2br($job->requirement) !!}</p>
                     </div>
                     <div class="card-action">
                         <h6 class="right-align"><button class="btn btn-default" id="btnApply">Apply</button></h6>
@@ -48,6 +53,8 @@
                     window.location.href += '/apply';
                 });
             @endif
+
+            Materialize.toast('{{ session('message') }}', 3000, 'rounded');
         });
     </script>
 @endsection

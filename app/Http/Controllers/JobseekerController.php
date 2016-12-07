@@ -16,6 +16,16 @@ class JobseekerController extends Controller
             'job_id' => $id,
         ]);
 
-        return redirect('/job/'.$id);
+        $message = "";
+        if($transaction == null){
+            $message = "Failed to apply job...";
+        } else {
+            $message = "Job successfully applied!";
+        }
+
+        $data = [
+            'message' => $message,
+        ];
+        return redirect('/job/'.$id)->with($data);
     }
 }

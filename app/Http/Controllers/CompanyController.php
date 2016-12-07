@@ -45,23 +45,13 @@ class CompanyController extends Controller
         return redirect('/');
     }
 
-
     public function manage_post()
     {
-        $columns = [
-            'id',
-            'title',
-            'created_at',
-        ];
-
-        $job = Job::select('*')->paginate(3);
-
+        $job = Job::select('*')->where('company_id', '=', Auth::user()->company->id)->paginate(3);
         $data = ['jobs' => $job];
-
 
         return view('company.manage_post', $data);
     }
-
 
     public function manage_post_edit($id)
     {

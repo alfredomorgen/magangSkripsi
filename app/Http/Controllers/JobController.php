@@ -14,6 +14,6 @@ class JobController extends Controller
         $data = [
             'job' => $job,
         ];
-        return view('company.view_job_detail', $data);
+        return view('job.job_detail', $data);
     }
 }
