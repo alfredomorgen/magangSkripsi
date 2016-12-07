@@ -26,7 +26,7 @@
                         <p>{!! nl2br($job->description) !!}</p>
                     </div>
                     <div class="card-action">
-                        <h6 class="right-align"><a href="{{ url('job/'.$job->id.'/apply') }}" id="btnApply">Apply</a></h6>
+                        <h6 class="right-align"><button class="btn btn-default" id="btnApply">Apply</button></h6>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,11 @@
                 $('#btnApply').click(function (event) {
                     event.preventDefault();
                     Materialize.toast('Only Jobseeker can apply', 3000, 'rounded');
-            });
+                });
+            @else
+                $('#btnApply').click(function (event) {
+                    window.location.href += '/apply';
+                });
             @endif
         });
     </script>

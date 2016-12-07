@@ -138,8 +138,8 @@ Route::get('/company/view_post_job',[
 ]);
 
 Route::get('job/{id}', [
-    'uses' => 'CompanyController@view_job_detail',
-    'as' => 'company.view_job_detail'
+    'uses' => 'JobController@index',
+    'as' => 'job.index',
 ]);
 
 Route::get('job/{id}/apply', [
