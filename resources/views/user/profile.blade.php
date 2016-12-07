@@ -24,7 +24,7 @@
                                         @endif
                                     </div>
                                     <div class="col s12 m12 l9">
-                                        <a href="{{ url('/'.$user->id.'/edit') }}" class="btn-floating btn-large red right">
+                                        <a href="{{ route('jobseeker.edit', $user->id) }}" class="btn-floating btn-large red right">
                                             <i class="material-icons">mode_edit</i>
                                         </a>
                                         <span class="card-title"><b>{{ $user->name }}</b></span>

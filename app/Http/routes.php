@@ -10,16 +10,36 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+////////////////
+// All users //
+///////////////
 Route::auth();
 
 Route::get('/', function () {
     return view('home');
 });
+
 Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/login/{user_type}',[
+    'uses' => 'ProfileController@loginType'
+]);
 
+Route::get('/register/{user_type}',[
+    'uses' => 'ProfileController@registerType'
+]);
+
+Route::get('/job/{id}', [
+    'uses' => 'JobController@index',
+    'as' => 'job.index',
+]);
+
+///////////
+// Admin //
+///////////
 Route::get('admin/searchCompany', function () {
     $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
     $route = "admin/search_company/$search";
@@ -38,28 +58,6 @@ Route::get('admin/searchJob',function(){
     return redirect($route);
 });
 
-Route::get('/login/{user_type}',[
-    'uses' => 'ProfileController@loginType'
-]);
-
-Route::get('/register/{user_type}',[
-    'uses' => 'ProfileController@registerType'
-]);
-
-Route::get('user/{user_id}', [
-    'uses' => 'ProfileController@index',
-    'as' => 'user.profile',
-]);
-
-Route::get('/{user_id}/edit', [
-    'uses' => 'ProfileController@edit',
-]);
-
-Route::post('/{user_id}/update',[
-    'uses' => 'ProfileController@update',
-    'as' => 'user.update',
-]);
-
 Route::get('/admin/view_jobseeker/{id}',[
    'uses' => 'ProfileController@index'
 ]);
@@ -68,7 +66,7 @@ Route::get('/admin/search_company', [
     'uses' => 'SearchController@indexCompany'
 ]);
 
-Route::get('admin/search_company/{search}', [
+Route::get('/admin/search_company/{search}', [
     'uses' => 'SearchController@searchCompany'
 ]);
 
@@ -76,7 +74,7 @@ Route::get('/admin/search_jobseeker', [
     'uses' => 'SearchController@indexJobseeker'
 ]);
 
-Route::get('admin/search_jobseeker/{search}', [
+Route::get('/admin/search_jobseeker/{search}', [
     'uses' => 'SearchController@searchJobseeker'
 ]);
 
@@ -84,7 +82,7 @@ Route::get('/admin/search_job', [
     'uses' => 'SearchController@indexJob'
 ]);
 
-Route::get('admin/search_job/{search}', [
+Route::get('/admin/search_job/{search}', [
     'uses' => 'SearchController@searchJob'
 ]);
 
@@ -95,24 +93,24 @@ Route::get('/admin/delete_job/{id}',[
 //    'uses' => 'ProfileController@index'
 //]);
 
+//////////////
+// Company //
+/////////////
 Route::group(['middleware' => ['web']], function () {
     //
 });
-
-
-Route::get('/home', 'HomeController@index');
 
 Route::get('/company/post_job', [
     'uses' => 'CompanyController@post_job',
     'as' => 'company.post_job'
 ]);
 
-Route::post('company/post_job/store',[
+Route::post('/company/post_job/store',[
     'uses' => 'CompanyController@store',
     'as' => 'company.store'
 ]);
 
-Route::get('company/manage_post',[
+Route::get('/company/manage_post',[
    'uses' => 'CompanyController@manage_post',
     'as' => 'company.manage_post'
 ]);
@@ -137,17 +135,7 @@ Route::get('/company/view_post_job',[
     'as' => 'company.view_post_job'
 ]);
 
-Route::get('job/{id}', [
-    'uses' => 'JobController@index',
-    'as' => 'job.index',
-]);
-
-Route::get('job/{id}/apply', [
-    'uses' => 'JobseekerController@apply',
-    'as' => 'jobseeker.apply'
-]);
-
-Route::get('company/searchJobseeker',function(){
+Route::get('/company/searchJobseeker',function(){
     $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
     $route = "company/search_jobseeker/$search";
     return redirect($route);
@@ -162,3 +150,27 @@ Route::get('/company/search_jobseeker/{search}',[
     'uses' => 'SearchController@searchJobseeker',
     'as' => 'company.search_jobseeker'
 ]);
+
+///////////////
+// Jobseeker //
+///////////////
+Route::get('/user/{id}', [
+    'uses' => 'JobseekerController@index',
+    'as' => 'user.index',
+]);
+
+Route::get('/user/{user_id}/edit', [
+    'uses' => 'JobseekerController@edit',
+    'as' => 'jobseeker.edit',
+]);
+
+Route::post('/user/{user_id}/update',[
+    'uses' => 'JobseekerController@update',
+    'as' => 'jobseeker.update',
+]);
+
+Route::get('/job/{id}/apply', [
+    'uses' => 'JobseekerController@apply',
+    'as' => 'jobseeker.apply'
+]);
+
