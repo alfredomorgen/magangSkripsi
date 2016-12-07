@@ -33,7 +33,7 @@ class SearchController extends Controller
 
     public function indexJob()
     {
-        $job = Job::select('*')
+        $job = Job::withTrashed()->select('*')
             ->paginate(3);
         $data = ['jobs' => $job];
         return view('admin.search_job', $data);
