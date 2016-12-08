@@ -33,7 +33,7 @@ class UserRequest extends Request
 //            'description',
 //            'role',
             'photo' => 'mimes:jpeg,bmp,png,jpg|max:5000',
-            'resume' => 'required|mimes:pdf|max:15360'
+            'resume' => 'mimes:pdf|max:15360'
         ];
     }
 }
