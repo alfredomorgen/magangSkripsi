@@ -15,10 +15,12 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->string('address');
+
             $table->string('website')->nullable();
             $table->string('industry');
             $table->integer('size');
+            $table->integer('status');
+
             $table->timestamps();
             $table->softDeletes();
         });

@@ -16,13 +16,18 @@ class CreateJobsTable extends Migration
             $table->increments('id');
             $table->integer('company_id')->unsigned()->index();
             $table->integer('jobcategory_id')->unsigned()->index();
-            $table->string('title');
+
+            $table->string('name');
+            $table->dateTime('deadline');
+            $table->string('location');
             $table->integer('type');
             $table->integer('salary');
             $table->integer('period');
             $table->text('benefit')->nullable();
             $table->text('requirement');
             $table->text('description');
+            $table->integer('status');
+
             $table->timestamps();
             $table->SoftDeletes();
 

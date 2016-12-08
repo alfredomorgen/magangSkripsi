@@ -16,7 +16,9 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('jobseeker_id')->unsigned()->index();
             $table->integer('job_id')->unsigned()->index();
+
             $table->integer('status');
+
             $table->timestamps();
             $table->softDeletes();
         });
