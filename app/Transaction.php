@@ -11,4 +11,15 @@ class Transaction extends Model
         'job_id',
         'status',
     ];
+
+    public function job()
+    {
+        return $this->belongsTo('\App\Job');
+    }
+
+    public function jobseeker()
+    {
+        return $this->belongsTo('\App\Jobseeker');
+    }
+
 }

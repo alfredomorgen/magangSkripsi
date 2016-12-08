@@ -23,4 +23,9 @@ class Jobseeker extends Model
     {
         return $this->belongsTo('\App\User');
     }
+
+    public function transaction()
+    {
+        return $this->hasMany('\App\Transaction');
+    }
 }

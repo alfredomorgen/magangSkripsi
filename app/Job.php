@@ -28,6 +28,10 @@ class Job extends Model
         return $this->belongsTo('\App\Company');
     }
 
+    public function transaction(){
+        return $this->hasMany('\App\Transaction');
+    }
+
     public function getCreatedAtAttribute()
     {
         return date('d/m/Y',strtotime($this->attributes['created_at']));
