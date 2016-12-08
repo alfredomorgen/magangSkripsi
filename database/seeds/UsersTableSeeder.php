@@ -40,7 +40,6 @@ class UsersTableSeeder extends Seeder
             'website' => 'axelsoedarsono.blogspot.com',
             'industry' => 'Technology',
             'size' => 500,
-            'status' => Constant::status_active,
         ]);
 
         $user_jobseeker = User::create([
@@ -61,7 +60,6 @@ class UsersTableSeeder extends Seeder
             'gpa' => '3.86',
             'major' => 'IT',
             'university' => 'Binus University',
-            'status' => Constant::status_active,
         ]);
 
         factory(App\User::class, 'jobseeker', 20)->create()->each(function ($jobseeker){

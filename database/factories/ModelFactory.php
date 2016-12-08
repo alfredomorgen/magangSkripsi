@@ -32,7 +32,6 @@ $factory->define(App\Jobseeker::class, function(Faker\Generator $faker) use ($fa
         'gpa' => $faker->randomFloat(2, 1, 4),
         'major' => $faker->jobTitle,
         'university' => $faker->company,
-        'status' => \App\Constant::status_active,
     ];
 });
 
@@ -55,7 +54,6 @@ $factory->define(App\Company::class, function(Faker\Generator $faker) use ($fact
         'website' => $faker->domainName,
         'industry' => $faker->jobTitle,
         'size' => $faker->biasedNumberBetween(0, 500),
-        'status' => \App\Constant::status_active,
     ];
 });
 

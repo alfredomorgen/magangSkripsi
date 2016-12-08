@@ -18,7 +18,6 @@ class Jobseeker extends Model
         'gpa',
         'major',
         'university',
-        'status',
     ];
     public function user()
     {
