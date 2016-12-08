@@ -3,19 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <!-- Grey navigation panel -->
             @section('navbar')
                 @include('layouts.navbar')
             @show
         </div>
     </div>
-    {{--<div class="container" style="background-color: transparent;margin-top:30px">--}}
-        {{--<div class="row center">--}}
-            {{--<div class="col l8 push-l2">--}}
-                {{--<h4 class="col s12 valign blue-text">View Posts</h4>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 
     <div class="container">
         <div class="row">
@@ -36,7 +28,7 @@
                         @if($job->company->website!= NULL)
                             <h5>Website</h5>
                             <p>{!! nl2br($job->company->website) !!}</p>
-                            @endif
+                        @endif
                     </div>
                     <div class="card-action">
                         <h6 class="right-align"><button class="btn btn-default" id="btnApply">Apply</button></h6>
@@ -51,10 +43,15 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            @if(Auth::user()->role != \App\Constant::user_jobseeker)
+            @if(Auth::guest())
                 $('#btnApply').click(function (event) {
                     event.preventDefault();
-                    Materialize.toast('Only Jobseeker can apply', 3000, 'rounded');
+                    Materialize.toast('Please login as Jobseeker...', 3000, 'rounded');
+                });
+            @elseif(Auth::user()->role != \App\Constant::user_jobseeker)
+                $('#btnApply').click(function (event) {
+                    event.preventDefault();
+                    Materialize.toast('Only Jobseeker can apply...', 3000, 'rounded');
                 });
             @else
                 $('#btnApply').click(function (event) {
