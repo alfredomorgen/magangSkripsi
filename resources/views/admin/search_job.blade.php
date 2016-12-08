@@ -61,13 +61,13 @@
                                 <td><p hidden>{{ $company = \App\Company::select('*')->where('id','=',$job->company_id)->withTrashed()->first()->user_id}}</p></td>
                                 <td>{{ $company_name =\APP\User::select('*')->where('id','=',$company)->withTrashed()->first()->name}}</td>
                                 {{--$company->user->name }}</td>--}}
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->title }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->name }}</a></td>
                                 <td>{{ $job->created_at }}</td>
                                 <td>@if($job->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
                                 @if($job->deleted_at == NULL)<td>
-                                    <a class="waves-effect waves-light btn red" href="#modal1">Delete</a>
+                                    <a class="waves-effect waves-light btn red" href="#modal{{$job->id}}">Delete</a>
                                     <!-- Modal Structure -->
-                                    <div id="modal1" class="modal">
+                                    <div id="modal{{$job->id}}" class="modal">
                                         <div class="modal-content">
                                             <h4>Confirmation</h4>
                                             <p>Are you sure about delete <span class="red-text">{{$job->title}}</span> from {{$company_name}}?</p>
@@ -110,13 +110,13 @@
                                 <td><p hidden>{{ $company = \App\Company::select('*')->where('id','=',$job->company_id)->withTrashed()->first()->user_id}}</p></td>
                                 <td>{{ $company_name =\APP\User::select('*')->where('id','=',$company)->withTrashed()->first()->name}}</td>
                                 {{--$company->user->name }}</td>--}}
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->title }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->name }}</a></td>
                                 <td>{{ $job->created_at }}</td>
                                 <td>@if($job->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
                                 @if($job->deleted_at == NULL)<td>
-                                    <a class="waves-effect waves-light btn red" href="#modal1">Delete</a>
+                                    <a class="waves-effect waves-light btn red" href="#modal{{$job->id}}">Delete</a>
                                     <!-- Modal Structure -->
-                                    <div id="modal1" class="modal">
+                                    <div id="modal{{$job->id}}" class="modal">
                                         <div class="modal-content">
                                             <h4>Confirmation</h4>
                                             <p>Are you sure about delete <span class="red-text">{{$job->title}}</span> from {{$company_name}}?</p>

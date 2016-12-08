@@ -53,7 +53,7 @@ class SearchController extends Controller
     public function searchJob($search)
     {
         $jobs = Job::withTrashed()->select('*')
-            ->where('title', 'LIKE', '%' . $search . '%')
+            ->where('name', 'LIKE', '%' . $search . '%')
             ->orderBy('id')
             ->paginate(5);
         if (count($jobs) == 0) {
