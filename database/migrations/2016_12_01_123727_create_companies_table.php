@@ -19,7 +19,6 @@ class CreateCompaniesTable extends Migration
             $table->string('website')->nullable();
             $table->string('industry');
             $table->integer('size');
-            $table->integer('status');
 
             $table->timestamps();
             $table->softDeletes();
