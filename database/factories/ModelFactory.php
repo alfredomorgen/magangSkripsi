@@ -52,7 +52,6 @@ $factory->defineAs(App\User::class, 'company', function (Faker\Generator $faker)
 
 $factory->define(App\Company::class, function(Faker\Generator $faker) use ($factory){
     return [
-        'address' => $faker->address,
         'website' => $faker->domainName,
         'industry' => $faker->jobTitle,
         'size' => $faker->biasedNumberBetween(0, 500),
