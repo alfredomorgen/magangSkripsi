@@ -48,10 +48,10 @@
                                     <img src="{{ $job->company->user->photo }}" class="rounded" style="width:70px; height:70px">
                                 </div>
                                 <div class="col m10 l10">
-                                    <span class="title">{{ $job->title }}</span>
+                                    <span class="title">{{ $job->name }}</span>
                                     <p><a href="#!"><i class="material-icons">equalizer</i></a>{{ $job->company->user->name }}</p>
-                                    <p><a href="#!"><i class="material-icons">location_on</i></a>{{ $job->company->address }}</p>
-                                    <a href="{{ url('job/'.$job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
+                                    <p><a href="#!"><i class="material-icons">location_on</i></a>{{ $job->company->user->location }}</p>
+                                    <a href="{{ route('job.index', $job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
                                     <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Report">report_problem</i></a>
                                     <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Share">person_pin</i></a>
                                     <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Add to Saved Jobs">grade</i></a>

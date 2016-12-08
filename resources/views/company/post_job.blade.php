@@ -16,10 +16,9 @@
                     <h6>Name</h6>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="title" type="text" name="title" placeholder="Job Title"
-                            >
-                            @if ($errors->has('title'))
-                                <strong>{{ $errors->first('title') }}</strong>
+                            <input id="name" type="text" name="name" placeholder="Job Title">
+                            @if ($errors->has('name'))
+                                <strong>{{ $errors->first('name') }}</strong>
                             @endif
                         </div>
                     </div>
@@ -120,12 +119,10 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
     <script>
-
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 15 // Creates a dropdown of 15 years to control year

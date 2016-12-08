@@ -27,10 +27,10 @@
                     <h6>Name</h6>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="title" type="text" name="title" placeholder="Job Title"
-                                  value="{{$job->title}}">
-                            @if ($errors->has('title'))
-                                <strong>{{ $errors->first('title') }}</strong>
+                            <input id="name" type="text" name="name" placeholder="Job Title"
+                                  value="{{$job->name}}">
+                            @if ($errors->has('name'))
+                                <strong>{{ $errors->first('name') }}</strong>
                             @endif
                         </div>
                     </div>

@@ -33,7 +33,7 @@ class CompanyController extends Controller
         $job = new Job();
         $job->company_id = Auth::user()->company->id;
         $job->jobcategory_id = Input::get('jobcategory_id');
-        $job->title = Input::get('title');
+        $job->name = Input::get('name');
         $job->type = Input::get('type');
         $job->salary = Input::get('salary');
         $job->period = Input::get('period');
@@ -65,7 +65,7 @@ class CompanyController extends Controller
     {
         $job = Job::find($id);
         $job->jobcategory_id = Input::get('jobcategory_id');
-        $job->title = Input::get('title');
+        $job->name = Input::get('name');
         $job->type = Input::get('type');
         $job->salary = Input::get('salary');
         $job->period = Input::get('period');
@@ -86,12 +86,6 @@ class CompanyController extends Controller
 
     public function view_post()
     {
-        $columns = [
-            'id',
-            'title',
-            'created_at',
-        ];
-
         $job = Job::select('*')->where('company_id','=',Auth::user()->company->id)->paginate(3);
 
         $data = ['jobs' => $job];

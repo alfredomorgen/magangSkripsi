@@ -8,7 +8,7 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $jobs = Job::select('*')->orderBy('created_at', 'desc')->paginate(5);
+        $jobs = Job::orderBy('created_at', 'desc')->paginate(5);
         $data = [
             'jobs' => $jobs,
         ];
