@@ -24,8 +24,7 @@ class Post_jobRequest extends Request
     public function rules()
     {
         return [
-            //
-            'title' => 'required',
+            'name' => 'required',
             'jobcategory_id' => 'required|in:0,1,2,3,',
             'type' => 'required',
             'salary' => 'required|in:0,1',
