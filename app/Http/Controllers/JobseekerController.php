@@ -65,7 +65,7 @@ class JobseekerController extends Controller
         if($isTransactionExist == null){
             $transaction = Transaction::create([
                 'job_id' => $id,
-                'jobseeker_id' => Auth::user()->id,
+                'jobseeker_id' => Auth::user()->jobseeker->id,
             ]);
 
             if($transaction == null){
