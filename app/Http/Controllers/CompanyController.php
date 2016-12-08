@@ -126,4 +126,9 @@ class CompanyController extends Controller
                 ->with('search','Looking for'.' '. $search);
         }
     }
+
+    public function view_candidate()
+    {
+        return view('company.candidate');
+    }
 }
