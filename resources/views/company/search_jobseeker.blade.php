@@ -48,18 +48,18 @@
 
                         <tbody>
 
-                        @foreach($jobseekers as $jobseeker)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{ $jobseeker->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/user/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
-                                <td>{{ $jobseeker->email }}</td>
+                                <td>{{ $user->id }}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/user/'.$user->id)}}">{{ $user->name }}</a></td>
+                                <td>{{ $user->email }}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobseekers->render() }}</li>
+                    <li class="waves-effect">{{ $users->render() }}</li>
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
@@ -74,18 +74,18 @@
 
                         <tbody>
 
-                        @foreach($jobseekers as $jobseeker)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{ $jobseeker->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/user/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
-                                <td>{{ $jobseeker->email }}</td>
+                                <td>{{ $user->id }}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/user/'.$user->id)}}">{{ $user->name }}</a></td>
+                                <td>{{ $user->email }}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobseekers->render() }}</li>
+                    <li class="waves-effect">{{ $users->render() }}</li>
                 </ul>
             @endif
         @else
