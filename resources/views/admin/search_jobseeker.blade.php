@@ -26,7 +26,7 @@
                             <div class="input-field">
                                 <input class="tooltipped" data-position="bottom" data-delay="50"
                                        data-tooltip="Search Jobseeker" name="search" id="search"
-                                       placeholder="Search a jobseeker" type="search" required>
+                                       placeholder="Search a user" type="search" required>
                                 <label for="search"><i class="material-icons grey-text">search</i></label>
                                 <i class="material-icons">close</i>
                             </div>
@@ -44,7 +44,7 @@
                         <thead>
                         <tr>
                             <th data-field="id">Id</th>
-                            <th data-field="jobseeker">Jobseeker</th>
+                            <th data-field="user">Jobseeker</th>
                             <th data-field="email">Email</th>
                             <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
@@ -53,20 +53,21 @@
 
                         <tbody>
 
-                        @foreach($jobseekers as $jobseeker)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{ $jobseeker->id }}</td>
+                                <td>{{ $user->id }}</td>
 
-                                <td>{{ $jobseeker_id = \App\Jobseeker::select('*')->where('user_id', '=', $jobseeker->id)->withTrashed()->first()->id}}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('user.index', $jobseeker->id) }}">{{ $jobseeker->name}}</a></td>
+                                <td>{{ $jobseeker_id = \App\Jobseeker::select('*')->where('user_id', '=', $user->id)->withTrashed()->first()->id}}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('user.index', $user->id) }}">{{ $user->name}}</a></td>
 
-                                <td>{{ $jobseeker->email }}</td>
-                                <td>@if($jobseeker->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($jobseeker->deleted_at == NULL)<td>
-                                    <div id="modal1" class="modal">
+                                <td>{{ $user->email }}</td>
+                                <td>@if($user->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($user->deleted_at == NULL)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Delete</a>
+                                    <div id="modal{{$user->id}}" class="modal">
                                         <div class="modal-content">
                                             <h4>Confirmation</h4>
-                                            <p>Are you sure about delete <span class="red-text">{{$jobseeker->name}}</span>?</p>
+                                            <p>Are you sure about delete <span class="red-text">{{$user->name}}</span>?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
@@ -80,7 +81,7 @@
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobseekers->render() }}</li>
+                    <li class="waves-effect">{{ $users->render() }}</li>
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
@@ -89,7 +90,7 @@
                         <tr>
                             <th data-field="id">Id</th>
                             <th>Jobseeker Id</th>
-                            <th data-field="jobseeker">Jobseeker</th>
+                            <th data-field="user">Jobseeker</th>
                             <th data-field="email">Email</th>
                             <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
@@ -98,22 +99,22 @@
 
                         <tbody>
 
-                        @foreach($jobseekers as $jobseeker)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{ $jobseeker->id }}</td>
+                                <td>{{ $user->id }}</td>
 
-                                <td>{{ $jobseeker_id = \App\Jobseeker::select('*')->where('user_id', '=', $jobseeker->id)->withTrashed()->first()->id}}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('user.index', $jobseeker->id) }}">{{ $jobseeker->name}}</a></td>
+                                <td>{{ $jobseeker_id = \App\Jobseeker::select('*')->where('user_id', '=', $user->id)->withTrashed()->first()->id}}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('user.index', $user->id) }}">{{ $user->name}}</a></td>
 
-                                <td>{{ $jobseeker->email }}</td>
-                                <td>@if($jobseeker->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($jobseeker->deleted_at == NULL)<td>
-                                    <a class="waves-effect waves-light btn red" href="#modal1">Delete</a>
+                                <td>{{ $user->email }}</td>
+                                <td>@if($user->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($user->deleted_at == NULL)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Delete</a>
                                     <!-- Modal Structure -->
-                                    <div id="modal1" class="modal">
+                                    <div id="modal{{$user->id}}" class="modal">
                                         <div class="modal-content">
                                             <h4>Confirmation</h4>
-                                            <p>Are you sure about delete <span class="red-text">{{$jobseeker->name}}</span>?</p>
+                                            <p>Are you sure about delete <span class="red-text">{{$user->name}}</span>?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
@@ -127,7 +128,7 @@
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobseekers->render() }}</li>
+                    <li class="waves-effect">{{ $users->render() }}</li>
                 </ul>
             @endif
         @else

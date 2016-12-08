@@ -33,8 +33,9 @@ class AdminController extends Controller
         $company= Company::find($id);
 
         $company->job()->delete();
-        $company->delete();
         $company->user->delete();
+        $company->delete();
+
 
         return redirect('/admin/search_company');
     }

@@ -15,22 +15,22 @@ class SearchController extends Controller
 {
     public function indexCompany()
     {
-        $company = User::withTrashed()->with('company')
+        $user = User::withTrashed()->with('company')
             ->where('role', '=', '1')
             ->paginate(5);
         /*foreach ($company as $item) {
             dd($item->company->id);
         }*/
-        $data = ['companies' => $company];
+        $data = ['users' => $user];
         return view('admin.search_company', $data);
     }
 
     public function indexJobseeker()
     {
-        $jobseeker = User::withTrashed()->with('jobseeker')
+        $user = User::withTrashed()->with('jobseeker')
             ->where('role', '=', '2')
             ->paginate(5);
-        $data = ['jobseekers' => $jobseeker];
+        $data = ['users' => $user];
         if(Auth::user()->role == constant::user_admin)
         {
             return view('admin.search_jobseeker', $data);
@@ -70,18 +70,18 @@ class SearchController extends Controller
     public function searchCompany($search)
     {
 
-        $companies = User::withTrashed()->select('*')
+        $users = User::withTrashed()->select('*')
             ->where('name', 'LIKE', '%' . $search . '%')
             ->Where('role', '=', '1')
             ->orderBy('id')
             ->paginate(5);
-        if (count($companies) == 0) {
+        if (count($users) == 0) {
             return view('admin.search_company')
                 ->with('message', 'Company not Found')
                 ->with('search', $search);
         } else {
             return view('admin.search_company')
-                ->with('companies', $companies)
+                ->with('users', $users)
                 ->with('search', 'Looking for' . ' ' . $search);
         }
     }
@@ -89,12 +89,12 @@ class SearchController extends Controller
     public function searchJobseeker($search)
     {
 
-        $jobseekers = User::withTrashed()->select('*')
+        $users = User::withTrashed()->select('*')
             ->where('name', 'LIKE', '%' . $search . '%')
             ->Where('role', '=', '2')
             ->orderBy('id')
             ->paginate(5);
-        if (count($jobseekers) == 0) {
+        if (count($users) == 0) {
             if (Auth::user()->role == constant::user_admin) {
                 return view('admin.search_jobseeker')
                     ->with('message', 'Jobseeker not Found')
@@ -107,11 +107,11 @@ class SearchController extends Controller
         } else {
             if (Auth::user()->role == constant::user_admin) {
                 return view('admin.search_jobseeker')
-                    ->with('jobseekers', $jobseekers)
+                    ->with('users', $users)
                     ->with('search', 'Looking for' . ' ' . $search);
             } else if (Auth::user()->role == constant::user_company) {
                 return view('company.search_jobseeker')
-                    ->with('jobseekers', $jobseekers)
+                    ->with('users', $users)
                     ->with('search', 'Looking for' . ' ' . $search);
             }
 
