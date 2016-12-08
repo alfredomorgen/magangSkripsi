@@ -43,7 +43,8 @@
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
-                            <th data-field="id">Id</th>
+                            <th data-field="id">User Id</th>
+                            <th>Jobseeker Id</th>
                             <th data-field="user">Jobseeker</th>
                             <th data-field="email">Email</th>
                             <th data-field="status">Status</th>
@@ -64,6 +65,7 @@
                                 <td>@if($user->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
                                 @if($user->deleted_at == NULL)<td>
                                     <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Delete</a>
+                                    <!-- Modal Structure -->
                                     <div id="modal{{$user->id}}" class="modal">
                                         <div class="modal-content">
                                             <h4>Confirmation</h4>
@@ -88,7 +90,7 @@
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
-                            <th data-field="id">Id</th>
+                            <th data-field="id">User Id</th>
                             <th>Jobseeker Id</th>
                             <th data-field="user">Jobseeker</th>
                             <th data-field="email">Email</th>

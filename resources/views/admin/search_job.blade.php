@@ -40,8 +40,9 @@
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
-                            <th data-field="id">Id</th>
+
                             <th data-field="company_id">Company Id</th>
+                            <th data-field="id">Job Id</th>
                             <th></th>
                             <th data-field="company_name">Company Name</th>
                             <th data-field="job">Title</th>
@@ -54,9 +55,9 @@
                         <tbody>
                         @foreach($jobs as $job)
                             <tr>
+                                <td>{{ $company_id = \App\Company::select('*')->where('id', '=', $job->company_id)->withTrashed()->first()->id}}</td>
                                 <td>{{ $job->id }}</td>
                                 {{--<td>{{ $job->company->user->name }}</td>--}}
-                                <td>{{ $company_id = \App\Company::select('*')->where('id', '=', $job->company_id)->withTrashed()->first()->id}}</td>{{--salah di $job->company->id--}}
                                 <td><p hidden>{{ $company = \App\Company::select('*')->where('id','=',$job->company_id)->withTrashed()->first()->user_id}}</p></td>
                                 <td>{{ $company_name =\APP\User::select('*')->where('id','=',$company)->withTrashed()->first()->name}}</td>
                                 {{--$company->user->name }}</td>--}}
@@ -89,8 +90,9 @@
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
-                            <th data-field="id">Id</th>
+
                             <th data-field="company_id">Company Id</th>
+                            <th data-field="id">Job Id</th>
                             <th></th>
                             <th data-field="company_name">Company Name</th>
                             <th data-field="job">Title</th>
@@ -103,9 +105,8 @@
                         <tbody>
                         @foreach($jobs as $job)
                             <tr>
+                                <td>{{ $company_id = \App\Company::select('*')->where('id', '=', $job->company_id)->withTrashed()->first()->id}}</td>
                                 <td>{{ $job->id }}</td>
-                                {{--<td>{{ $job->company->user->name }}</td>--}}
-                                <td>{{ $company_id = \App\Company::select('*')->where('id', '=', $job->company_id)->withTrashed()->first()->id}}</td>{{--salah di $job->company->id--}}
                                 <td><p hidden>{{ $company = \App\Company::select('*')->where('id','=',$job->company_id)->withTrashed()->first()->user_id}}</p></td>
                                 <td>{{ $company_name =\APP\User::select('*')->where('id','=',$company)->withTrashed()->first()->name}}</td>
                                 {{--$company->user->name }}</td>--}}

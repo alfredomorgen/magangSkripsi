@@ -40,9 +40,9 @@
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
-                            <th data-field="id">Id</th>
-                            <th data-field="user">Company</th>
+                            <th data-field="id">User Id</th>
                             <th data-field="user_id">Company Id</th>
+                            <th data-field="user">Company</th>
                             <th data-field="email">Email</th>
                             <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
