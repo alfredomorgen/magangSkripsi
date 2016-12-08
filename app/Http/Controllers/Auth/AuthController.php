@@ -66,7 +66,7 @@ class AuthController extends Controller
                 'role' => 'required',
                 'description' => 'required',
                 'phone'=> 'required|numeric',
-                'address' => 'required',
+                'location' => 'required',
                 'industry' => 'required',
                 'website' => 'required'
             ]);
@@ -95,7 +95,7 @@ class AuthController extends Controller
             ]);
             Company::create([
                 'user_id' => $user->id,
-                'address' => $data['address'],
+                'location' => $data['location'],
                 'size' => $data['size'],
                 'industry' => $data['industry'],
                 'website' => $data['website']
