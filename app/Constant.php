@@ -17,4 +17,7 @@ class Constant
 
     const status_inactive = '0';
     const status_active = '1';
+
+    const gender_male = '0';
+    const gender_female = '1';
 }

@@ -19,42 +19,49 @@ class UsersTableSeeder extends Seeder
             'name' => 'Edward Hashner',
             'email' => 'edwardhashner@gmail.com',
             'password' => bcrypt('qwerty'),
-            'description' => 'Binus University - 1701355892',
             'role' => Constant::user_admin,
+            'location' => 'Jln. U No 18A, Kemanggisan, Jakarta',
+            'description' => 'Binus University - 1701355892',
+            'status' => Constant::status_active,
         ]);
 
         $user_company = User::create([
             'name' => 'Axel Soedarsono',
             'email' => 'axelsoedarsono@gmail.com',
             'password' => bcrypt('qwerty'),
-            'description' => 'Binus University - 1701314545',
             'role' => Constant::user_company,
+            'location' => 'Jln. U No 18A, Kemanggisan, Jakarta',
+            'description' => 'Binus University - 1701314545',
+            'status' => Constant::status_active,
         ]);
 
         Company::create([
             'user_id' => $user_company->id,
-            'address' => 'Jln. U No 18A, Kemanggisan, Jakarta',
             'website' => 'axelsoedarsono.blogspot.com',
             'industry' => 'Technology',
             'size' => 500,
+            'status' => Constant::status_active,
         ]);
 
         $user_jobseeker = User::create([
             'name' => 'Alfredo Morgen',
             'email' => 'alfredomorgen@gmail.com',
             'password' => bcrypt('qwerty'),
-            'phone' => '087897255266',
-            'description' => 'Binus University - 1701351162',
             'role' => Constant::user_jobseeker,
+            'phone' => '087897255266',
+            'location' => 'Jln. U No 18A, Kemanggisan, Jakarta',
+            'description' => 'Binus University - 1701351162',
+            'status' => Constant::status_active,
         ]);
 
         Jobseeker::create([
             'user_id' => $user_jobseeker->id,
-            'gender' => 0,
+            'gender' => Constant::gender_male,
             'dob' => '1995-10-07',
             'gpa' => '3.86',
             'major' => 'IT',
             'university' => 'Binus University',
+            'status' => Constant::status_active,
         ]);
 
         factory(App\User::class, 'jobseeker', 20)->create()->each(function ($jobseeker){
