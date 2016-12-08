@@ -35,7 +35,7 @@ $factory->define(App\Jobseeker::class, function(Faker\Generator $faker) use ($fa
 
 $factory->defineAs(App\User::class, 'company', function (Faker\Generator $faker) use ($factory) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->company,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
         'phone' => $faker->phoneNumber,
@@ -59,7 +59,7 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) use ($factory
         'title' => $faker->sentence,
         'type' => $faker->biasedNumberBetween(0, 1),
         'salary' => $faker->biasedNumberBetween(0, 1),
-        'period' => $faker->biasedNumberBetween(0, 1),
+        'period' => $faker->biasedNumberBetween(1, 24),
         'benefit' => $faker->sentence,
         'requirement' => $faker->sentence,
         'description' => $faker->paragraph,

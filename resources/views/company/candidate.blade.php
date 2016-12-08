@@ -20,16 +20,9 @@
         </div>
     </div>
     <div class="container" style="background-color: transparent;margin-top:30px">
-        @if(session('success'))
-            <script>Materialize.toast('{{session('success')}}', 5000, 'rounded');</script>
-        @elseif(session('error'))
-            <div class="red-text">
-                {{session('error')}}
-            </div>
-        @endif
         <div class="row center">
             <div class="col l8 push-l2">
-                <h4 class="col s12 valign blue-text">Manage Job</h4>
+                <h4 class="col s12 valign blue-text">Candidates</h4>
             </div>
         </div>
     </div>
@@ -40,41 +33,40 @@
                 <table class="centered bordered highlight responsive-table white" style="word-wrap:break-word">
                     <thead>
                     <tr>
-                        <th data-field="title">Title Job</th>
-                        <th data-field="created_at">Created</th>
-                        <th data-field="candidates">Candidates</th>
-                        <th data-field="status">Status</th>
-                        <th data-field="action" colspan="2">
+                        <th data-field="number">Number</th>
+                        <th data-field="created_at">Date Applied</th>
+                        <th data-field="name">Name</th>
+                        <th data-field="resume">Resume</th>
+                        <th data-field="action">
                             <div align="center">Action</div>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($jobs as $job)
+                    {{--@foreach($jobs as $job)--}}
                         <tr>
-                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/job/'.$job->id)}}">{{ $job->title }}</a></td>
-                            <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
-                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Candidates" href="#">1</a></td>
-                            <td>On Going</td>
+                            {{--<td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>--}}
+                            <td>1.</td>
+                            <td>1 January 2016</td>
+                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="#">Budi</a></td>
                             <td><a class="btn btn-block blue"
-                                   href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>
-                            <td><a class="btn btn-block red"
-                                   href="{{ url('/company/post_job/delete/'.$job->id) }}">Delete</a>
-                            </td>
+                                   href="#">View Resume</a></td>
+                            <td><a class="btn btn-block green"
+                                   href="#">Approve</a></td>
                         </tr>
-                    @endforeach
+                    {{--@endforeach--}}
                     </tbody>
                 </table>
             </ul>
             <ul class="pagination center">
-                <li class="waves-effect">{{ $jobs->render() }}</li>
+                <li class="waves-effect"></li>
             </ul>
         </div>
         <div class="row"></div>
         <div class="row"></div>
         <div class="row">
             <div class="col-md-8 col-md-offset-4 center-align">
-                <a class="btn btn-block green" href="{{ url('/company/post_job/') }}">Create new Post Job</a>
+                {{--<a class="btn btn-block green" href="{{ url('/company/post_job/') }}">Create new Post Job</a>--}}
             </div>
         </div>
     </div>
@@ -87,10 +79,6 @@
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 15 // Creates a dropdown of 15 years to control year
-        });
-
-        $(document).ready(function () {
-            $('select').material_select();
         });
     </script>
 @endsection

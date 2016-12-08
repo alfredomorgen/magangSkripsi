@@ -60,6 +60,7 @@ class JobseekerController extends Controller
     {
         $transaction = Transaction::create([
             'job_id' => $id,
+            'jobseeker_id' => Auth::user()->id,
         ]);
 
         $message = "";
