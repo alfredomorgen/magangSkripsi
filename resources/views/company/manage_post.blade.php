@@ -40,6 +40,7 @@
                 <table class="centered bordered highlight responsive-table white" style="word-wrap:break-word">
                     <thead>
                     <tr>
+                        <th data-field="id">Job Id</th>
                         <th data-field="title">Title Job</th>
                         <th data-field="created_at">Created</th>
                         <th data-field="candidates">Candidates</th>
@@ -52,6 +53,7 @@
                     <tbody>
                     @foreach($jobs as $job)
                         <tr>
+                            <td>{{ $job->id }}</td>
                             <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/job/'.$job->id)}}">{{ $job->title }}</a></td>
                             <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
                             <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Candidates" href="#">1</a></td>
