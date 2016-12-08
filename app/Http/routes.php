@@ -95,6 +95,14 @@ Route::get('/admin/search_job/{search}', [
 Route::get('/admin/delete_job/{id}',[
     'uses' => 'AdminController@deleteJob'
 ]);
+
+Route::get('/admin/delete_company/{id}',[
+    'uses' => 'AdminController@deleteCompany'
+]);
+Route::get('/admin/delete_jobseeker/{id}',[
+    'uses' => 'AdminController@deleteJobseeker'
+]);
+
 //Route::get('/admin/view_job/{id}',[
 //    'uses' => 'ProfileController@index'
 //]);

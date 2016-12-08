@@ -15,16 +15,19 @@ class SearchController extends Controller
 {
     public function indexCompany()
     {
-        $company = User::select('*')
+        $company = User::withTrashed()->with('company')
             ->where('role', '=', '1')
             ->paginate(3);
+        /*foreach ($company as $item) {
+            dd($item->company->id);
+        }*/
         $data = ['companies' => $company];
         return view('admin.search_company', $data);
     }
 
     public function indexJobseeker()
     {
-        $jobseeker = User::select('*')
+        $jobseeker = User::withTrashed()->with('jobseeker')
             ->where('role', '=', '2')
             ->paginate(3);
         $data = ['jobseekers' => $jobseeker];
@@ -49,7 +52,7 @@ class SearchController extends Controller
 
     public function searchJob($search)
     {
-        $jobs = Job::select('*')
+        $jobs = Job::withTrashed()->select('*')
             ->where('title', 'LIKE', '%' . $search . '%')
             ->orderBy('id')
             ->paginate(3);
@@ -67,7 +70,7 @@ class SearchController extends Controller
     public function searchCompany($search)
     {
 
-        $companies = User::select('*')
+        $companies = User::withTrashed()->select('*')
             ->where('name', 'LIKE', '%' . $search . '%')
             ->Where('role', '=', '1')
             ->orderBy('id')
@@ -86,7 +89,7 @@ class SearchController extends Controller
     public function searchJobseeker($search)
     {
 
-        $jobseekers = User::select('*')
+        $jobseekers = User::withTrashed()->select('*')
             ->where('name', 'LIKE', '%' . $search . '%')
             ->Where('role', '=', '2')
             ->orderBy('id')

@@ -42,6 +42,7 @@
                         <tr>
                             <th data-field="id">Id</th>
                             <th data-field="company">Company</th>
+                            <th data-field="company_id">Company Id</th>
                             <th data-field="email">Email</th>
                             <th data-field="action">Action</th>
                         </tr>
@@ -52,9 +53,12 @@
                         @foreach($companies as $company)
                             <tr>
                                 <td>{{ $company->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/admin/view_jobseeker/'.$company->id)}}">{{ $company->name }}</a></td>
+                                <td>{{ $company_id = \App\Company::select('*')->where('user_id', '=', $company->id)->withTrashed()->first()->id}}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('user.index',$company->id)}}">{{ $company->name }}</a></td>
                                 <td>{{ $company->email }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
+                                <td>@if($company->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($company->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_company/'.$company->id)}}">Delete</a></td>
+                                @else <td></td>@endif
                             </tr>
                         @endforeach
                         </tbody>
@@ -68,7 +72,8 @@
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
-                            <th data-field="id">Id</th>
+                            <th data-field="id">User Id</th>
+                            <th data-field="company_id">Company Id</th>
                             <th data-field="company">Company</th>
                             <th data-field="email">Email</th>
                             <th data-field="action">Action</th>
@@ -80,9 +85,12 @@
                         @foreach($companies as $company)
                             <tr>
                                 <td>{{ $company->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/admin/view_jobseeker/'.$company->id)}}">{{ $company->name }}</a></td>
+                                <td>{{ $company_id = \App\Company::select('*')->where('user_id', '=', $company->id)->withTrashed()->first()->id}}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('user.index',$company->id)}}">{{ $company->name }}</a></td>
                                 <td>{{ $company->email }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
+                                <td>@if($company->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($company->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_company/'.$company_id)}}">Delete</a></td>
+                                @else <td></td>@endif
                             </tr>
                         @endforeach
                         </tbody>

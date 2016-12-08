@@ -46,6 +46,7 @@
                             <th data-field="id">Id</th>
                             <th data-field="jobseeker">Jobseeker</th>
                             <th data-field="email">Email</th>
+                            <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
                         </tr>
                         </thead>
@@ -55,12 +56,14 @@
                         @foreach($jobseekers as $jobseeker)
                             <tr>
                                 <td>{{ $jobseeker->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50"
-                                       data-tooltip="View Profile"
-                                       href="{{url('/user/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a>
-                                </td>
+
+                                <td>{{ $jobseeker_id = \App\Jobseeker::select('*')->where('user_id', '=', $jobseeker->id)->withTrashed()->first()->id}}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('user.index', $jobseeker->id) }}">{{ $jobseeker->name}}</a></td>
+
                                 <td>{{ $jobseeker->email }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
+                                <td>@if($jobseeker->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($jobseeker->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}">Delete</a></td>
+                                @else <td></td>@endif
                             </tr>
                         @endforeach
                         </tbody>
@@ -75,8 +78,10 @@
                         <thead>
                         <tr>
                             <th data-field="id">Id</th>
+                            <th>Jobseeker Id</th>
                             <th data-field="jobseeker">Jobseeker</th>
                             <th data-field="email">Email</th>
+                            <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
                         </tr>
                         </thead>
@@ -86,12 +91,14 @@
                         @foreach($jobseekers as $jobseeker)
                             <tr>
                                 <td>{{ $jobseeker->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50"
-                                       data-tooltip="View Profile"
-                                       href="{{url('/user/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a>
-                                </td>
+
+                                <td>{{ $jobseeker_id = \App\Jobseeker::select('*')->where('user_id', '=', $jobseeker->id)->withTrashed()->first()->id}}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('user.index', $jobseeker->id) }}">{{ $jobseeker->name}}</a></td>
+
                                 <td>{{ $jobseeker->email }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
+                                <td>@if($jobseeker->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($jobseeker->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}">Delete</a></td>
+                                @else <td></td>@endif
                             </tr>
                         @endforeach
                         </tbody>

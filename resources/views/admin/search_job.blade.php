@@ -41,22 +41,30 @@
                         <thead>
                         <tr>
                             <th data-field="id">Id</th>
+                            <th data-field="company_id">Company Id</th>
+                            <th></th>
                             <th data-field="company_name">Company Name</th>
                             <th data-field="job">Title</th>
                             <th data-field="email">Created Date</th>
+                            <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
                         </tr>
                         </thead>
 
                         <tbody>
-
                         @foreach($jobs as $job)
                             <tr>
                                 <td>{{ $job->id }}</td>
-                                <td>{{ $job->company->user->name}}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/admin/view_job/'.$job->id)}}">{{ $job->title }}</a></td>
+                                {{--<td>{{ $job->company->user->name }}</td>--}}
+                                <td>{{ $company_id = \App\Company::select('*')->where('id', '=', $job->company_id)->withTrashed()->first()->id}}</td>{{--salah di $job->company->id--}}
+                                <td><p hidden>{{ $company = \App\Company::select('*')->where('id','=',$job->company_id)->withTrashed()->first()->user_id}}</p></td>
+                                <td>{{ $company_name =\APP\User::select('*')->where('id','=',$company)->withTrashed()->first()->name}}</td>
+                                {{--$company->user->name }}</td>--}}
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->title }}</a></td>
                                 <td>{{ $job->created_at }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_job/'.$job->id)}}">Delete</a></td>
+                                <td>@if($job->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($job->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_job/'.$job->id)}}">Delete</a></td>
+                                @else <td></td>@endif
                             </tr>
                         @endforeach
                         </tbody>
@@ -71,22 +79,30 @@
                         <thead>
                         <tr>
                             <th data-field="id">Id</th>
+                            <th data-field="company_id">Company Id</th>
+                            <th></th>
                             <th data-field="company_name">Company Name</th>
                             <th data-field="job">Title</th>
                             <th data-field="email">Created Date</th>
+                            <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
                         </tr>
                         </thead>
 
                         <tbody>
-
                         @foreach($jobs as $job)
                             <tr>
                                 <td>{{ $job->id }}</td>
-                                <td>{{ $job->company->user->name }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{url('/admin/view_job/'.$job->id)}}">{{ $job->title }}</a></td>
+                                {{--<td>{{ $job->company->user->name }}</td>--}}
+                                <td>{{ $company_id = \App\Company::select('*')->where('id', '=', $job->company_id)->withTrashed()->first()->id}}</td>{{--salah di $job->company->id--}}
+                                <td><p hidden>{{ $company = \App\Company::select('*')->where('id','=',$job->company_id)->withTrashed()->first()->user_id}}</p></td>
+                                <td>{{ $company_name =\APP\User::select('*')->where('id','=',$company)->withTrashed()->first()->name}}</td>
+                                {{--$company->user->name }}</td>--}}
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->title }}</a></td>
                                 <td>{{ $job->created_at }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_job/'.$job->id)}}">Delete</a></td>
+                                <td>@if($job->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($job->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_job/'.$job->id)}}">Delete</a></td>
+                                @else <td></td>@endif
                             </tr>
                         @endforeach
                         </tbody>
@@ -103,4 +119,14 @@
 
     </div>
     </div>
+
+
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+    </script>
 @endsection
