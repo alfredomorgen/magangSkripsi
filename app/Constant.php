@@ -14,4 +14,7 @@ class Constant
     const user_admin = '0';
     const user_company ='1';
     const user_jobseeker = '2';
+
+    const status_inactive = '0';
+    const status_active = '1';
 }

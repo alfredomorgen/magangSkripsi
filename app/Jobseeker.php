@@ -14,10 +14,11 @@ class Jobseeker extends Model
         'user_id',
         'gender',
         'dob',
-        'cv',
+        'resume',
         'gpa',
         'major',
-        'university'
+        'university',
+        'status',
     ];
     public function user()
     {

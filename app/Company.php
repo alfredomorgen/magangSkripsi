@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Company extends Model
 {
     use SoftDeletes;
-    protected  $table = 'companies';
-    protected $primaryKey ='id';
+    protected $table = 'companies';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
-        'address',
         'website',
         'industry',
-        'size'
+        'size',
+        'status',
     ];
     public function user()
     {

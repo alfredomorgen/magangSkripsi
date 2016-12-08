@@ -22,6 +22,7 @@ class CreateJobseekersTable extends Migration
             $table->float('gpa')->nullable();
             $table->string('major')->nullable();
             $table->string('university')->nullable();
+            $table->integer('status');
 
             $table->timestamps();
             $table->softDeletes();

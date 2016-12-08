@@ -16,9 +16,11 @@ $factory->defineAs(App\User::class, 'jobseeker', function (Faker\Generator $fake
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
-        'phone' => $faker->phoneNumber,
-        'description' => $faker->paragraph,
         'role' => \App\Constant::user_jobseeker,
+        'phone' => $faker->phoneNumber,
+        'location' => $faker->address,
+        'description' => $faker->paragraph,
+        'status' => \App\Constant::status_active,
         'remember_token' => str_random(10),
     ];
 });
@@ -28,8 +30,9 @@ $factory->define(App\Jobseeker::class, function(Faker\Generator $faker) use ($fa
         'gender' => $faker->biasedNumberBetween(0, 1),
         'dob' => $faker->date('Y-m-d', 'now'),
         'gpa' => $faker->randomFloat(2, 1, 4),
-        'major' => 'IT',
-        'university' => 'Binus University',
+        'major' => $faker->jobTitle,
+        'university' => $faker->company,
+        'status' => \App\Constant::status_active,
     ];
 });
 
@@ -38,9 +41,11 @@ $factory->defineAs(App\User::class, 'company', function (Faker\Generator $faker)
         'name' => $faker->company,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
-        'phone' => $faker->phoneNumber,
-        'description' => $faker->paragraph,
         'role' => \App\Constant::user_company,
+        'phone' => $faker->phoneNumber,
+        'location' => $faker->address,
+        'description' => $faker->paragraph,
+        'status' => \App\Constant::status_active,
         'remember_token' => str_random(10),
     ];
 });
@@ -49,19 +54,22 @@ $factory->define(App\Company::class, function(Faker\Generator $faker) use ($fact
     return [
         'address' => $faker->address,
         'website' => $faker->domainName,
-        'industry' => 'Technology',
+        'industry' => $faker->jobTitle,
         'size' => $faker->biasedNumberBetween(0, 500),
+        'status' => \App\Constant::status_active,
     ];
 });
 
 $factory->define(App\Job::class, function (Faker\Generator $faker) use ($factory) {
     return [
-        'title' => $faker->sentence,
+        'name' => $faker->sentence,
+        'deadline' => $faker->date('Y-m-d', strtotime('+30 days')),
         'type' => $faker->biasedNumberBetween(0, 1),
         'salary' => $faker->biasedNumberBetween(0, 1),
         'period' => $faker->biasedNumberBetween(1, 24),
         'benefit' => $faker->sentence,
         'requirement' => $faker->sentence,
         'description' => $faker->paragraph,
+        'status' => \App\Constant::status_active,
     ];
 });
