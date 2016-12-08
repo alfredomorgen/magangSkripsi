@@ -58,21 +58,28 @@ class JobseekerController extends Controller
 
     public function apply($id)
     {
-        $transaction = Transaction::create([
-            'job_id' => $id,
-            'jobseeker_id' => Auth::user()->id,
-        ]);
-
         $message = "";
-        if($transaction == null){
-            $message = "Failed to apply job...";
+        $transaction = null;
+        $isTransactionExist = Transaction::where('job_id', '=', $id)->where('jobseeker_id', '=', Auth::user()->id)->first();
+
+        if($isTransactionExist == null){
+            $transaction = Transaction::create([
+                'job_id' => $id,
+                'jobseeker_id' => Auth::user()->id,
+            ]);
+
+            if($transaction == null){
+                $message = "Failed to apply job...";
+            } else {
+                $message = "Job successfully applied!";
+            }
         } else {
-            $message = "Job successfully applied!";
+            $message = "You have already applied...";
         }
 
         $data = [
             'message' => $message,
         ];
-        return redirect('/job/'.$id)->with($data);
+        return redirect()->route('job.index', $id)->with($data);
     }
 }
