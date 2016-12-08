@@ -63,7 +63,18 @@
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->title }}</a></td>
                                 <td>{{ $job->created_at }}</td>
                                 <td>@if($job->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($job->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_job/'.$job->id)}}">Delete</a></td>
+                                @if($job->deleted_at == NULL)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal1">Delete</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal1" class="modal">
+                                        <div class="modal-content">
+                                            <h4>Confirmation</h4>
+                                            <p>Are you sure about delete <span class="red-text">{{$job->title}}</span> from {{$company_name}}?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{url('/admin/delete_job/'.$job->id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                                        </div>
+                                    </div>
                                 @else <td></td>@endif
                             </tr>
                         @endforeach
@@ -101,7 +112,19 @@
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->title }}</a></td>
                                 <td>{{ $job->created_at }}</td>
                                 <td>@if($job->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($job->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_job/'.$job->id)}}">Delete</a></td>
+                                @if($job->deleted_at == NULL)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal1">Delete</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal1" class="modal">
+                                        <div class="modal-content">
+                                            <h4>Confirmation</h4>
+                                            <p>Are you sure about delete <span class="red-text">{{$job->title}}</span> from {{$company_name}}?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{url('/admin/delete_job/'.$job->id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                                        </div>
+                                    </div>
+                                </td>
                                 @else <td></td>@endif
                             </tr>
                         @endforeach

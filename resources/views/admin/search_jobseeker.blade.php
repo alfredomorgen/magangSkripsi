@@ -62,7 +62,17 @@
 
                                 <td>{{ $jobseeker->email }}</td>
                                 <td>@if($jobseeker->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($jobseeker->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}">Delete</a></td>
+                                @if($jobseeker->deleted_at == NULL)<td>
+                                    <div id="modal1" class="modal">
+                                        <div class="modal-content">
+                                            <h4>Confirmation</h4>
+                                            <p>Are you sure about delete <span class="red-text">{{$jobseeker->name}}</span>?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                                        </div>
+                                    </div>
+                                </td>
                                 @else <td></td>@endif
                             </tr>
                         @endforeach
@@ -97,7 +107,19 @@
 
                                 <td>{{ $jobseeker->email }}</td>
                                 <td>@if($jobseeker->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($jobseeker->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}">Delete</a></td>
+                                @if($jobseeker->deleted_at == NULL)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal1">Delete</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal1" class="modal">
+                                        <div class="modal-content">
+                                            <h4>Confirmation</h4>
+                                            <p>Are you sure about delete <span class="red-text">{{$jobseeker->name}}</span>?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                                        </div>
+                                    </div>
+                                </td>
                                 @else <td></td>@endif
                             </tr>
                         @endforeach
@@ -116,3 +138,13 @@
     </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+    </script>
+@endsection
+

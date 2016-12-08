@@ -17,7 +17,7 @@ class SearchController extends Controller
     {
         $company = User::withTrashed()->with('company')
             ->where('role', '=', '1')
-            ->paginate(3);
+            ->paginate(5);
         /*foreach ($company as $item) {
             dd($item->company->id);
         }*/
@@ -29,7 +29,7 @@ class SearchController extends Controller
     {
         $jobseeker = User::withTrashed()->with('jobseeker')
             ->where('role', '=', '2')
-            ->paginate(3);
+            ->paginate(5);
         $data = ['jobseekers' => $jobseeker];
         if(Auth::user()->role == constant::user_admin)
         {
@@ -45,7 +45,7 @@ class SearchController extends Controller
     public function indexJob()
     {
         $job = Job::withTrashed()->select('*')
-            ->paginate(3);
+            ->paginate(5);
         $data = ['jobs' => $job];
         return view('admin.search_job', $data);
     }
@@ -55,7 +55,7 @@ class SearchController extends Controller
         $jobs = Job::withTrashed()->select('*')
             ->where('title', 'LIKE', '%' . $search . '%')
             ->orderBy('id')
-            ->paginate(3);
+            ->paginate(5);
         if (count($jobs) == 0) {
             return view('admin.search_job')
                 ->with('message', 'Job not Found')
@@ -74,7 +74,7 @@ class SearchController extends Controller
             ->where('name', 'LIKE', '%' . $search . '%')
             ->Where('role', '=', '1')
             ->orderBy('id')
-            ->paginate(3);
+            ->paginate(5);
         if (count($companies) == 0) {
             return view('admin.search_company')
                 ->with('message', 'Company not Found')
@@ -93,7 +93,7 @@ class SearchController extends Controller
             ->where('name', 'LIKE', '%' . $search . '%')
             ->Where('role', '=', '2')
             ->orderBy('id')
-            ->paginate(3);
+            ->paginate(5);
         if (count($jobseekers) == 0) {
             if (Auth::user()->role == constant::user_admin) {
                 return view('admin.search_jobseeker')

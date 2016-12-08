@@ -44,6 +44,7 @@
                             <th data-field="company">Company</th>
                             <th data-field="company_id">Company Id</th>
                             <th data-field="email">Email</th>
+                            <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
                         </tr>
                         </thead>
@@ -57,7 +58,19 @@
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('user.index',$company->id)}}">{{ $company->name }}</a></td>
                                 <td>{{ $company->email }}</td>
                                 <td>@if($company->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($company->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_company/'.$company->id)}}">Delete</a></td>
+                                @if($company->deleted_at == NULL)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal1">Delete</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal1" class="modal">
+                                        <div class="modal-content">
+                                            <h4>Confirmation</h4>
+                                            <p>Are you sure about delete <span class="red-text">{{$company->name}}</span>?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{url('/admin/delete_company/'.$company_id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                                        </div>
+                                    </div>
+                                    </td>
                                 @else <td></td>@endif
                             </tr>
                         @endforeach
@@ -76,6 +89,7 @@
                             <th data-field="company_id">Company Id</th>
                             <th data-field="company">Company</th>
                             <th data-field="email">Email</th>
+                            <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
                         </tr>
                         </thead>
@@ -89,7 +103,19 @@
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('user.index',$company->id)}}">{{ $company->name }}</a></td>
                                 <td>{{ $company->email }}</td>
                                 <td>@if($company->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($company->deleted_at == NULL)<td><a class="waves-effect waves-light btn btn-danger" href="{{url('/admin/delete_company/'.$company_id)}}">Delete</a></td>
+                                @if($company->deleted_at == NULL)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal1">Delete</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal1" class="modal">
+                                        <div class="modal-content">
+                                            <h4>Confirmation</h4>
+                                            <p>Are you sure about delete <span class="red-text">{{$company->name}}</span>?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{url('/admin/delete_company/'.$company_id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                                        </div>
+                                    </div>
+                                </td>
                                 @else <td></td>@endif
                             </tr>
                         @endforeach
@@ -110,7 +136,14 @@
 
 @endsection
 
-
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+    </script>
+@endsection
 
 
 
