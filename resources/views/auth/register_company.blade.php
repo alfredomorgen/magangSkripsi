@@ -87,11 +87,11 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="address" type="text" class="validate" name="address"
-                                       value="{{ old('address') }}">
-                                <label for="address">Address</label>
-                                @if ($errors->has('address'))
-                                    <strong>{{ $errors->first('address') }}</strong>
+                                <input id="location" type="text" class="validate" name="location"
+                                       value="{{ old('location') }}">
+                                <label for="location">Location</label>
+                                @if ($errors->has('location'))
+                                    <strong>{{ $errors->first('location') }}</strong>
                                 @endif
                             </div>
                         </div>

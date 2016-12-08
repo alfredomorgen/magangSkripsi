@@ -81,31 +81,30 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-
-
         if($data['role'] == Constant::user_company){
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'role' => $data['role'],
-                'description' =>$data['description'],
                 'phone' => $data['phone'],
-
+                'location' => $data['location'],
+                'description' =>$data['description'],
+                'status' => Constant::status_active,
             ]);
             Company::create([
                 'user_id' => $user->id,
-                'location' => $data['location'],
-                'size' => $data['size'],
+                'website' => $data['website'],
                 'industry' => $data['industry'],
-                'website' => $data['website']
+                'size' => $data['size'],
             ]);
         } else if($data['role'] == Constant::user_jobseeker){
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
-                'role' => $data['role']
+                'role' => $data['role'],
+                'status' => Constant::status_active,
             ]);
             Jobseeker::create([
                 'user_id' => $user->id,
