@@ -37,13 +37,12 @@
                 {{$search}}
 
                 <ul class="collection z-depth-1 grey-text text-darken-2">
-                    <table class="bordered highlight responsive-table white">
+                    <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
                             <th data-field="id">Id</th>
                             <th data-field="jobseeker">Jobseeker</th>
                             <th data-field="email">Email</th>
-                            <th data-field="action">Action</th>
                         </tr>
                         </thead>
 
@@ -52,9 +51,8 @@
                         @foreach($jobseekers as $jobseeker)
                             <tr>
                                 <td>{{ $jobseeker->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/company/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/user/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
                                 <td>{{ $jobseeker->email }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -65,13 +63,12 @@
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
-                    <table class="bordered highlight responsive-table white">
+                    <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
                             <th data-field="id">Id</th>
                             <th data-field="jobseeker">Jobseeker</th>
                             <th data-field="email">Email</th>
-                            <th data-field="action">Action</th>
                         </tr>
                         </thead>
 
@@ -80,9 +77,8 @@
                         @foreach($jobseekers as $jobseeker)
                             <tr>
                                 <td>{{ $jobseeker->id }}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/company/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{url('/user/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a></td>
                                 <td>{{ $jobseeker->email }}</td>
-                                <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -92,11 +92,11 @@ class CompanyController extends Controller
             'created_at',
         ];
 
-        $job = Job::select('*')->paginate(3);
+        $job = Job::select('*')->where('company_id','=',Auth::user()->company->id)->paginate(3);
 
         $data = ['jobs' => $job];
 
-        return view('/company/view_post_job',$data);
+        return view('company.view_post_job',$data);
     }
 
     public function indexJobseeker()

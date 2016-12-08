@@ -57,7 +57,7 @@
                                 <td>{{ $jobseeker->id }}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50"
                                        data-tooltip="View Profile"
-                                       href="{{url('/admin/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a>
+                                       href="{{url('/user/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a>
                                 </td>
                                 <td>{{ $jobseeker->email }}</td>
                                 <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>
@@ -88,7 +88,7 @@
                                 <td>{{ $jobseeker->id }}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50"
                                        data-tooltip="View Profile"
-                                       href="{{url('/admin/view_jobseeker/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a>
+                                       href="{{url('/user/'.$jobseeker->id)}}">{{ $jobseeker->name }}</a>
                                 </td>
                                 <td>{{ $jobseeker->email }}</td>
                                 <td><a class="waves-effect waves-light btn btn-danger">Delete</a></td>

@@ -52,7 +52,7 @@
                     <tbody>
                     @foreach($jobs as $job)
                         <tr>
-                            <td>{{ $job->title }}</td>
+                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/job/'.$job->id)}}">{{ $job->title }}</a></td>
                             <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
                             <td>{{$job->id }}</td>
                             <td>On Going</td>

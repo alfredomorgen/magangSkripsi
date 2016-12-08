@@ -16,4 +16,13 @@ class JobController extends Controller
         ];
         return view('job.job_detail', $data);
     }
+
+    public function search_job()
+    {
+        $job = Job::select('*')->paginate(3);
+
+        $data = ['jobs' => $job];
+
+        return view('job.search_job',$data);
+    }
 }

@@ -24,9 +24,11 @@
                                         @endif
                                     </div>
                                     <div class="col s12 m12 l9">
-                                        <a href="{{ route('jobseeker.edit', $user->id) }}" class="btn-floating btn-large red right">
-                                            <i class="material-icons">mode_edit</i>
-                                        </a>
+                                        @if($user->id == Auth::user()->id)
+                                            <a href="{{ route('jobseeker.edit', $user->id) }}" class="btn-floating btn-large red right">
+                                                <i class="material-icons">mode_edit</i>
+                                            </a>
+                                        @endif
                                         <span class="card-title"><b>{{ $user->name }}</b></span>
                                         <h6>Study at</h6>
                                         <h6><i class="tiny material-icons">location_on</i> Indonesia</h6>

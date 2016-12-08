@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        ul li span {
+            font-size: 20px;
+        }
+
+        ul li .active {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+    </style>
     <div class="container">
         <div class="row">
             @section('navbar')
@@ -41,7 +51,7 @@
                                     <span class="title">{{ $job->title }}</span>
                                     <p><a href="#!"><i class="material-icons">equalizer</i></a>{{ $job->company->name }}</p>
                                     <p><a href="#!"><i class="material-icons">location_on</i></a>{{ $job->company->address }}</p>
-                                    <a class="waves-effect waves-light btn orange darken-2">View</a>
+                                    <a href="{{ url('job/'.$job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
                                     <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Report">report_problem</i></a>
                                     <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Share">person_pin</i></a>
                                     <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Add to Saved Jobs">grade</i></a>

@@ -1,16 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        ul li span {
-            font-size: 20px;
-        }
-
-        ul li .active {
-            padding-left: 8px;
-            padding-right: 8px;
-        }
-    </style>
     <div class="container">
         <div class="row">
             <!-- Grey navigation panel -->
@@ -51,9 +41,6 @@
                     </li>
                 @endforeach
 
-            </ul>
-            <ul class="pagination center">
-                <li class="waves-effect">{{ $jobs->render() }}</li>
             </ul>
         </div>
     </div>

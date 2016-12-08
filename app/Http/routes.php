@@ -32,6 +32,11 @@ Route::get('/register/{user_type}',[
     'uses' => 'SiteController@registerType'
 ]);
 
+Route::get('/search_job',[
+    'uses' => 'JobController@search_job',
+    'as' => 'job.search'
+]);
+
 Route::get('/job/{id}', [
     'uses' => 'JobController@index',
     'as' => 'job.index',
@@ -58,9 +63,10 @@ Route::get('admin/searchJob',function(){
     return redirect($route);
 });
 
-Route::get('/admin/view_jobseeker/{id}',[
-   'uses' => 'SiteController@index'
-]);
+//Axel edit
+//Route::get('/admin/view_jobseeker/{id}',[
+//   'uses' => 'SiteController@index'
+//]);
 
 Route::get('/admin/search_company', [
     'uses' => 'SearchController@indexCompany'
