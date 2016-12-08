@@ -26,6 +26,14 @@ class UserRequest extends Request
     public function rules()
     {
         return [
+//            'name',
+//            'email',
+//            'password',
+//            'phone',
+//            'description',
+//            'role',
+            'photo' => 'mimes:jpeg,bmp,png,jpg|max:5000',
+            'resume' => 'required|mimes:pdf|max:15360'
         ];
     }
 }

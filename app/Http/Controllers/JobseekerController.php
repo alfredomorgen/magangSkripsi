@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
+
 class JobseekerController extends Controller
 {
     public function index($id){
@@ -45,12 +46,26 @@ class JobseekerController extends Controller
             if($request->hasFile('photo')){
                 $photo = $request->file('photo');
                 $photo_name = md5(uniqid()).'.'.$photo->getClientOriginalExtension();
+                //dd($photo_name);
                 $photo->move(public_path().'/images/', $photo_name);
                 $user->photo = $photo_name;
             }
 
+            if($request->hasFile('resume')){
+                //dd($request->file('resume'));
+                $resume = $request->file('resume');
+                $resume_name = md5(uniqid()).'.'.$resume->getClientOriginalExtension();
+                $resume->move(public_path().'/uploads/', $resume_name);
+                $user->jobseeker->resume = $resume_name;
+
+                $user->jobseeker->save();
+            }
+//            if(\File::isfile($request['resume'])){
+//                dd($request->file('resume'));
+//            }
             $user->save();
-            return redirect()->route('user.profile', $user_id);
+
+            return redirect()->route('user.index', $user_id);
         } else {
             return redirect('/');
         }

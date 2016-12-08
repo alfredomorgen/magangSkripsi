@@ -56,7 +56,7 @@
                             <td>{{ $job->id }}</td>
                             <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/job/'.$job->id)}}">{{ $job->title }}</a></td>
                             <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
-                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Candidates" href="#">1</a></td>
+                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Candidates" href="{{ route('company.view_candidate', $job->id) }}">{{$job->transaction->count()}}</a></td>
                             <td>On Going</td>
                             <td><a class="btn btn-block blue"
                                    href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>

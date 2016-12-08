@@ -33,7 +33,7 @@
                 <table class="centered bordered highlight responsive-table white" style="word-wrap:break-word">
                     <thead>
                     <tr>
-                        <th data-field="number">Number</th>
+                        <th data-field="number">Job Seeker Id</th>
                         <th data-field="created_at">Date Applied</th>
                         <th data-field="name">Name</th>
                         <th data-field="resume">Resume</th>
@@ -43,18 +43,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{--@foreach($jobs as $job)--}}
+                    @foreach($transactions as $transaction)
                         <tr>
-                            {{--<td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>--}}
-                            <td>1.</td>
-                            <td>1 January 2016</td>
-                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="#">Budi</a></td>
+                            <td>{{ $transaction->jobseeker->id }}</td>
+                            <td>{{ date('d-m-Y', strtotime($transaction->created_at))}}</td>
+                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ url('user/'.$transaction->jobseeker->id) }}">{{ $transaction->jobseeker->user->name}}</a></td>
                             <td><a class="btn btn-block blue"
                                    href="#">View Resume</a></td>
                             <td><a class="btn btn-block green"
                                    href="#">Approve</a></td>
                         </tr>
-                    {{--@endforeach--}}
+                    @endforeach
                     </tbody>
                 </table>
             </ul>

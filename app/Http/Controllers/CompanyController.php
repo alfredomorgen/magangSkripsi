@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transaction;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,7 +48,9 @@ class CompanyController extends Controller
 
     public function manage_post()
     {
-        $job = Job::select('*')->where('company_id', '=', Auth::user()->company->id)->paginate(3);
+        $job = Job::select('*')
+            ->where('company_id', '=', Auth::user()->company->id)
+            ->paginate(3);
         $data = ['jobs' => $job];
 
         return view('company.manage_post', $data);
@@ -86,7 +89,9 @@ class CompanyController extends Controller
 
     public function view_post()
     {
-        $job = Job::select('*')->where('company_id','=',Auth::user()->company->id)->paginate(3);
+        $job = Job::select('*')
+            ->where('company_id','=',Auth::user()->company->id)
+            ->paginate(3);
 
         $data = ['jobs' => $job];
 
@@ -121,8 +126,11 @@ class CompanyController extends Controller
         }
     }
 
-    public function view_candidate()
+    public function view_candidate($id)
     {
-        return view('company.candidate');
+        $transaction = Job::find($id)->transaction;
+        $data = ['transactions' => $transaction];
+
+        return view('company.candidate',$data);
     }
 }

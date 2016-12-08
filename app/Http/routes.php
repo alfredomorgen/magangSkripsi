@@ -165,7 +165,7 @@ Route::get('/company/search_jobseeker/{search}',[
     'as' => 'company.search_jobseeker'
 ]);
 
-Route::get('company/view_candidate',[
+Route::get('company/view_candidate/{id}',[
    'uses' => 'CompanyController@view_candidate',
     'as' => 'company.view_candidate'
 ]);

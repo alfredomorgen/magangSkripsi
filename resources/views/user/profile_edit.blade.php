@@ -79,6 +79,24 @@
                                     </div>
                                 </div>
 
+                                <h6>Resume</h6>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input id="resume" type="file" name="resume" multiple>
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text" name="resume">
+                                            </div>
+                                        </div>
+                                        @if ($errors->has('resume'))
+                                            <strong>{{ $errors->first('resume') }}</strong>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="col-md-8 col-md-offset-4 center-align">
                                     <button type="submit" class="btn blue">
                                         Save Changes
