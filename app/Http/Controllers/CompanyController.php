@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transaction;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -24,6 +25,52 @@ class CompanyController extends Controller
         $this->middleware('company');
     }
 
+    public function index($user_id)
+    {
+        $user = User::find($user_id);
+        if($user != null){
+            $data = ['user' => $user];
+            return view('company.profile', $data);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function edit($user_id){
+        $user = User::find($user_id);
+        if($user != null){
+            $data = ['user' => $user];
+            return view('company.profile_edit', $data);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function update($user_id, Request $request)
+    {
+        $user = User::find($user_id);
+        if ($user != null) {
+            $user->phone = $request->get('phone');
+            $user->description = $request->get('description');
+
+            if ($request->has('password')) {
+                $user->password = bcrypt($request->get('password'));
+            }
+
+            if ($request->hasFile('photo')) {
+                $photo = $request->file('photo');
+                $photo_name = md5(uniqid()) . '.' . $photo->getClientOriginalExtension();
+                //dd($photo_name);
+                $photo->move(public_path() . '/images/', $photo_name);
+                $user->photo = $photo_name;
+            }
+
+            $user->save();
+            return redirect()->route('company.index', $user_id);
+        } else {
+            return redirect('/');
+        }
+    }
 
     public function post_job()
     {

@@ -176,6 +176,16 @@ Route::get('company/view_candidate/{id}',[
     'as' => 'company.view_candidate'
 ]);
 
+Route::get('/company/{user_id}', [
+    'uses' => 'CompanyController@index',
+    'as' => 'company.index',
+]);
+
+Route::get('/company/{user_id}/edit', [
+    'uses' => 'CompanyController@edit',
+    'as' => 'company.edit',
+]);
+
 
 ///////////////
 // Jobseeker //
