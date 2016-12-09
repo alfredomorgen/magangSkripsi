@@ -27,7 +27,7 @@
     <script src="{{asset('/js/init.js')}}"></script>
 </head>
 
-<body style="background-color:#eeeeee">
+<body style=" background-image: url({{asset('images/office2.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px; ">
 <nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif" role="navigation">
     <div class="nav-wrapper container">
         <a id="logo-container" href="/" class="brand-logo">Magang</a>
