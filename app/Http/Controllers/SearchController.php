@@ -15,19 +15,16 @@ class SearchController extends Controller
 {
     public function indexCompany()
     {
-        $user = User::withTrashed()->with('company')
+        $user = User::with('company')
             ->where('role', '=', '1')
             ->paginate(5);
-        /*foreach ($company as $item) {
-            dd($item->company->id);
-        }*/
         $data = ['users' => $user];
         return view('admin.search_company', $data);
     }
 
     public function indexJobseeker()
     {
-        $user = User::withTrashed()->with('jobseeker')
+        $user = User::with('jobseeker')
             ->where('role', '=', '2')
             ->paginate(5);
         $data = ['users' => $user];
@@ -44,7 +41,7 @@ class SearchController extends Controller
 
     public function indexJob()
     {
-        $job = Job::withTrashed()->select('*')
+        $job = Job::select('*')
             ->paginate(5);
         $data = ['jobs' => $job];
         return view('admin.search_job', $data);
@@ -52,8 +49,7 @@ class SearchController extends Controller
 
     public function searchJob($search)
     {
-        $jobs = Job::withTrashed()->select('*')
-            ->where('name', 'LIKE', '%' . $search . '%')
+        $jobs = Job::where('name', 'LIKE', '%' . $search . '%')
             ->orderBy('id')
             ->paginate(5);
         if (count($jobs) == 0) {
@@ -70,8 +66,7 @@ class SearchController extends Controller
     public function searchCompany($search)
     {
 
-        $users = User::withTrashed()->select('*')
-            ->where('name', 'LIKE', '%' . $search . '%')
+        $users = User::where('name', 'LIKE', '%' . $search . '%')
             ->Where('role', '=', '1')
             ->orderBy('id')
             ->paginate(5);
@@ -89,8 +84,7 @@ class SearchController extends Controller
     public function searchJobseeker($search)
     {
 
-        $users = User::withTrashed()->select('*')
-            ->where('name', 'LIKE', '%' . $search . '%')
+        $users = User::where('name', 'LIKE', '%' . $search . '%')
             ->Where('role', '=', '2')
             ->orderBy('id')
             ->paginate(5);

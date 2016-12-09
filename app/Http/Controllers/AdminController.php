@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Company;
+use App\Constant;
 use App\Jobseeker;
 use App\Job;
 use Carbon\Carbon;
@@ -22,29 +23,26 @@ class AdminController extends Controller
     public function deleteJob($id)
     {
         $job = Job::find($id);
-//        $job->deleted_at = Carbon::now();
-//        $job->save();
-        $job->delete();
+        $job->save();
         return redirect('/admin/search_job');
     }
 
     public function deleteCompany($id)
     {
-        $company= Company::find($id);
+        $user= User::find($id);
 
-        $company->job()->delete();
-        $company->user->delete();
-        $company->delete();
-
-
+        $user->status = Constant::status_inactive;
+        $user->company->job()->update([
+            'status' => Constant::status_inactive
+        ]);
+        $user->save();
         return redirect('/admin/search_company');
     }
     public function deleteJobseeker($id)
     {
-        $jobseeker = Jobseeker::find($id);
-        $jobseeker->delete();
-        $jobseeker->user->delete();
-
+        $user = User::find($id);
+        $user->status = Constant::status_inactive;
+        $user->save();
         return redirect('/admin/search_jobseeker');
     }
 }

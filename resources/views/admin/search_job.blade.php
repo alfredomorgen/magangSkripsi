@@ -43,7 +43,6 @@
 
                             <th data-field="company_id">Company Id</th>
                             <th data-field="id">Job Id</th>
-                            <th></th>
                             <th data-field="company_name">Company Name</th>
                             <th data-field="job">Title</th>
                             <th data-field="email">Created Date</th>
@@ -55,27 +54,25 @@
                         <tbody>
                         @foreach($jobs as $job)
                             <tr>
-                                <td>{{ $company_id = \App\Company::select('*')->where('id', '=', $job->company_id)->withTrashed()->first()->id}}</td>
+                                <td>{{$job->company->id}}</td>
                                 <td>{{ $job->id }}</td>
-                                {{--<td>{{ $job->company->user->name }}</td>--}}
-                                <td><p hidden>{{ $company = \App\Company::select('*')->where('id','=',$job->company_id)->withTrashed()->first()->user_id}}</p></td>
-                                <td>{{ $company_name =\APP\User::select('*')->where('id','=',$company)->withTrashed()->first()->name}}</td>
-                                {{--$company->user->name }}</td>--}}
+                                <td>{{ $job->company->user->name }}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->name }}</a></td>
                                 <td>{{ $job->created_at }}</td>
-                                <td>@if($job->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($job->deleted_at == NULL)<td>
+                                <td>@if($job->status == \App\Constant::status_inactive)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($job->status == \App\Constant::status_active)<td>
                                     <a class="waves-effect waves-light btn red" href="#modal{{$job->id}}">Delete</a>
                                     <!-- Modal Structure -->
                                     <div id="modal{{$job->id}}" class="modal">
                                         <div class="modal-content">
                                             <h4>Confirmation</h4>
-                                            <p>Are you sure about delete <span class="red-text">{{$job->title}}</span> from {{$company_name}}?</p>
+                                            <p>Are you sure about delete <span class="red-text">{{$job->name}}</span> from {{$job->company->user->name}}?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="{{url('/admin/delete_job/'.$job->id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
                                         </div>
                                     </div>
+                                </td>
                                 @else <td></td>@endif
                             </tr>
                         @endforeach
@@ -93,7 +90,6 @@
 
                             <th data-field="company_id">Company Id</th>
                             <th data-field="id">Job Id</th>
-                            <th></th>
                             <th data-field="company_name">Company Name</th>
                             <th data-field="job">Title</th>
                             <th data-field="email">Created Date</th>
@@ -105,21 +101,19 @@
                         <tbody>
                         @foreach($jobs as $job)
                             <tr>
-                                <td>{{ $company_id = \App\Company::select('*')->where('id', '=', $job->company_id)->withTrashed()->first()->id}}</td>
+                                <td>{{$job->company->id}}</td>
                                 <td>{{ $job->id }}</td>
-                                <td><p hidden>{{ $company = \App\Company::select('*')->where('id','=',$job->company_id)->withTrashed()->first()->user_id}}</p></td>
-                                <td>{{ $company_name =\APP\User::select('*')->where('id','=',$company)->withTrashed()->first()->name}}</td>
-                                {{--$company->user->name }}</td>--}}
+                                <td>{{$job->company->user->name}}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View job" href="{{route('job.index',$job->id)}}">{{ $job->name }}</a></td>
                                 <td>{{ $job->created_at }}</td>
-                                <td>@if($job->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($job->deleted_at == NULL)<td>
+                                <td>@if($job->status == \App\Constant::status_inactive)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
+                                @if($job->status == \App\Constant::status_active)<td>
                                     <a class="waves-effect waves-light btn red" href="#modal{{$job->id}}">Delete</a>
                                     <!-- Modal Structure -->
                                     <div id="modal{{$job->id}}" class="modal">
                                         <div class="modal-content">
                                             <h4>Confirmation</h4>
-                                            <p>Are you sure about delete <span class="red-text">{{$job->title}}</span> from {{$company_name}}?</p>
+                                            <p>Are you sure about delete <span class="red-text">{{$job->name}}</span> from {{$job->company->user->name}}?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="{{url('/admin/delete_job/'.$job->id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>

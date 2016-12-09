@@ -57,14 +57,12 @@
                         @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-
-                                <td>{{ $jobseeker_id = \App\Jobseeker::select('*')->where('user_id', '=', $user->id)->withTrashed()->first()->id}}</td>
+                                <td>{{ $user->jobseeker->id }}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('user.index', $user->id) }}">{{ $user->name}}</a></td>
-
                                 <td>{{ $user->email }}</td>
-                                <td>@if($user->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($user->deleted_at == NULL)<td>
-                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Delete</a>
+                                <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Inactive</span> @else <span class="blue-text">Active</span> @endif</td>
+                                @if($user->status == \App\Constant::status_active)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Inactive</a>
                                     <!-- Modal Structure -->
                                     <div id="modal{{$user->id}}" class="modal">
                                         <div class="modal-content">
@@ -72,7 +70,7 @@
                                             <p>Are you sure about delete <span class="red-text">{{$user->name}}</span>?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                                            <a href="{{url('/admin/delete_jobseeker/'.$user->id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
                                         </div>
                                     </div>
                                 </td>
@@ -104,14 +102,12 @@
                         @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-
-                                <td>{{ $jobseeker_id = \App\Jobseeker::select('*')->where('user_id', '=', $user->id)->withTrashed()->first()->id}}</td>
+                                <td>{{ $user->jobseeker->id }}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('user.index', $user->id) }}">{{ $user->name}}</a></td>
-
                                 <td>{{ $user->email }}</td>
-                                <td>@if($user->deleted_at != NULL)<span class="red-text">Deleted</span> @else <span class="blue-text">Available</span> @endif</td>
-                                @if($user->deleted_at == NULL)<td>
-                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Delete</a>
+                                <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Inactive</span> @else <span class="blue-text">Active</span> @endif</td>
+                                @if($user->status == \App\Constant::status_active)<td>
+                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Inactive</a>
                                     <!-- Modal Structure -->
                                     <div id="modal{{$user->id}}" class="modal">
                                         <div class="modal-content">
@@ -119,7 +115,7 @@
                                             <p>Are you sure about delete <span class="red-text">{{$user->name}}</span>?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="{{url('/admin/delete_jobseeker/'.$jobseeker_id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                                            <a href="{{url('/admin/delete_jobseeker/'.$user->id)}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
                                         </div>
                                     </div>
                                 </td>
