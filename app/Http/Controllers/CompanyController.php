@@ -29,7 +29,11 @@ class CompanyController extends Controller
     {
         $user = User::find($user_id);
         if($user != null){
-            $data = ['user' => $user];
+            $jobs = $user->company->job;
+            $data = [
+                'user' => $user,
+                'jobs' => $jobs,
+            ];
             return view('company.profile', $data);
         } else {
             return redirect('/');
