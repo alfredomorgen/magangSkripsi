@@ -17,7 +17,7 @@ class companyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::Guest()) {
+        if (Auth::guest()) {
             return redirect('/');
         } else if (Auth::user()->role == Constant::user_company) {
             return $next($request);

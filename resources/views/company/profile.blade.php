@@ -24,7 +24,8 @@
                                         @endif
                                     </div>
                                     <div class="col s12 m12 l9">
-                                        @if($user->id == Auth::user()->id)
+                                        @if(Auth::guest())
+                                        @elseif($user->id == Auth::user()->id)
                                             <a href="{{ route('company.edit', $user->id) }}" class="btn-floating btn-large red right">
                                                 <i class="material-icons">mode_edit</i>
                                             </a>

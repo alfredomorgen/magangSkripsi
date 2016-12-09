@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use App\User;
-use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
 
 class JobseekerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('jobseeker');
+    }
+
     public function index($user_id){
         $user = User::find($user_id);
         if($user != null){
