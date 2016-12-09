@@ -127,11 +127,12 @@ class CompanyController extends Controller
         return redirect('/company/manage_post/')->with('success','Job Updated');
     }
 
-    public function manage_post_delete($id)
+    public function manage_post_close($id)
     {
         $job = Job::find($id);
-        $job->delete();
-        return redirect('/company/manage_post/')->with('success', 'Job Deleted');
+        $job->status = Constant::status_inactive;
+        $job->save();
+        return redirect('/company/manage_post/')->with('success', 'Job Closed');
     }
 
     public function view_post()

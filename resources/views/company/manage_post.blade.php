@@ -68,13 +68,13 @@
                             <td><a class="btn btn-block blue"
                                    href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>
                             <td><a class="btn btn-block red"
-                                   href="{{ url('/company/post_job/delete/'.$job->id) }}">Delete</a>
+                                   href="{{ route('company.manage_post_close',$job->id) }}">Close</a>
                             </td>
                             @elseif($job->status == \App\Constant::status_inactive)
                             <td><a class="btn btn-block blue"
                                    href="{{ url('/company/post_job/edit/'.$job->id) }}" disabled>Edit</a></td>
                             <td><a class="btn btn-block red"
-                                   href="{{ url('/company/post_job/delete/'.$job->id) }}" disabled>Delete</a>
+                                   href="{{ route('company.manage_post_close',$job->id) }}" disabled>Close</a>
                             </td>
                             @endif
                         </tr>
