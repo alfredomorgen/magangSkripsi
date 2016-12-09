@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constant;
 use App\Transaction;
 use App\User;
 
@@ -13,12 +14,20 @@ class JobseekerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jobseeker');
+        $this->middleware('jobseeker', ['except' => [
+            'index',
+        ]]);
     }
 
     public function index($user_id){
         $user = User::find($user_id);
-        if($user != null){
+        if($user != null && $user->role == Constant::user_jobseeker){
+            if(Auth::guest()){
+                return redirect('/');
+            } else if(Auth::user()->role == Constant::user_jobseeker && Auth::user()->id != $user->id){
+                return redirect('/');
+            }
+
             $data = ['user' => $user];
             return view('jobseeker.profile', $data);
         } else {
