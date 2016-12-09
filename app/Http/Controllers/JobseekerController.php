@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class JobseekerController extends Controller
 {
-    public function index($id){
-        $user = User::find($id);
+    public function index($user_id){
+        $user = User::find($user_id);
         if($user != null){
             $data = ['user' => $user];
-            return view('user.profile', $data);
+            return view('jobseeker.profile', $data);
         } else {
             return redirect('/');
         }
@@ -27,7 +27,7 @@ class JobseekerController extends Controller
         $user = User::find($user_id);
         if($user != null){
             $data = ['user' => $user];
-            return view('user.profile_edit', $data);
+            return view('jobseeker.profile_edit', $data);
         } else {
             return redirect('/');
         }
@@ -46,13 +46,11 @@ class JobseekerController extends Controller
             if($request->hasFile('photo')){
                 $photo = $request->file('photo');
                 $photo_name = md5(uniqid()).'.'.$photo->getClientOriginalExtension();
-                //dd($photo_name);
                 $photo->move(public_path().'/images/', $photo_name);
                 $user->photo = $photo_name;
             }
 
             if($request->hasFile('resume')){
-                //dd($request->file('resume'));
                 $resume = $request->file('resume');
                 $resume_name = md5(uniqid()).'.'.$resume->getClientOriginalExtension();
                 $resume->move(public_path().'/uploads/', $resume_name);
@@ -60,12 +58,9 @@ class JobseekerController extends Controller
 
                 $user->jobseeker->save();
             }
-//            if(\File::isfile($request['resume'])){
-//                dd($request->file('resume'));
-//            }
-            $user->save();
 
-            return redirect()->route('user.index', $user_id);
+            $user->save();
+            return redirect()->route('jobseeker.index', $user_id);
         } else {
             return redirect('/');
         }
@@ -92,9 +87,7 @@ class JobseekerController extends Controller
             $message = "You have already applied...";
         }
 
-        $data = [
-            'message' => $message,
-        ];
-        return redirect()->route('job.index', $id)->with($data);
+        $data = ['message' => $message];
+        return redirect()->route('job.index', $job_id)->with($data);
     }
 }

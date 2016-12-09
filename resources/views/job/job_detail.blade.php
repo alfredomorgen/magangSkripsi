@@ -25,7 +25,7 @@
                             <h5 class="blue-text">Company</h5>
                             <p>
                                 <i class="tiny material-icons">work</i>
-                                <a href="{{route('user.index',$job->company->user->id)}}"class="yellow-text text-darken-4 tooltipped" data-position="right" data-delay="10" data-tooltip="View Company">{!!  nl2br($job->company->user->name) !!}</a>
+                                <a href="{{route('jobseeker.index',$job->company->user->id)}}"class="yellow-text text-darken-4 tooltipped" data-position="right" data-delay="10" data-tooltip="View Company">{!!  nl2br($job->company->user->name) !!}</a>
                             </p>
                         </div>
                         <div class="card-action">

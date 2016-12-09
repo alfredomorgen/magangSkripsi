@@ -55,7 +55,7 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->company->id}}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('user.index',$user->id)}}">{{ $user->name }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('jobseeker.index',$user->id)}}">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
                                 <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Inactive</span> @else <span class="blue-text">Active</span> @endif</td>
                                 @if($user->status== \App\Constant::status_active)<td>
@@ -100,7 +100,7 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $company_id = \App\Company::select('*')->where('user_id', '=', $user->id)->withTrashed()->first()->id}}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('user.index',$user->id)}}">{{ $user->name }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('jobseeker.index',$user->id)}}">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
                                 <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Inactive</span> @else <span class="blue-text">Active</span> @endif</td>
                                 @if($user->status == \App\Constant::status_active)<td>

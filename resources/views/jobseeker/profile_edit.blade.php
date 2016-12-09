@@ -44,19 +44,21 @@
                                 <h6>Phone</h6>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="phone" type="text" name="phone" value="{{ $user->phone }}" placeholder="Phone">
+                                        <i class="material-icons prefix">phone</i>
+                                        <input type="text" class="validate" id="phone" name="phone" value="{{ $user->phone }}">
                                         @if ($errors->has('phone'))
                                             <strong>{{ $errors->first('phone') }}</strong>
                                         @endif
                                     </div>
                                 </div>
 
-                                <h6>Description</h6>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <textarea class="materialize-textarea" id="description" name="description" placeholder="Description">{{ $user->description }}</textarea>
+                                        <i class="material-icons prefix">mode_edit</i>
+                                        <textarea class="materialize-textarea validate" id="description" name="description">{{ $user->description }}</textarea>
+                                        <label for="description">Description</label>
                                         @if ($errors->has('description'))
-                                            <strong>{{ $errors->first('description') }}</strong>
+                                            <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
                                         @endif
                                     </div>
                                 </div>
