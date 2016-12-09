@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use Psy\Test\CodeCleaner\ValidClassNamePassTest;
 use App\Http\Requests\Post_jobRequest;
 use App\Job;
+use App\Jobseeker;
 
 class CompanyController extends Controller
 {
@@ -133,4 +134,15 @@ class CompanyController extends Controller
 
         return view('company.candidate',$data);
     }
+
+    public function view_resume($id)
+    {
+        $transaction = Jobseeker::find($id)->user->resume;
+        $data = ['transactions' => $transaction];
+
+//        return view('user.resume',$data);
+        return response()->download(public_path().'/uploads/', $data);
+
+    }
+
 }
