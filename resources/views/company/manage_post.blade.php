@@ -57,12 +57,26 @@
                             <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/job/'.$job->id)}}">{{ $job->name }}</a></td>
                             <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
                             <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Candidates" href="{{ route('company.view_candidate', $job->id) }}">{{$job->transaction->count()}}</a></td>
-                            <td>On Going</td>
+                            @if($job->status == 1)
+                            <td class="green-text text-lighten-1"><b> Open </b></td>
+                            @elseif($job->status == 0)
+                            <td class="red-text text-lighten-1"><b> Closed </b></td>
+                            @endif
+
+                            @if($job->status == 1)
                             <td><a class="btn btn-block blue"
                                    href="{{ url('/company/post_job/edit/'.$job->id) }}">Edit</a></td>
                             <td><a class="btn btn-block red"
                                    href="{{ url('/company/post_job/delete/'.$job->id) }}">Delete</a>
                             </td>
+                            @elseif($job->status == 0)
+
+                            <td><a class="btn btn-block blue"
+                                   href="{{ url('/company/post_job/edit/'.$job->id) }}" disabled>Edit</a></td>
+                            <td><a class="btn btn-block red"
+                                   href="{{ url('/company/post_job/delete/'.$job->id) }}" disabled>Delete</a>
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
                     </tbody>

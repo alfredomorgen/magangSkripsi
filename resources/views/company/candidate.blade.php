@@ -35,6 +35,7 @@
                     <tr>
                         <th data-field="number">Job Seeker Id</th>
                         <th data-field="created_at">Date Applied</th>
+                        <th data-field="created_at">Time Applied</th>
                         <th data-field="name">Name</th>
                         <th data-field="resume">Resume</th>
                         <th data-field="action">
@@ -47,6 +48,7 @@
                         <tr>
                             <td>{{ $transaction->jobseeker->id }}</td>
                             <td>{{ date('d-m-Y', strtotime($transaction->created_at))}}</td>
+                            <td>{{ date('H:i:s', strtotime($transaction->created_at))}}</td>
                             <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ url('user/'.$transaction->jobseeker->id) }}">{{ $transaction->jobseeker->user->name}}</a></td>
                             <td><a class="btn btn-block blue"
                                    href="#">View Resume</a></td>

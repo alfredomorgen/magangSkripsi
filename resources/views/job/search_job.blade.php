@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="col m10 l10">
-                                <span class="title">{{ $job->name }}</span>
+                                <span class="title"><strong>Available Job :</strong> "{{ $job->name }}"</span>
                                 <p><a href="#!"><i class="material-icons">equalizer</i></a>{{ $job->company->user->name }}</p>
                                 <p><a href="#!"><i class="material-icons">location_on</i></a>{{ $job->location }}</p>
                                 <a href="{{ url('job/'.$job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>

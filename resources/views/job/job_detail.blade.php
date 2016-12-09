@@ -19,7 +19,7 @@
                         <div class="right-align">
                             <a class="grey-text tooltipped right-align" data-position="bottom" data-delay="10" data-tooltip="Deadline Time"><i class="tiny material-icons">schedule </i> {{ $job->created_at}}</a>
                         </div>
-                        <div class="center"><h4 class="">{{ $job->name }}</h4></div>
+                        <div class="center"><h4 class="">{{ $job->title }}</h4></div>
                         <br>
                         <div class="card-action">
                             <h5 class="blue-text">Company</h5>
