@@ -103,10 +103,8 @@ class CompanyController extends Controller
             ->where('company_id', '=', Auth::user()->company->id)
             ->paginate(10);
         $data = [
-            'jobs' => $job,
-            'jobs_json' => $job->toJson(),
+            'jobs' => $job
         ];
-
         return view('company.manage_post', $data);
     }
 

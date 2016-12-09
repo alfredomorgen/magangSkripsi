@@ -62,7 +62,7 @@
                 </table>
             </ul>
             <ul class="pagination center">
-                <li class="waves-effect"></li>
+                <li class="waves-effect">{{ $jobs->render }}</li>
             </ul>
         </div>
         <div class="row"></div>
