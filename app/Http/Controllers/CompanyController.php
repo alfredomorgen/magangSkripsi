@@ -16,13 +16,13 @@ use Psy\Test\CodeCleaner\ValidClassNamePassTest;
 
 class CompanyController extends Controller
 {
-    //
-
     protected $redirectTo = '/home';
 
     public function __construct()
     {
-        $this->middleware('company');
+        $this->middleware('company', ['except' => [
+            'index',
+        ]]);
     }
 
     public function index($user_id)
