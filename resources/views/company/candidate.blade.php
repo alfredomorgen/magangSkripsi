@@ -51,7 +51,11 @@
                         <td>{{ date('H:i:s', strtotime($transaction->created_at))}}</td>
                         <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ url('user/'.$transaction->jobseeker->id) }}">{{ $transaction->jobseeker->user->name}}</a></td>
                         <td><a class="btn btn-block blue"href="{{ route('company.view_candidate_resume',$transaction->jobseeker->id) }}" target="_blank">View Resume</a></td>
-                        <td><a class="btn btn-block green"href="#">Approve</a></td>
+                        @if($transaction->status == \App\Constant::status_inactive)
+                        <td><a class="btn btn-block green"href="{{ route('company.transaction_approve',$transaction->id) }}">Approve</a></td>
+                        @elseif($transaction->status == \App\Constant::status_active)
+                            <td><a class="btn btn-block green"href="#" disabled>Approve</a></td>
+                        @endif
                     </tr>
                     @endforeach
                     </tbody>
