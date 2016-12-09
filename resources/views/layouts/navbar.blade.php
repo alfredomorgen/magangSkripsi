@@ -6,24 +6,23 @@
 <div class="nav-extended">
     <div class="nav-wrapper">
         <ul class="tabs tabs-fixed-width z-depth-1">
-
             @if(Auth::guest())
                 <li class="tab"><a target="_self" href="{{url('/')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a href="#test2" style="color:#757575">Search Company</a></li>
                 <li class="tab"><a href="#test2" style="color:#757575">Search Job</a></li>
-            @elseif(Auth::user()->role == '0')
+            @elseif(Auth::user()->role == \App\Constant::user_admin)
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a target="_self" href="{{url('/admin/search_jobseeker') }}" style="color:#757575">Search Jobseeker</a></li>
                 <li class="tab"><a target="_self" href="{{url('/admin/search_company')}}" style="color:#757575">Search Company</a></li>
                 <li class="tab"><a target="_self" href="{{url('/admin/search_job')}}" style="color:#757575">Search Job</a></li>
-            @elseif(Auth::user()->role == '1')
+            @elseif(Auth::user()->role == \App\Constant::user_company)
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a target="_self" href="{{url('/company/search_jobseeker')}}" style="color:#757575">Search Job Seeker</a></li>
                 <li class="tab"><a href="#test2" style="color:#757575">Bookmark Job Seeker</a></li>
                 <li class="tab"><a target="_self" href="{{ url('/company/view_post_job') }}" style="color:#757575">View Posts</a></li>
                 <li class="tab"><a target="_self" href="{{ url('/company/manage_post') }}" style="color:#757575">Manage Posts</a></li>
-                <li class="tab"><a target="_self" href="{{ url('user/'.Auth::user()->id ) }}" style="color:#757575">Profile</a></li>
-            @elseif(Auth::user()->role == '2')
+                <li class="tab"><a target="_self" href="{{ route('company.index', Auth::user()->id) }}" style="color:#757575">Profile</a></li>
+            @elseif(Auth::user()->role == \App\Constant::user_jobseeker)
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a href="#test2" style="color:#757575">Search Company</a></li>
                 <li class="tab"><a target="_self" href="{{url('/search_job')}}" style="color:#757575">Search Job</a></li>
