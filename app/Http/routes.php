@@ -176,6 +176,11 @@ Route::get('company/view_candidate/{id}',[
     'as' => 'company.view_candidate'
 ]);
 
+Route::get('company/transaction_approve/{id}',[
+    'uses' => 'CompanyController@approve',
+    'as' => 'company.transaction_approve'
+]);
+
 Route::get('/company/{user_id}', [
     'uses' => 'CompanyController@index',
     'as' => 'company.index',

@@ -13,6 +13,7 @@ use Psy\Test\CodeCleaner\ValidClassNamePassTest;
 use App\Http\Requests\Post_jobRequest;
 use App\Job;
 use App\Jobseeker;
+use App\Constant;
 
 class CompanyController extends Controller
 {
@@ -189,4 +190,13 @@ class CompanyController extends Controller
         return response()->file(public_path().'\\uploads\\'.$resume);
     }
 
+    public function approve($id)
+    {
+        $transaction = Transaction::find($id);
+
+        $transaction->status = Constant::status_active;
+        $transaction->save();
+
+        return back();
+    }
 }
