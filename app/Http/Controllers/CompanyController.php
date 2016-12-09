@@ -137,12 +137,9 @@ class CompanyController extends Controller
 
     public function view_resume($id)
     {
-        $transaction = Jobseeker::find($id)->user->resume;
-        $data = ['transactions' => $transaction];
+       $resume = Jobseeker::find($id)->resume;
 
-//        return view('user.resume',$data);
-        return response()->download(public_path().'/uploads/', $data);
-
+        return response()->file(public_path().'\\uploads\\'.$resume);
     }
 
 }

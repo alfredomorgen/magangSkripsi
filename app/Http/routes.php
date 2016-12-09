@@ -169,7 +169,6 @@ Route::get('company/view_candidate/resume/user/{id}',[
 
     'uses' => 'CompanyController@view_resume',
     'as' => 'company.view_candidate_resume'
-
 ]);
 
 Route::get('company/view_candidate/{id}',[
