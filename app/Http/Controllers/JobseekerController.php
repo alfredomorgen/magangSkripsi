@@ -71,15 +71,15 @@ class JobseekerController extends Controller
         }
     }
 
-    public function apply($id)
+    public function apply($job_id)
     {
         $message = "";
         $transaction = null;
-        $isTransactionExist = Transaction::where('job_id', '=', $id)->where('jobseeker_id', '=', Auth::user()->id)->first();
+        $isTransactionExist = Transaction::where('job_id', '=', $job_id)->where('jobseeker_id', '=', Auth::user()->id)->first();
 
         if($isTransactionExist == null){
             $transaction = Transaction::create([
-                'job_id' => $id,
+                'job_id' => $job_id,
                 'jobseeker_id' => Auth::user()->jobseeker->id,
             ]);
 
