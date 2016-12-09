@@ -98,7 +98,10 @@ class CompanyController extends Controller
         $job = Job::select('*')
             ->where('company_id', '=', Auth::user()->company->id)
             ->paginate(10);
-        $data = ['jobs' => $job];
+        $data = [
+            'jobs' => $job,
+            'jobs_json' => $job->toJson(),
+        ];
 
         return view('company.manage_post', $data);
     }
