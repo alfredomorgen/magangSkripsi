@@ -50,7 +50,7 @@ class CompanyController extends Controller
     {
         $job = Job::select('*')
             ->where('company_id', '=', Auth::user()->company->id)
-            ->paginate(3);
+            ->paginate(10);
         $data = ['jobs' => $job];
 
         return view('company.manage_post', $data);

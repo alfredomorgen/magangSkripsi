@@ -41,7 +41,7 @@
                     <thead>
                     <tr>
                         <th data-field="id">Job Id</th>
-                        <th data-field="title">Title Job</th>
+                        <th data-field="name">Title Job</th>
                         <th data-field="created_at">Created</th>
                         <th data-field="candidates">Candidates</th>
                         <th data-field="status">Status</th>
@@ -54,7 +54,7 @@
                     @foreach($jobs as $job)
                         <tr>
                             <td>{{ $job->id }}</td>
-                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/job/'.$job->id)}}">{{ $job->title }}</a></td>
+                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job" href="{{url('/job/'.$job->id)}}">{{ $job->name }}</a></td>
                             <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
                             <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Candidates" href="{{ route('company.view_candidate', $job->id) }}">{{$job->transaction->count()}}</a></td>
                             <td>On Going</td>
