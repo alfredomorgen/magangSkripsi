@@ -17,7 +17,7 @@
                                 <h5 class="center-align">Edit Profile</h5>
                             </div>
 
-                            <form class="col s12" method="POST" action="{{ route('jobseeker.update', $user->id) }}" enctype="multipart/form-data" files="true">
+                            <form class="col s12" method="POST" action="{{ route('company.update', $user->id) }}" enctype="multipart/form-data" files="true">
                                 {{ csrf_field() }}
 
                                 <h6>Password</h6>

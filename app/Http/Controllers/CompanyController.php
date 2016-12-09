@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Transaction;
-use App\User;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
-use Psy\Test\CodeCleaner\ValidClassNamePassTest;
-use App\Http\Requests\Post_jobRequest;
 use App\Job;
 use App\Jobseeker;
 use App\Constant;
+use App\Transaction;
+use App\User;
+
+use App\Http\Requests\CompanyRequest;
+use App\Http\Requests\Post_jobRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Psy\Test\CodeCleaner\ValidClassNamePassTest;
 
 class CompanyController extends Controller
 {
@@ -47,7 +46,7 @@ class CompanyController extends Controller
         }
     }
 
-    public function update($user_id, Request $request)
+    public function update($user_id, CompanyRequest $request)
     {
         $user = User::find($user_id);
         if ($user != null) {
@@ -61,7 +60,6 @@ class CompanyController extends Controller
             if ($request->hasFile('photo')) {
                 $photo = $request->file('photo');
                 $photo_name = md5(uniqid()) . '.' . $photo->getClientOriginalExtension();
-                //dd($photo_name);
                 $photo->move(public_path() . '/images/', $photo_name);
                 $user->photo = $photo_name;
             }

@@ -191,6 +191,11 @@ Route::get('/company/{user_id}/edit', [
     'as' => 'company.edit',
 ]);
 
+Route::post('/company/{user_id}/update', [
+    'uses' => 'CompanyController@update',
+    'as' => 'company.update',
+]);
+
 
 ///////////////
 // Jobseeker //
