@@ -41,55 +41,43 @@
                 <li class="collection-item avatar" style="padding-left:10px">
                     <div class="row" style="margin-bottom:auto">
                         <div class="col m2 l2">
-                            @if($bookmark->user->photo == NULL)
-                                <img src="{{ asset('images/profile_default.jpg') }}" class="circle" style="width:80px; height:80px">
+                            @if(\App\Jobseeker::find($bookmark->target)->user->photo == NULL)
+                                <img src="{{ asset('images/profile_default.jpg') }}" class="circle" style="width:120px; height:120px">
                             @else
-                                <img src="{{ asset('images/'.$user->photo) }}" class="circle" style="width:80px; height:80px">
+                                <img src="{{ asset('images/'.\App\Jobseeker::find($bookmark->target)->user->photo) }}" class="circle" style="width:120px; height:120px">
                             @endif
                         </div>
 
                         <div class="col m10 l10">
-                            <span class="title"><strong>Name :</strong> <i>" {{ $bookmark->user->name }} "</i></span>
+                            <span class="title"><i class="tiny material-icons blue-text darken-1">perm_identity</i><strong>Name : </strong>{{ \App\Jobseeker::find($bookmark->target)->user->name }}</span>
                             <p>
-                                <a href="#!"><i class="material-icons">equalizer</i></a>
-                                @if($bookmark->user->jobseeker->university == NULL)
+                                <i class="tiny material-icons blue-text darken-1">supervisor_account</i><strong>Study At :</strong>
+                                @if(\App\Jobseeker::find($bookmark->target)->university == NULL)
                                     -
                                 @else
-                                    {{ $user->jobseeker->university }}
+                                    {{ \App\Jobseeker::find($bookmark->target)->university}}
                                 @endif
                             </p>
-                            <p><a href="#!"><i class="material-icons">location_on</i></a>{{ $job->location}}</p>
-                            <a href="{{ url('job/'.$job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
-                            <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Report">report_problem</i></a>
-                            <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Share">person_pin</i></a>
-                            <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Add to Saved Jobs">grade</i></a>
+                            <p>
+                                <i class="tiny material-icons blue-text darken-1">loyalty</i><strong>Major :</strong>
+                                @if(\App\Jobseeker::find($bookmark->target)->major == NULL)
+                                    -
+                                @else
+                                    {{ \App\Jobseeker::find($bookmark->target)->major}}
+                                @endif
+                            </p>
+                            <p><i class="tiny material-icons blue-text darken-1">location_on</i><strong>Location :</strong> {{ \App\Jobseeker::find($bookmark->target)->user->location }}</p>
+                            <a href="{{ url('jobseeker/'.\App\Jobseeker::find($bookmark->target)->user->id) }}" class="waves-effect waves-light btn orange darken-2">View Profile</a>
+                            <a href="{{ route('company.delete_bookmark_jobseeker',$bookmark->id) }}"><i class="tooltipped material-icons right" data-tooltip="Delete this Bookmark">not_interested</i></a>
                         </div>
                     </div>
                 </li>
                 @endforeach
             </ul>
             <ul class="pagination center">
-                {{--<li class="waves-effect white">{{ $jobs->render() }}</li>--}}
+                <li class="waves-effect white">{{ $bookmarks->render() }}</li>
             </ul>
-        </div>
-        <div class="row"></div>
-        <div class="row"></div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-4 center-align">
-                {{--<a class="btn btn-block green" href="{{ url('/company/post_job/') }}">Create new Post Job</a>--}}
-            </div>
         </div>
     </div>
 
-@endsection
-
-@section('scripts')
-    <script>
-        //modals
-        $(document).ready(function () {
-            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-            $('.modal').modal();
-            //$('#modalCandidates1').modal('open');
-        });
-    </script>
 @endsection

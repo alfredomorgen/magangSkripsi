@@ -212,8 +212,8 @@ class CompanyController extends Controller
         $bookmark = Bookmark::select('*')
         ->where('user_id','=',Auth::user()->id)
         ->orderBy('created_at','desc')
-        ->paginate(5);
-
+        ->paginate(10);
+        //dd($bookmark);
         $data = [
             'bookmarks' => $bookmark
         ];
@@ -224,7 +224,7 @@ class CompanyController extends Controller
     public function add_bookmark_jobseeker($id)
     {
         $bookmark = null;
-        $isBookmarkExist = Bookmark::where('target','=',$id)
+        $isBookmarkExist = Bookmark::where('target','=',User::find($id)->jobseeker->id)
             ->where('user_id','=',Auth::user()->id)
             ->first();
 
@@ -232,7 +232,7 @@ class CompanyController extends Controller
         {
             $bookmark = new Bookmark();
             $bookmark->user_id = Auth::user()->id;
-            $bookmark->target = $id;
+            $bookmark->target = User::find($id)->jobseeker->id;
             $bookmark->type = Constant::user_jobseeker;
             $bookmark->status = Constant::status_active;
 
@@ -253,7 +253,16 @@ class CompanyController extends Controller
         }
 
 
-        return back()->with('success',$message);;
+        return back()->with('success',$message);
+    }
+
+    public function delete_bookmark_jobseeker($id)
+    {
+        $bookmark = Bookmark::find($id);
+
+        $bookmark->delete();
+
+        return redirect('company/bookmark_jobseeker');
     }
 
 }
