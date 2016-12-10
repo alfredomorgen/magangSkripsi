@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', $job->company->user->name.' - '.$job->name)
 @section('content')
     <div class="container">
         <div class="row">
