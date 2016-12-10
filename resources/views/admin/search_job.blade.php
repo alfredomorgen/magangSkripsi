@@ -34,7 +34,7 @@
         </div>
         @if(!isset($message))
             @if(isset($search))
-                {{$search}}
+                <span class="white-text">{{$search}}</span>
 
                 <ul class="collection z-depth-1 grey-text text-darken-2">
                     <table class="centered bordered highlight responsive-table white">
@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                @else <td></td>@endif
+                                @else<td><a class="waves-effect waves-light btn red disabled" href="#">Delete</a></td>@endif
                             </tr>
                         @endforeach
                         </tbody>
@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                @else <td></td>@endif
+                                @else <td><a class="waves-effect waves-light btn red disabled" href="#">Delete</a></td>@endif
                             </tr>
                         @endforeach
                         </tbody>
@@ -131,7 +131,7 @@
                 </ul>
             @endif
         @else
-            {{$message}}
+            <span class="white-text">{{$message}}</span>
         @endif
     </div>
 

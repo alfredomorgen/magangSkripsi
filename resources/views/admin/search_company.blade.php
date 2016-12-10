@@ -55,7 +55,7 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->company->id}}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('jobseeker.index',$user->id)}}">{{ $user->name }}</a></td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('company.index',$user->id)}}">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
                                 <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Inactive</span> @else <span class="blue-text">Active</span> @endif</td>
                                 @if($user->status== \App\Constant::status_active)<td>
@@ -82,6 +82,7 @@
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
+
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
@@ -91,6 +92,7 @@
                             <th data-field="email">Email</th>
                             <th data-field="status">Status</th>
                             <th data-field="action">Action</th>
+
                         </tr>
                         </thead>
 
@@ -99,8 +101,8 @@
                         @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $company_id = \App\Company::select('*')->where('user_id', '=', $user->id)->withTrashed()->first()->id}}</td>
-                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('jobseeker.index',$user->id)}}">{{ $user->name }}</a></td>
+                                <td>{{ $user->company->id}}</td>
+                                <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{route('company.index',$user->id)}}">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
                                 <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Inactive</span> @else <span class="blue-text">Active</span> @endif</td>
                                 @if($user->status == \App\Constant::status_active)<td>

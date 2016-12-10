@@ -20,4 +20,10 @@ class Constant
 
     const gender_male = '0';
     const gender_female = '1';
+
+    const job_parttime ='0';
+    const job_fulltime ='1';
+
+    const job_notpaid = '0';
+    const job_paid ='1';
 }

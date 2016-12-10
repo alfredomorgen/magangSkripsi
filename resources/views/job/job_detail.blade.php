@@ -42,11 +42,11 @@
                         </div>
                         <div class="card-action">
                             <h5 class="blue-text">Employment Type</h5>
-                            <p><i class="tiny material-icons">av_timer</i>@if($job->type =='0') Full Time @else Part Time @endif</p>
+                            <p><i class="tiny material-icons">av_timer</i>@if($job->type == \App\Constant::job_fulltime) Full Time @else Part Time @endif</p>
                         </div>
                         <div class="card-action">
                             <h5 class="blue-text">Salary</h5>
-                            <p><i class="tiny material-icons">payment</i> @if($job->type =='0') Paid @else Not Paid @endif</p>
+                            <p><i class="tiny material-icons">payment</i> @if($job->salary == \App\Constant::job_paid) Paid @else Not Paid @endif</p>
                         </div>
                         <div class="card-action">
                             <h5 class="blue-text"> Period </h5>

@@ -40,13 +40,30 @@
                                         <div class="collapsible-body"><p>{{$user->description}}</p></div>
                                     </li>
                                     <li>
-                                        <div class="collapsible-header cyan-text hoverable active"><i class="material-icons">list</i>Jobs</div>
-                                        <div class="collapsible-body">
-                                            <p>
-                                                @foreach($jobs as $job)
-                                                    {{ $job->name }}<br>
-                                                @endforeach
-                                            </p>
+
+                                        <div class="collapsible-header cyan-text hoverable active"><i
+                                                    class="material-icons">list</i>Jobs
+
+                                        </div>
+                                        <div class="collapsible-body red">
+                                            @foreach($jobs as $job)
+                                                <div class="card" style="margin:0px">
+                                                    <div class="card-content">
+                                                        <span class="card-title activator orange-text text-darken-4">{{$job->name}}<i class="material-icons right">more_vert</i></span><br>
+                                                        <span><i class="material-icons tiny">location_on</i> {{$job->location}}</span><br>
+                                                        <span><i class="material-icons tiny">av_timer</i>@if($job->type ==\App\Constant::job_fulltime) Full Time @else Part Time @endif</span><br>
+                                                        <span><i class="material-icons tiny">schedule</i> {{$job->period}} Months</span><br>
+                                                        <span><i class="material-icons tiny">payment</i>@if($job->salary ==\App\Constant::job_paid) Paid @else Not Paid @endif</span><br>
+                                                        <a href="{{route('job.index',$job->id)}}">Check</a>
+                                                        <span class="right">Posted : {{$job->created_at}}</span>
+                                                    </div>
+                                                    <div class="card-reveal">
+                                                        <span class="card-title grey-text text-darken-4">Job Description<i class="material-icons right">close</i></span>
+                                                        {{$job->description}}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
                                         </div>
                                     </li>
                                 </ul>
@@ -60,6 +77,7 @@
                                     </a>
                                 @endif
                             </div>
+
                         </div>
                     </div>
                 </div>
