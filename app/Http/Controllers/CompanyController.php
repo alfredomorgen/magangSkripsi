@@ -143,17 +143,6 @@ class CompanyController extends Controller
         return redirect('/company/manage_post/')->with('success', 'Job Closed');
     }
 
-    public function view_post()
-    {
-        $job = Job::select('*')
-            ->where('company_id','=',Auth::user()->company->id)
-            ->paginate(3);
-
-        $data = ['jobs' => $job];
-
-        return view('company.view_post_job',$data);
-    }
-
     public function indexJobseeker()
     {
         $jobseeker = User::select('*')
@@ -262,7 +251,7 @@ class CompanyController extends Controller
 
         $bookmark->delete();
 
-        return redirect('company/bookmark_jobseeker');
+        return redirect('company/bookmark_jobseeker')->with('success',"Bookmark Delete");
     }
 
 }

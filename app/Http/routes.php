@@ -144,11 +144,6 @@ Route::get('/company/post_job/close/{id}',[
     'as' => 'company.manage_post_close'
 ]);
 
-Route::get('/company/view_post_job',[
-   'uses' => 'CompanyController@view_post',
-    'as' => 'company.view_post_job'
-]);
-
 Route::get('/company/searchJobseeker',function(){
     $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
     $route = "company/search_jobseeker/$search";
