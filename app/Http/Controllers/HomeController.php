@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Constant;
 use App\Http\Requests;
+use App\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller
 {
@@ -26,4 +29,6 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    
 }

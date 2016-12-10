@@ -42,6 +42,11 @@ Route::get('/job/{id}', [
     'as' => 'job.index',
 ]);
 
+Route::get('/home/search_job',[
+    'uses' => 'SiteController@searchJob',
+    'as' => 'home.search',
+]);
+
 ///////////
 // Admin //
 ///////////
