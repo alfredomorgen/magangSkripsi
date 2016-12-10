@@ -15,7 +15,7 @@ $factory->defineAs(App\User::class, 'jobseeker', function (Faker\Generator $fake
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
+        'password' => bcrypt('qwerty'),
         'role' => \App\Constant::user_jobseeker,
         'phone' => $faker->phoneNumber,
         'location' => $faker->address,
@@ -39,7 +39,7 @@ $factory->defineAs(App\User::class, 'company', function (Faker\Generator $faker)
     return [
         'name' => $faker->company,
         'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
+        'password' => bcrypt('qwerty'),
         'role' => \App\Constant::user_company,
         'phone' => $faker->phoneNumber,
         'location' => $faker->address,
