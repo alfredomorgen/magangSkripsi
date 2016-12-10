@@ -181,10 +181,6 @@ Route::get('company/transaction_approve/{id}',[
     'as' => 'company.transaction_approve'
 ]);
 
-Route::get('/company/{user_id}', [
-    'uses' => 'CompanyController@index',
-    'as' => 'company.index',
-]);
 
 Route::get('/company/{user_id}/edit', [
     'uses' => 'CompanyController@edit',
@@ -196,6 +192,20 @@ Route::post('/company/{user_id}/update', [
     'as' => 'company.update',
 ]);
 
+Route::get('/company/bookmark_jobseeker/',[
+    'uses' => 'CompanyController@bookmark_jobseeker',
+    'as' => 'company.bookmark_jobseeker'
+]);
+
+Route::get('/company/add_bookmark_jobseeker/{id}',[
+    'uses'  => 'CompanyController@add_bookmark_jobseeker',
+    'as' => 'company.add_bookmark_jobseeker'
+]);
+
+Route::get('/company/{user_id}', [
+    'uses' => 'CompanyController@index',
+    'as' => 'company.index',
+]);
 
 ///////////////
 // Jobseeker //

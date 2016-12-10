@@ -7,6 +7,7 @@ use App\Jobseeker;
 use App\Constant;
 use App\Transaction;
 use App\User;
+use App\Bookmark;
 
 use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\Post_jobRequest;
@@ -205,4 +206,54 @@ class CompanyController extends Controller
 
         return back();
     }
+
+    public function bookmark_jobseeker()
+    {
+        $bookmark = Bookmark::select('*')
+        ->where('user_id','=',Auth::user()->id)
+        ->orderBy('created_at','desc')
+        ->paginate(5);
+
+        $data = [
+            'bookmarks' => $bookmark
+        ];
+
+        return view('company.bookmark_jobseeker',$data);
+    }
+
+    public function add_bookmark_jobseeker($id)
+    {
+        $bookmark = null;
+        $isBookmarkExist = Bookmark::where('target','=',$id)
+            ->where('user_id','=',Auth::user()->id)
+            ->first();
+
+        if($isBookmarkExist == null)
+        {
+            $bookmark = new Bookmark();
+            $bookmark->user_id = Auth::user()->id;
+            $bookmark->target = $id;
+            $bookmark->type = Constant::user_jobseeker;
+            $bookmark->status = Constant::status_active;
+
+            $bookmark->save();
+
+            if($bookmark == null)
+            {
+                $message = "Failed to Bookmark Job Seeker";
+            }
+            else
+            {
+                $message = "Job Seeker Bookmarked";
+            }
+        }
+        else
+        {
+            $message = "Already in Bookmark";
+        }
+
+
+        return back()->with('success',$message);;
+    }
+
 }

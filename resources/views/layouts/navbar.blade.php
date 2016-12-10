@@ -18,7 +18,7 @@
             @elseif(Auth::user()->role == \App\Constant::user_company)
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a target="_self" href="{{url('/company/search_jobseeker')}}" style="color:#757575">Search Job Seeker</a></li>
-                <li class="tab"><a href="#test2" style="color:#757575">Bookmark Job Seeker</a></li>
+                <li class="tab"><a target="_self" href="{{ url('/company/bookmark_jobseeker') }}" style="color:#757575">Bookmark Job Seeker</a></li>
                 <li class="tab"><a target="_self" href="{{ url('/company/view_post_job') }}" style="color:#757575">View Posts</a></li>
                 <li class="tab"><a target="_self" href="{{ url('/company/manage_post') }}" style="color:#757575">Manage Posts</a></li>
                 <li class="tab"><a target="_self" href="{{ route('company.index', Auth::user()->id) }}" style="color:#757575">Profile</a></li>

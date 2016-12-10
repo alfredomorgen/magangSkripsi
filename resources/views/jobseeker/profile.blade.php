@@ -7,7 +7,13 @@
                 @include('layouts.navbar')
             @show
         </div>
-
+        @if(session('success'))
+            <script>Materialize.toast('{{session('success')}}', 5000, 'rounded');</script>
+        @elseif(session('error'))
+            <div class="red-text">
+                {{session('error')}}
+            </div>
+        @endif
         <div class="row">
             <div class="col s12">
                 <div class="row">
@@ -38,16 +44,13 @@
                                             {{ $user->description }}
                                         </p>
                                         <br>
-                                        <div class="right right-align">Show Profile
-                                            <div class="switch">
-                                                <label>
-                                                    Off
-                                                    <input type="checkbox">
-                                                    <span class="lever"></span>
-                                                    On
-                                                </label>
+                                        @if(Auth::user()->role == \App\Constant::user_company)
+                                        <div class="right right-align">Bookmark Profile
+                                            <div class="">
+                                                <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons  grey-text text-darken-1">stars</i></a>
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -106,4 +109,16 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function ()
+        {
+            $('#btnBookmark').click(function (event)
+            {
+                window.location.href += '/add_bookmark_jobseeker';
+            });
+        });
+    </script>
 @endsection
