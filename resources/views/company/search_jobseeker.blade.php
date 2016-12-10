@@ -85,7 +85,7 @@
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $users->render() }}</li>
+                    <li class="waves-effect white">{{ $users->render() }}</li>
                 </ul>
             @endif
         @else

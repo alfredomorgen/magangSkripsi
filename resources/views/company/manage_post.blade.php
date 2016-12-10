@@ -19,7 +19,6 @@
     @foreach($jobs as $job)
         <div id="modalCandidates{{$job->id}}" class="modal" style="width:100%">
             <div class="modal-content">
-                <h4>Candidates</h4>
                 {{--isi context--}}
                 <div class="container" style="background-color: transparent;margin-top:30px">
                     <div class="row center">
@@ -107,7 +106,7 @@
         @endif
         <div class="row center">
             <div class="col l8 push-l2">
-                <h4 class="col s12 valign blue-text">Manage Job</h4>
+                <h4 class="col s12 valign white-text">Manage Job</h4>
             </div>
         </div>
     </div>
@@ -164,7 +163,7 @@
                 </table>
             </ul>
             <ul class="pagination center">
-                <li class="waves-effect">{{ $jobs->render() }}</li>
+                <li class="waves-effect white">{{ $jobs->render() }}</li>
             </ul>
         </div>
         <div class="row"></div>
