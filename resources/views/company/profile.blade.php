@@ -13,14 +13,26 @@
                 <div class="card">
                     <div class="card-content grey-text text-darken-2">
                         <div class="row">
-                            <div class="col l2">
+                            <div class="col">
                                 @if($user->photo == NULL)
                                     <img src="{{ asset('images/profile_default.jpg') }}" style="width:150px; height:150px">
                                 @else
                                     <img src="{{ asset('images/'.$user->photo) }}" style="width:150px; height:150px">
                                 @endif
                                 <span class="center truncate card-title"><b>{{ $user->name }}</b></span>
+
+                                @if(Auth::guest())
+                                @elseif(Auth::user()->role == \App\Constant::user_jobseeker)
+                                <div class="center">
+                                    @if(\App\Bookmark::where('user_id', '=', Auth::user()->id)->where('target', '=', $user->company->id)->first() == null)
+                                        <a class="tooltipped btn-floating btn-large waves-effect waves-light grey" data-tooltip="Bookmark Company" href="{{ route('jobseeker.bookmark_add_company', $user->id) }}"><i class="material-icons">star</i></a>
+                                    @else
+                                        <a class="tooltipped btn-floating btn-large waves-effect waves-light yellow darken-2" data-tooltip="Company already bookmarked" href="{{ route('jobseeker.bookmark_remove_company', $user->id) }}"><i class="material-icons">star</i></a>
+                                    @endif
+                                </div>
+                                @endif
                             </div>
+
                             <div class="col l9">
                                 <ul class="collapsible" data-collapsible="expandable">
                                     <li>
@@ -42,11 +54,7 @@
                                         <div class="collapsible-body"><p>{{$user->description}}</p></div>
                                     </li>
                                     <li>
-
-                                        <div class="collapsible-header cyan-text hoverable active"><i
-                                                    class="material-icons">list</i>Jobs
-
-                                        </div>
+                                        <div class="collapsible-header cyan-text hoverable active"><i class="material-icons">list</i>Jobs</div>
                                         <div class="collapsible-body red">
                                             @foreach($jobs as $job)
                                                 <div class="card" style="margin:0px">
@@ -92,6 +100,7 @@
     <script>
         $(document).ready(function () {
             $('.collapsible').collapsible();
+            Materialize.toast('{{ session('message') }}', 3000, 'rounded');
         });
     </script>
 @endsection

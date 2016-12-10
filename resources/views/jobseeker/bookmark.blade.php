@@ -40,7 +40,7 @@
                 <tr>
                     <td>{{ $bookmark->id }}</td>
                     @if($bookmark->type == \App\Constant::user_company)
-                        <td>{{ \App\Company::find($bookmark->target)->user->name }}</td>
+                        <td><a href="{{ route('company.index',\App\Company::find($bookmark->target)->user->id ) }}">{{ \App\Company::find($bookmark->target)->user->name }}</a></td>
                     @endif
                     <td>{{ $bookmark->created_at }}</td>
                     <td><a class="waves-effect waves-light btn red" href="">Delete</a></td>

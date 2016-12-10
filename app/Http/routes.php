@@ -215,6 +215,16 @@ Route::get('/jobseeker/bookmark', [
     'as' => 'jobseeker.bookmark_index',
 ]);
 
+Route::get('/jobseeker/bookmark/add/{company_id}', [
+    'uses' => 'JobseekerController@bookmark_add_company',
+    'as' => 'jobseeker.bookmark_add_company',
+]);
+
+Route::get('/jobseeker/bookmark/remove/{company_id}', [
+    'uses' => 'JobseekerController@bookmark_remove_company',
+    'as' => 'jobseeker.bookmark_remove_company',
+]);
+
 Route::get('/jobseeker/applied_jobs', [
     'uses' => 'JobseekerController@applied_jobs',
     'as' => 'jobseeker.applied_jobs',
