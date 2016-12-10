@@ -200,6 +200,11 @@ Route::post('/company/{user_id}/update', [
 ///////////////
 // Jobseeker //
 ///////////////
+Route::get('/jobseeker/bookmark', [
+    'uses' => 'JobseekerController@bookmark_index',
+    'as' => 'jobseeker.bookmark_index',
+]);
+
 Route::get('/jobseeker/applied_jobs', [
     'uses' => 'JobseekerController@applied_jobs',
     'as' => 'jobseeker.applied_jobs',

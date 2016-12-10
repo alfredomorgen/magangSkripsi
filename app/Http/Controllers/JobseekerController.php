@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bookmark;
 use App\Constant;
 use App\Transaction;
 use App\User;
@@ -112,5 +113,14 @@ class JobseekerController extends Controller
             'transactions' => $transactions,
         ];
         return view('jobseeker.applied_jobs', $data);
+    }
+
+    public function bookmark_index()
+    {
+        $bookmarks = Bookmark::where('user_id', Auth::user()->id)->paginate(10);
+        $data = [
+            'bookmarks' => $bookmarks,
+        ];
+        return view('jobseeker.bookmark', $data);
     }
 }
