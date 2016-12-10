@@ -24,7 +24,7 @@
                                 @if(Auth::guest())
                                 @elseif(Auth::user()->role == \App\Constant::user_jobseeker)
                                 <div class="center">
-                                    @if(\App\Bookmark::where('user_id', '=', Auth::user()->id)->where('target', '=', $user->company->id)->first() == null)
+                                    @if(\App\Bookmark::where('user_id', '=', Auth::user()->id)->where('target', '=', $user->company->id)->where('type', '=', \App\Constant::user_company)->first() == null)
                                         <a class="tooltipped btn-floating btn-large waves-effect waves-light grey" data-tooltip="Bookmark Company" href="{{ route('jobseeker.bookmark_add_company', $user->id) }}"><i class="material-icons">star</i></a>
                                     @else
                                         <a class="tooltipped btn-floating btn-large waves-effect waves-light yellow darken-2" data-tooltip="Company already bookmarked" href="{{ route('jobseeker.bookmark_remove_company', $user->id) }}"><i class="material-icons">star</i></a>
