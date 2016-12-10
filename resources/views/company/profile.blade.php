@@ -27,6 +27,8 @@
                                         <div class="collapsible-header cyan-text hoverable active"><i class="material-icons">contacts</i>Information</div>
                                         <div class="collapsible-body">
                                             <p>
+                                                <i class="tiny material-icons">work</i> {{ $user->name }}<br>
+                                                <br>
                                                 <i class="tiny material-icons">location_on</i> {{ $user->location }}<br>
                                                 <i class="tiny material-icons">mail</i> {{ $user->email }}<br>
                                                 <i class="tiny material-icons">phone</i> {{ $user->phone }}<br>

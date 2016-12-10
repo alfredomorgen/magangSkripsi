@@ -67,6 +67,13 @@
                                         {{ $user->jobseeker->university }}
                                     @endif
                                 </td>
+                                <td>
+                                    @if($user->jobseeker->major == NULL)
+                                        -
+                                    @else
+                                        {{ $user->jobseeker->major }}
+                                    @endif
+                                </td>
                                 <td>{{ $user->email }}</td>
                             </tr>
                         @endforeach
