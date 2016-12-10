@@ -200,6 +200,16 @@ Route::post('/company/{user_id}/update', [
 ///////////////
 // Jobseeker //
 ///////////////
+Route::get('/jobseeker/applied_jobs', [
+    'uses' => 'JobseekerController@applied_jobs',
+    'as' => 'jobseeker.applied_jobs',
+]);
+
+Route::get('/job/{id}/apply', [
+    'uses' => 'JobseekerController@apply',
+    'as' => 'jobseeker.apply'
+]);
+
 Route::get('/jobseeker/{user_id}', [
     'uses' => 'JobseekerController@index',
     'as' => 'jobseeker.index',
@@ -214,9 +224,3 @@ Route::post('/jobseeker/{user_id}/update',[
     'uses' => 'JobseekerController@update',
     'as' => 'jobseeker.update',
 ]);
-
-Route::get('/job/{id}/apply', [
-    'uses' => 'JobseekerController@apply',
-    'as' => 'jobseeker.apply'
-]);
-

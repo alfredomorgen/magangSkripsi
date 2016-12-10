@@ -104,4 +104,13 @@ class JobseekerController extends Controller
         $data = ['message' => $message];
         return redirect()->route('job.index', $job_id)->with($data);
     }
+
+    public function applied_jobs()
+    {
+        $transactions = Transaction::where('jobseeker_id', Auth::user()->jobseeker->id)->paginate(10);
+        $data = [
+            'transactions' => $transactions,
+        ];
+        return view('jobseeker.applied_jobs', $data);
+    }
 }

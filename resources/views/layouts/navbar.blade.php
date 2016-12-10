@@ -28,7 +28,7 @@
                 <li class="tab"><a target="_self" href="{{url('/search_job')}}" style="color:#757575">Search Job</a></li>
                 <li class="tab"><a target="_self" href="" style="color:#757575">Bookmark Jobs</a></li>
                 <li class="tab"><a target="_self" href="{{ route('jobseeker.index', Auth::user()->id) }}" style="color:#757575">Profile</a></li>
-                <li class="tab"><a target="_self" href="{{url('/')}}" style="color:#757575">Applied Jobs </a></li>
+                <li class="tab"><a target="_self" href="{{ route('jobseeker.applied_jobs') }}" style="color:#757575">Applied Jobs </a></li>
             @endif
         </ul>
     </div>
