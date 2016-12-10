@@ -92,6 +92,7 @@ class CompanyController extends Controller
         $job->benefit = Input::get('benefit');
         $job->requirement = Input::get('requirement');
         $job->description = Input::get('description');
+        $job->status = Constant::status_active;
         $job->save();
 
         return redirect('/company/manage_post')->with('success', 'New Job Added');
@@ -101,6 +102,7 @@ class CompanyController extends Controller
     {
         $job = Job::select('*')
             ->where('company_id', '=', Auth::user()->company->id)
+            ->orderBy('created_at','desc')
             ->paginate(10);
         $data = [
             'jobs' => $job

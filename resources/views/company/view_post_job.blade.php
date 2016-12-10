@@ -22,7 +22,7 @@
     <div class="container" style="background-color: transparent;margin-top:30px">
         <div class="row center">
             <div class="col l8 push-l2">
-                <h4 class="col s12 valign blue-text">View Posts</h4>
+                <h4 class="col s12 valign white-text">View Posts</h4>
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
 
             </ul>
             <ul class="pagination center">
-                <li class="waves-effect">{{ $jobs->render() }}</li>
+                <li class="waves-effect white">{{ $jobs->render() }}</li>
             </ul>
         </div>
     </div>

@@ -40,8 +40,10 @@
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
-                            <th data-field="id">Id</th>
-                            <th data-field="jobseeker">Jobseeker</th>
+                            <th data-field="photo">Photo</th>
+                            <th data-field="jobseeker">Jobseeker Name</th>
+                            <th data-field="university">University</th>
+                            <th data-field="major">Major</th>
                             <th data-field="email">Email</th>
                         </tr>
                         </thead>
@@ -50,8 +52,21 @@
 
                         @foreach($users as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
+                                <td>
+                                    @if($user->photo == NULL)
+                                        <img src="{{ asset('images/profile_default.jpg') }}" class="circle" style="width:80px; height:80px">
+                                    @else
+                                        <img src="{{ asset('images/'.$user->photo) }}" class="circle" style="width:80px; height:80px">
+                                    @endif
+                                </td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('jobseeker.index', $user->id) }}">{{ $user->name }}</a></td>
+                                <td>
+                                    @if($user->jobseeker->university == NULL)
+                                        -
+                                    @else
+                                        {{ $user->jobseeker->university }}
+                                    @endif
+                                </td>
                                 <td>{{ $user->email }}</td>
                             </tr>
                         @endforeach
@@ -59,15 +74,17 @@
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $users->render() }}</li>
+                    <li class="waves-effect white">{{ $users->render() }}</li>
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
                     <table class="centered bordered highlight responsive-table white">
                         <thead>
                         <tr>
-                            <th data-field="id">Id</th>
-                            <th data-field="jobseeker">Jobseeker</th>
+                            <th data-field="photo">Photo</th>
+                            <th data-field="jobseeker">Jobseeker Name</th>
+                            <th data-field="university">University</th>
+                            <th data-field="major">Major</th>
                             <th data-field="email">Email</th>
                         </tr>
                         </thead>
@@ -76,8 +93,28 @@
 
                         @foreach($users as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
+                                <td>
+                                    @if($user->photo == NULL)
+                                        <img src="{{ asset('images/profile_default.jpg') }}" class="circle" style="width:80px; height:80px">
+                                    @else
+                                        <img src="{{ asset('images/'.$user->photo) }}" class="circle" style="width:80px; height:80px">
+                                    @endif
+                                </td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('jobseeker.index', $user->id) }}">{{ $user->name }}</a></td>
+                                <td>
+                                    @if($user->jobseeker->university == NULL)
+                                        -
+                                    @else
+                                        {{ $user->jobseeker->university }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($user->jobseeker->major == NULL)
+                                        -
+                                    @else
+                                        {{ $user->jobseeker->major }}
+                                    @endif
+                                </td>
                                 <td>{{ $user->email }}</td>
                             </tr>
                         @endforeach

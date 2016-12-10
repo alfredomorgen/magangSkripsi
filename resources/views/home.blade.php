@@ -68,7 +68,7 @@
                 {{--</ul>--}}
 
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobs->render() }}</li>
+                    <li class="waves-effect white">{{ $jobs->render() }}</li>
                 </ul>
             </div>
         </div>

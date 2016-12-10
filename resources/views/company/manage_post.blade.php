@@ -119,7 +119,7 @@
                     <tr>
                         <th data-field="id">Job Id</th>
                         <th data-field="name">Title Job</th>
-                        <th data-field="created_at">Created</th>
+                        <th data-field="created_at">Date Created</th>
                         <th data-field="candidates">Candidates</th>
                         <th data-field="status">Status</th>
                         <th data-field="action" colspan="2">
