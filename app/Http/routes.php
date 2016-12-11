@@ -50,67 +50,60 @@ Route::get('/home/search_job',[
 ///////////
 // Admin //
 ///////////
-Route::get('admin/searchCompany', function () {
-    $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
-    $route = "admin/search_company/$search";
-    return redirect($route);
+Route::group(['middleware' => 'admin'], function(){
+    Route::get('admin/searchCompany', function () {
+        $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
+        $route = "admin/search_company/$search";
+        return redirect($route);
+    });
+
+    Route::get('admin/searchJobseeker',function(){
+        $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
+        $route = "admin/search_jobseeker/$search";
+        return redirect($route);
+    });
+
+    Route::get('admin/searchJob',function(){
+        $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
+        $route = "admin/search_job/$search";
+        return redirect($route);
+    });
+
+    Route::get('/admin/search_company', [
+        'uses' => 'SearchController@indexCompany'
+    ]);
+
+    Route::get('/admin/search_company/{search}', [
+        'uses' => 'SearchController@searchCompany'
+    ]);
+
+    Route::get('/admin/search_jobseeker', [
+        'uses' => 'SearchController@indexJobseeker'
+    ]);
+
+    Route::get('/admin/search_jobseeker/{search}', [
+        'uses' => 'SearchController@searchJobseeker'
+    ]);
+
+    Route::get('/admin/search_job', [
+        'uses' => 'SearchController@indexJob'
+    ]);
+
+    Route::get('/admin/search_job/{search}', [
+        'uses' => 'SearchController@searchJob'
+    ]);
+
+    Route::get('/admin/delete_job/{id}',[
+        'uses' => 'AdminController@deleteJob'
+    ]);
+
+    Route::get('/admin/delete_company/{id}',[
+        'uses' => 'AdminController@deleteCompany'
+    ]);
+    Route::get('/admin/delete_jobseeker/{id}',[
+        'uses' => 'AdminController@deleteJobseeker'
+    ]);
 });
-
-Route::get('admin/searchJobseeker',function(){
-    $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
-    $route = "admin/search_jobseeker/$search";
-    return redirect($route);
-});
-
-Route::get('admin/searchJob',function(){
-    $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
-    $route = "admin/search_job/$search";
-    return redirect($route);
-});
-
-//Axel edit
-//Route::get('/admin/view_jobseeker/{id}',[
-//   'uses' => 'SiteController@index'
-//]);
-
-Route::get('/admin/search_company', [
-    'uses' => 'SearchController@indexCompany'
-]);
-
-Route::get('/admin/search_company/{search}', [
-    'uses' => 'SearchController@searchCompany'
-]);
-
-Route::get('/admin/search_jobseeker', [
-    'uses' => 'SearchController@indexJobseeker'
-]);
-
-Route::get('/admin/search_jobseeker/{search}', [
-    'uses' => 'SearchController@searchJobseeker'
-]);
-
-Route::get('/admin/search_job', [
-    'uses' => 'SearchController@indexJob'
-]);
-
-Route::get('/admin/search_job/{search}', [
-    'uses' => 'SearchController@searchJob'
-]);
-
-Route::get('/admin/delete_job/{id}',[
-    'uses' => 'AdminController@deleteJob'
-]);
-
-Route::get('/admin/delete_company/{id}',[
-    'uses' => 'AdminController@deleteCompany'
-]);
-Route::get('/admin/delete_jobseeker/{id}',[
-    'uses' => 'AdminController@deleteJobseeker'
-]);
-
-//Route::get('/admin/view_job/{id}',[
-//    'uses' => 'ProfileController@index'
-//]);
 
 //////////////
 // Company //

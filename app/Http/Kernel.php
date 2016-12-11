@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\JobseekerMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -51,6 +50,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'company' => \App\Http\Middleware\CompanyMiddleware::class,
-        'jobseeker' => \App\Http\Middleware\JobseekerMiddleware::class
+        'jobseeker' => \App\Http\Middleware\JobseekerMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
 }

@@ -20,6 +20,11 @@ use App\User;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function deleteJob($id)
     {
         $job = Job::find($id);
