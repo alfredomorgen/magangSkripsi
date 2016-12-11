@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobCategory extends Model
 {
-    use SoftDeletes;
     protected $table = 'jobcategories';
     protected $primaryKey = "id";
 
