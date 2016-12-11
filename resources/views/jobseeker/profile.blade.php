@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', $user->name)
 @section('content')
     <div class="container">
         <div class="row">
@@ -7,14 +7,32 @@
                 @include('layouts.navbar')
             @show
         </div>
-
+        @if(session('success'))
+            <script>Materialize.toast('{{session('success')}}', 5000, 'rounded');</script>
+        @elseif(session('error'))
+            <div class="red-text">
+                {{session('error')}}
+            </div>
+        @endif
         <div class="row">
             <div class="col s12">
                 <div class="row">
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-content grey-text text-darken-2">
+                                @if(Auth::user()->role == \App\Constant::user_company)
+                                    <div class="right-align">
+                                        @if(\App\Bookmark::where('target','=',\App\User::find($user->id)->jobseeker->id)
+                                            ->where('user_id','=',Auth::user()->id)
+                                            ->first() == null)
+                                            <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons btn-floating btn-small waves-effect waves-light grey tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bookmark this Job Seeker">stars</i></a>
+                                        @else
+                                            <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons btn-floating btn-small waves-effect waves-light yellow darken-2">stars</i></a>
+                                        @endif
+                                    </div>
+                                @endif
                                 <div class="row">
+                                    <br>
                                     <div class="col l3">
                                         @if($user->photo == NULL)
                                             <img src="{{ asset('images/profile_default.jpg') }}" style="width:150px; height:150px">
@@ -37,17 +55,6 @@
                                         <p>
                                             {{ $user->description }}
                                         </p>
-                                        <br>
-                                        <div class="right right-align">Show Profile
-                                            <div class="switch">
-                                                <label>
-                                                    Off
-                                                    <input type="checkbox">
-                                                    <span class="lever"></span>
-                                                    On
-                                                </label>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +68,6 @@
                             <li class="tab col s3"><a class="active white-text" href="#test1">Education</a></li>
                             <li class="tab col s3"><a class="white-text" href="#test2">Languages</a></li>
                             <li class="tab col s3"><a class="white-text" href="#test3">About Me</a></li>
-                            {{--<li class="tab col s3"><a href="#test4">Test 4</a></li>--}}
                         </ul>
                     </div>
                     <div id="test1" class="col s12">
@@ -106,4 +112,16 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function ()
+        {
+            $('#btnBookmark').click(function (event)
+            {
+                window.location.href += '/add_bookmark_jobseeker';
+            });
+        });
+    </script>
 @endsection

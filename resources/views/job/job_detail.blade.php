@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', $job->company->user->name.' - '.$job->name)
 @section('content')
     <div class="container">
         <div class="row">
@@ -13,9 +13,15 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="card white darken-1 hoverable">
-                    <div class="card-content orange darken-1 center white-text"><h6>VIEW POST</h6></div>
+                    <div class="card-content orange darken-1 center white-text">
+                        @if(\App\Bookmark::where('user_id', '=', Auth::user()->id)->where('target', '=', $job->id)->where('type', '=', \App\Constant::job)->where('type', '=', \App\Constant::job)->first() == null)
+                            <a class="tooltipped btn-floating btn-large waves-effect waves-light grey" data-tooltip="Bookmark Job" href="{{ route('jobseeker.bookmark_add_job', $job->id) }}" style="position: absolute; right: 2%; margin-top: -1.6%;"><i class="material-icons">star</i></a>
+                        @else
+                            <a class="tooltipped btn-floating btn-large waves-effect waves-light yellow darken-2" data-tooltip="Bookmark Job" href="{{ route('jobseeker.bookmark_remove_job', $job->id) }}" style="position: absolute; right: 2%; margin-top: -1.6%;"><i class="material-icons">star</i></a>
+                        @endif
+                        <h6>VIEW POST</h6>
+                    </div>
                     <div class="card-content grey-text text-darken-2" style="padding-left:50px;padding-right:50px;">
-
                         <div class="right-align">
                             <a class="grey-text tooltipped right-align" data-position="bottom" data-delay="10" data-tooltip="Deadline Time"><i class="tiny material-icons">schedule </i> {{ $job->created_at}}</a>
                         </div>

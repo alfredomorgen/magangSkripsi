@@ -149,11 +149,6 @@ Route::get('/company/post_job/close/{id}',[
     'as' => 'company.manage_post_close'
 ]);
 
-Route::get('/company/view_post_job',[
-   'uses' => 'CompanyController@view_post',
-    'as' => 'company.view_post_job'
-]);
-
 Route::get('/company/searchJobseeker',function(){
     $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
     $route = "company/search_jobseeker/$search";
@@ -186,10 +181,6 @@ Route::get('company/transaction_approve/{id}',[
     'as' => 'company.transaction_approve'
 ]);
 
-Route::get('/company/{user_id}', [
-    'uses' => 'CompanyController@index',
-    'as' => 'company.index',
-]);
 
 Route::get('/company/{user_id}/edit', [
     'uses' => 'CompanyController@edit',
@@ -201,10 +192,54 @@ Route::post('/company/{user_id}/update', [
     'as' => 'company.update',
 ]);
 
+Route::get('/company/bookmark_jobseeker/',[
+    'uses' => 'CompanyController@bookmark_jobseeker',
+    'as' => 'company.bookmark_jobseeker'
+]);
+
+Route::get('/company/add_bookmark_jobseeker/{id}',[
+    'uses'  => 'CompanyController@add_bookmark_jobseeker',
+    'as' => 'company.add_bookmark_jobseeker'
+]);
+
+Route::get('/company/delete_bookmark_jobseeker/{id}',[
+    'uses' => 'CompanyController@delete_bookmark_jobseeker',
+    'as' => 'company.delete_bookmark_jobseeker'
+]);
+
+Route::get('/company/{user_id}', [
+    'uses' => 'CompanyController@index',
+    'as' => 'company.index',
+]);
 
 ///////////////
 // Jobseeker //
 ///////////////
+Route::get('/jobseeker/bookmark', [
+    'uses' => 'JobseekerController@bookmark_index',
+    'as' => 'jobseeker.bookmark_index',
+]);
+
+Route::get('/jobseeker/bookmark/add_company/{company_id}', [
+    'uses' => 'JobseekerController@bookmark_add_company',
+    'as' => 'jobseeker.bookmark_add_company',
+]);
+
+Route::get('/jobseeker/bookmark/remove_company/{company_id}', [
+    'uses' => 'JobseekerController@bookmark_remove_company',
+    'as' => 'jobseeker.bookmark_remove_company',
+]);
+
+Route::get('/jobseeker/bookmark/add_job/{job_id}', [
+    'uses' => 'JobseekerController@bookmark_add_job',
+    'as' => 'jobseeker.bookmark_add_job',
+]);
+
+Route::get('/jobseeker/bookmark/remove_job/{job_id}', [
+    'uses' => 'JobseekerController@bookmark_remove_job',
+    'as' => 'jobseeker.bookmark_remove_job',
+]);
+
 Route::get('/jobseeker/applied_jobs', [
     'uses' => 'JobseekerController@applied_jobs',
     'as' => 'jobseeker.applied_jobs',

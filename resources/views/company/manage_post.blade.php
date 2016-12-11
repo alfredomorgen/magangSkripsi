@@ -63,7 +63,7 @@
                                         </td>
                                     @elseif($job->status == \App\Constant::status_active)
                                         <td><a class="btn btn-block green"
-                                               href="{{ route('company.transaction_approve',$job->id) }}" disabled>Approve</a>
+                                               href="{{ route('company.transaction_approve',$job->id) }}" disabled>Approved</a>
                                         </td>
                                     @endif
                                 </tr>
@@ -154,7 +154,7 @@
                                 <td><a class="btn btn-block blue"
                                        href="{{ url('/company/post_job/edit/'.$job->id) }}" disabled>Edit</a></td>
                                 <td><a class="btn btn-block red"
-                                       href="{{ route('company.manage_post_close',$job->id) }}" disabled>Close</a>
+                                       href="{{ route('company.manage_post_close',$job->id) }}" disabled>Closed</a>
                                 </td>
                             @endif
                         </tr>

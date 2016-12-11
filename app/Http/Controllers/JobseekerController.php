@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Bookmark;
+use App\Company;
 use App\Constant;
+use App\Job;
 use App\Transaction;
 use App\User;
 
@@ -112,5 +115,112 @@ class JobseekerController extends Controller
             'transactions' => $transactions,
         ];
         return view('jobseeker.applied_jobs', $data);
+    }
+
+    public function bookmark_index()
+    {
+        $bookmarks = Bookmark::where('user_id', Auth::user()->id)->paginate(10);
+        $data = [
+            'bookmarks' => $bookmarks,
+        ];
+        return view('jobseeker.bookmark', $data);
+    }
+
+    public function bookmark_add_company($user_id)
+    {
+        $message = "";
+        $company = User::find($user_id)->company;
+        $isBookmarkExist = Bookmark::where('user_id', '=', Auth::user()->id)
+            ->where('target', '=', User::find($user_id))
+            ->where('type', '=', Constant::user_company)
+            ->first();
+
+        if($isBookmarkExist == null){
+            $bookmark = Bookmark::create([
+                'user_id' => Auth::user()->id,
+                'target' => $company->id,
+                'type' => Constant::user_company,
+                'status' => Constant::status_active,
+            ]);
+
+            if($bookmark == null){
+                $message = "Failed to bookmark company...";
+            } else {
+                $message = "Company successfully bookmarked!";
+            }
+        } else {
+            $message = "Company already bookmarked...";
+        }
+
+        $data = ['message' => $message];
+        return redirect()->route('company.index', $user_id)->with($data);
+    }
+
+    public function bookmark_remove_company($user_id)
+    {
+        $message = "";
+        $company = User::find($user_id)->company;
+        $bookmark = Bookmark::where('user_id', '=', Auth::user()->id)
+            ->where('target', '=', $company->id)
+            ->where('type', '=', Constant::user_company)
+            ->first();
+
+        if($bookmark->delete()){
+            $message = "Company bookmark successfully removed!";
+        } else {
+            $message = "Failed to remove company bookmark...";
+        }
+
+        $data = ['message' => $message];
+        return redirect()->route('company.index', $user_id)->with($data);
+    }
+
+    public function bookmark_add_job($job_id)
+    {
+        $message = "";
+        $job = Job::find($job_id);
+        $isBookmarkExist = Bookmark::where('user_id', '=', Auth::user()->id)
+            ->where('target', '=', $job->id)
+            ->where('type', '=', Constant::job)
+            ->first();
+
+        if($isBookmarkExist == null){
+            $bookmark = Bookmark::create([
+                'user_id' => Auth::user()->id,
+                'target' => $job->id,
+                'type' => Constant::job,
+                'status' => Constant::status_active,
+            ]);
+
+            if($bookmark == null){
+                $message = "Failed to bookmark job...";
+            } else {
+                $message = "Job successfully bookmarked!";
+            }
+        } else {
+            $message = "Job already bookmarked...";
+        }
+
+        $data = ['message' => $message];
+        return redirect()->route('job.index', $job_id)->with($data);
+    }
+
+    public function bookmark_remove_job($job_id)
+    {
+        $message = "";
+        $job = Job::find($job_id);
+        $bookmark = Bookmark::where('user_id', '=', Auth::user()->id)
+            ->where('target', '=', $job->id)
+            ->where('type', '=', Constant::job)
+            ->first();
+
+        if($bookmark->delete()){
+            $message = "Job bookmark successfully removed!";
+        } else {
+            $message = "Failed to remove job bookmark...";
+        }
+
+        $data = ['message' => $message];
+        return redirect()->route('job.index', $job_id)->with($data);
     }
 }
