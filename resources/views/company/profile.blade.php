@@ -13,14 +13,6 @@
                 <div class="card">
                     <span class="center truncate card-title grey-text text-darken-2" style="padding-top: 20px"><b>{{ $user->name }}</b></span>
                     <div class="card-content grey-text text-darken-2">
-                        <div class="right-align">
-                            {{--@if(Auth::guest())--}}
-                            {{--@elseif($user->id == Auth::user()->id)--}}
-                                {{--<a href="{{ route('company.edit', $user->id) }}" class="btn-floating btn-small red right tooltipped" data-tooltip="Edit Profile">--}}
-                                    {{--<i class="material-icons">mode_edit</i>--}}
-                                {{--</a>--}}
-                            {{--@endif--}}
-                        </div>
                         <div class="row">
                             <div class="col">
                                 @if($user->photo == NULL)
@@ -30,10 +22,10 @@
                                 @endif
                                 {{--wait--}}
                                 <div class="row">
-                                    <div class="left-align">
+                                    <div class="center-align">
                                         @if(Auth::guest())
                                         @elseif($user->id == Auth::user()->id)
-                                            <a href="{{ route('company.edit', $user->id) }}" class="btn-floating btn-small red right tooltipped" data-tooltip="Edit Profile">
+                                            <a href="{{ route('company.edit', $user->id) }}" class="btn-floating btn-small red tooltipped" data-tooltip="Edit Profile">
                                                 <i class="material-icons">mode_edit</i>
                                             </a>
                                         @endif
