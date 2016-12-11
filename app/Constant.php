@@ -29,4 +29,7 @@ class Constant
 
     const job_notpaid = '0';
     const job_paid ='1';
+
+    const jobseeker_male ='0';
+    const jobseeker_female='1';
 }

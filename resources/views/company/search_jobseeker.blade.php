@@ -6,9 +6,9 @@
         ul li span{
             font-size:20px;
         }
-        ul li .active{
-            padding-left: 8px;
-            padding-right:8px;
+        .select-wrapper input.select-dropdown {
+            border: 0px;
+            height: 4.5rem;
         }
     </style>
     <div class="container">
@@ -21,12 +21,63 @@
             <div class="col s12 l12 m12">
                 <nav style="background-color: white">
                     <div class="nav-wrapper">
-                        <form action="{{url('company/searchJobseeker') }}" role="search" accept-charset="UTF-8">
+                        <form action="{{ route('company.search_jobseeker') }}" role="search" method="get" accept-charset="UTF-8">
                             <div class="input-field">
-                                <input class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Search Jobseeker" name="search" id="search" placeholder="Search a jobseeker" type="search" required>
+                                <input class="tooltipped" data-position="bottom" data-delay="50"
+                                       data-tooltip="Search Job" name="search" id="search" placeholder="Search a job"
+                                       type="search" required>
                                 <label for="search"><i class="material-icons grey-text">search</i></label>
+
                                 <i class="material-icons">close</i>
                             </div>
+                            <div class="row">
+                                <div class="col l12">
+                                    <ul class="collapsible" data-collapsible="expandable"
+                                        style="margin:0px; border: 0px;">
+                                        <li style="width:100%" class="white">
+                                            <div class="collapsible-header grey white-text" style="border: 0px;">
+                                                Advanced Search
+                                            </div>
+                                            <div class="collapsible-body grey-text">
+                                                <div class="row" style="padding:10px 0px 0px 20px; margin-bottom: 0px;">
+                                                    <div class="input-field col l2">
+                                                        <label for="university"><i class=" tiny material-icons orange-text">work</i></label>
+                                                        <input name="university" id="university" type="text"
+                                                               class="validate" placeholder="University">
+                                                    </div>
+                                                    <div class="input-field col l2">
+                                                        <label for="major"><i class=" tiny material-icons orange-text">location_on</i></label>
+                                                        <input name="major" id="major" type="text"
+                                                               class="validate" placeholder="Major">
+                                                    </div>
+                                                    <div class="input-field col l4">
+                                                        <div class="row" style="margin:0px">
+                                                            <div class="col l1">
+                                                                <i class=" tiny material-icons orange-text">av_timer</i>
+                                                            </div>
+                                                            <div class="col l11">
+                                                                <select name="gender" id="gender">
+                                                                    <option value="" disabled selected> Gender
+                                                                    </option>
+                                                                    <option value="{{\App\Constant::jobseeker_male}}">Male
+                                                                    </option>
+                                                                    <option value="{{\App\Constant::jobseeker_female}}">Female
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p hidden>
+                                    <button class="btn right" type="submit">Search</button>
+                                    </phidden>
+                            </div>
+
                         </form>
                     </div>
                 </nav>
@@ -44,7 +95,7 @@
                             <th data-field="jobseeker">Jobseeker Name</th>
                             <th data-field="university">University</th>
                             <th data-field="major">Major</th>
-                            <th data-field="email">Email</th>
+                            <th data-field="email">Gender</th>
                         </tr>
                         </thead>
 
@@ -74,7 +125,13 @@
                                         {{ $user->jobseeker->major }}
                                     @endif
                                 </td>
-                                <td>{{ $user->email }}</td>
+                                <td>
+                                    @if($user->jobseeker->gender == \App\Constant::gender_male)
+                                        Male
+                                    @else
+                                        Female
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -92,7 +149,7 @@
                             <th data-field="jobseeker">Jobseeker Name</th>
                             <th data-field="university">University</th>
                             <th data-field="major">Major</th>
-                            <th data-field="email">Email</th>
+                            <th data-field="email">Gender</th>
                         </tr>
                         </thead>
 
@@ -122,7 +179,13 @@
                                         {{ $user->jobseeker->major }}
                                     @endif
                                 </td>
-                                <td>{{ $user->email }}</td>
+                                <td>
+                                    @if($user->jobseeker->gender == \App\Constant::gender_male)
+                                        Male
+                                    @else
+                                        Female
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -140,3 +203,12 @@
     </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
+@endsection
+

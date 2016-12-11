@@ -11,6 +11,7 @@ use App\Bookmark;
 
 use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\Post_jobRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Psy\Test\CodeCleaner\ValidClassNamePassTest;
@@ -145,29 +146,53 @@ class CompanyController extends Controller
 
     public function indexJobseeker()
     {
-        $jobseeker = User::select('*')
+        $users = User::select('*')
             ->where('role','=','2')
             ->paginate(3);
-        $data = ['jobseekers' => $jobseeker];
+        $data = ['users' => $users];
         return view('company.search_jobseeker', $data);
     }
 
-    public function searchJobseeker($search)
+    public function searchJobseeker(Request $request)
     {
+        $search = $request->input('search');
+        $university = $request->input('university');
+        $major = $request->input('major');
+        $gender = $request->input('gender');
 
-        $jobseekers = User::select('*')
-            ->where('name','LIKE', '%'.$search.'%')
-            ->Where('role','=','2')
-            ->orderBy('id')
-            ->paginate(3);
-        if (count($jobseekers) == 0 ){
-            return view('company.company_search_jobseeker')
-                ->with('message','Jobseeker not Found')
-                ->with('search',$search);
-        }else{
-            return view('company.company_search_jobseeker')
-                ->with('jobseekers',$jobseekers)
-                ->with('search','Looking for'.' '. $search);
+
+        if ($university != null || $major != null || $gender != null) {
+            $query = User::join('jobseekers','users.id','=','jobseekers.user_id')
+            ->where('users.name', 'LIKE', '%'.$search.'%')
+            ->where('users.status',Constant::status_active)
+            ->select('users.*');
+        } else {
+
+        $query = User::where('users.name', 'LIKE', '%' . $search . '%')
+            ->where('users.status', Constant::status_active);
+        }
+
+        if($university != null){
+            $query->where('jobseekers.university', 'LIKE', '%' . $university . '%');
+        }
+        if($major != null){
+            $query->where('jobseekers.major','LIKE', '%' . $major . '%');
+        }
+        if($gender != null){
+            $query->where('jobseekers.gender',$gender);
+        }
+
+        $users = $query->orderBy('users.id')->paginate(5);
+
+        if (count($users) == 0) {
+            return view('company.search_jobseeker')
+                ->with('message', 'Jobseeker not Found')
+                ->with('search', $search);
+        } else {
+
+            return view('company.search_jobseeker')
+                ->with('users', $users)
+                ->with('search', 'Looking for' . ' ' . $search);
         }
     }
 

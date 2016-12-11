@@ -101,11 +101,9 @@
                                         </li>
                                     </ul>
                                 </div>
-
                                 <p hidden>
                                     <button class="btn right" type="submit">Search</button>
                                     </phidden>
-
                             </div>
 
                         </form>

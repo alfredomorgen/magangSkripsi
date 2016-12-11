@@ -142,20 +142,13 @@ Route::get('/company/post_job/close/{id}',[
     'as' => 'company.manage_post_close'
 ]);
 
-Route::get('/company/searchJobseeker',function(){
-    $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
-    $route = "company/search_jobseeker/$search";
-    return redirect($route);
-});
-
-Route::get('/company/search_jobseeker',[
-    'uses' => 'SearchController@indexJobseeker',
+Route::get('/company/search_jobseeker/search',[
+    'uses' => 'CompanyController@searchJobseeker',
     'as' => 'company.search_jobseeker'
 ]);
 
-Route::get('/company/search_jobseeker/{search}',[
-    'uses' => 'SearchController@searchJobseeker',
-    'as' => 'company.search_jobseeker'
+Route::get('/company/search_jobseeker',[
+    'uses' => 'CompanyController@indexJobseeker',
 ]);
 
 Route::get('company/view_candidate/resume/user/{id}',[
