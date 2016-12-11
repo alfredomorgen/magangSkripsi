@@ -68,7 +68,7 @@
                             </p>
                             <p><i class="tiny material-icons blue-text darken-1">location_on</i><strong>Location :</strong> {{ \App\Jobseeker::find($bookmark->target)->user->location }}</p>
                             <a href="{{ url('jobseeker/'.\App\Jobseeker::find($bookmark->target)->user->id) }}" class="waves-effect waves-light btn orange darken-2">View Profile</a>
-                            <a href="{{ route('company.delete_bookmark_jobseeker',$bookmark->id) }}"><i class="tooltipped material-icons right" data-tooltip="Delete this Bookmark">not_interested</i></a>
+                            <a href="{{ route('company.delete_bookmark_jobseeker',$bookmark->id) }}"><i class="tooltipped material-icons right red-text lighten-1" data-tooltip="Delete this Bookmark">not_interested</i></a>
                         </div>
                     </div>
                 </li>

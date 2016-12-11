@@ -14,12 +14,12 @@
                     <span class="center truncate card-title grey-text text-darken-2" style="padding-top: 20px"><b>{{ $user->name }}</b></span>
                     <div class="card-content grey-text text-darken-2">
                         <div class="right-align">
-                            @if(Auth::guest())
-                            @elseif($user->id == Auth::user()->id)
-                                <a href="{{ route('company.edit', $user->id) }}" class="btn-floating btn-small red right tooltipped" data-tooltip="Edit Profile">
-                                    <i class="material-icons">mode_edit</i>
-                                </a>
-                            @endif
+                            {{--@if(Auth::guest())--}}
+                            {{--@elseif($user->id == Auth::user()->id)--}}
+                                {{--<a href="{{ route('company.edit', $user->id) }}" class="btn-floating btn-small red right tooltipped" data-tooltip="Edit Profile">--}}
+                                    {{--<i class="material-icons">mode_edit</i>--}}
+                                {{--</a>--}}
+                            {{--@endif--}}
                         </div>
                         <div class="row">
                             <div class="col">
@@ -28,8 +28,19 @@
                                 @else
                                     <img src="{{ asset('images/'.$user->photo) }}" style="width:150px; height:150px">
                                 @endif
+                                {{--wait--}}
+                                <div class="row">
+                                    <div class="left-align">
+                                        @if(Auth::guest())
+                                        @elseif($user->id == Auth::user()->id)
+                                            <a href="{{ route('company.edit', $user->id) }}" class="btn-floating btn-small red right tooltipped" data-tooltip="Edit Profile">
+                                                <i class="material-icons">mode_edit</i>
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+                                {{--wait--}}
 
-                                <span class="center truncate card-title"><b>{{ $user->name }}</b></span>
                                 @if(Auth::guest())
                                 @elseif(Auth::user()->role == \App\Constant::user_jobseeker)
                                 <div class="center">
@@ -48,12 +59,13 @@
                                         <div class="collapsible-header cyan-text hoverable active"><i class="material-icons">contacts</i>Information</div>
                                         <div class="collapsible-body">
                                             <p>
-                                                <i class="tiny material-icons">work</i> {{ $user->name }}<br>
+                                                <i class="tiny material-icons">work</i>Company Name: {{ $user->name }}<br>
                                                 <br>
                                                 <i class="tiny material-icons">location_on</i> {{ $user->location }}<br>
                                                 <i class="tiny material-icons">mail</i> {{ $user->email }}<br>
                                                 <i class="tiny material-icons">phone</i> {{ $user->phone }}<br>
                                                 <i class="tiny material-icons">label_outline</i> {{ $user->company->industry }}<br>
+                                                <i class="tiny material-icons">supervisor_account</i> {{ $user->company->size }} people<br>
                                                 <i class="tiny material-icons">language</i> {{ $user->company->website }}<br>
                                             </p>
                                         </div>
