@@ -25,9 +25,9 @@
                                         @if(\App\Bookmark::where('target','=',\App\User::find($user->id)->jobseeker->id)
                                             ->where('user_id','=',Auth::user()->id)
                                             ->first() == null)
-                                            <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons  grey-text text-darken-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bookmark this Job Seeker">stars</i></a>
+                                            <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons btn-floating btn-small waves-effect waves-light grey tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bookmark this Job Seeker">stars</i></a>
                                         @else
-                                            <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons  green-text text-darken-1">stars</i></a>
+                                            <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons btn-floating btn-small waves-effect waves-light yellow darken-2">stars</i></a>
                                         @endif
                                     </div>
                                 @endif
