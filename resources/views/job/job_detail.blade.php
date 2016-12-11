@@ -20,10 +20,13 @@
             <div class="col s12 m12 l12">
                 <div class="card white darken-1 hoverable">
                     <div class="card-content orange darken-1 center white-text">
-                        @if(\App\Bookmark::where('user_id', '=', Auth::user()->id)->where('target', '=', $job->id)->where('type', '=', \App\Constant::job)->where('type', '=', \App\Constant::job)->first() == null)
-                            <a class="tooltipped btn-floating btn-large waves-effect waves-light grey" data-tooltip="Bookmark Job" href="{{ route('jobseeker.bookmark_add_job', $job->id) }}" style="position: absolute; right: 2%; margin-top: -1.6%;"><i class="material-icons">star</i></a>
-                        @else
-                            <a class="tooltipped btn-floating btn-large waves-effect waves-light yellow darken-2" data-tooltip="Bookmark Job" href="{{ route('jobseeker.bookmark_remove_job', $job->id) }}" style="position: absolute; right: 2%; margin-top: -1.6%;"><i class="material-icons">star</i></a>
+                        @if(Auth::guest())
+                        @elseif(Auth::user()->role == \App\Constant::user_jobseeker)
+                            @if(\App\Bookmark::where('user_id', '=', Auth::user()->id)->where('target', '=', $job->id)->where('type', '=', \App\Constant::job)->where('type', '=', \App\Constant::job)->first() == null)
+                                <a class="tooltipped btn-floating btn-large waves-effect waves-light grey" data-tooltip="Bookmark Job" href="{{ route('jobseeker.bookmark_add_job', $job->id) }}" style="position: absolute; right: 2%; margin-top: -1.4%;"><i class="material-icons">star</i></a>
+                            @else
+                                <a class="tooltipped btn-floating btn-large waves-effect waves-light yellow darken-2" data-tooltip="Bookmark Job" href="{{ route('jobseeker.bookmark_remove_job', $job->id) }}" style="position: absolute; right: 2%; margin-top: -1.6%;"><i class="material-icons">star</i></a>
+                            @endif
                         @endif
                         <h6>VIEW POST</h6>
                     </div>
