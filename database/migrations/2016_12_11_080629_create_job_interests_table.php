@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookmarksTable extends Migration
+class CreateJobinterestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateBookmarksTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookmarks', function (Blueprint $table) {
+        Schema::create('job_interests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('jobcategory_id')->unsigned()->index();
 
-            $table->integer('target');
-            $table->integer('type');
+            $table->string('name');
             $table->integer('status');
 
             $table->timestamps();
@@ -31,6 +31,6 @@ class CreateBookmarksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('bookmarks');
+        //
     }
 }
