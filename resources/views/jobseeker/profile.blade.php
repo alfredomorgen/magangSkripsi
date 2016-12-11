@@ -27,7 +27,6 @@
                                                 ->where('user_id','=',Auth::user()->id)
                                                 ->first() == null)
                                                 <a class="tooltipped btn-floating btn-small waves-effect waves-light grey" data-tooltip="Bookmark Company" href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons">star</i></a>
-                                                {{--<a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons grey-text text-darken-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bookmark this Job Seeker">stars</i></a>--}}
                                             @else
                                                 <a class="tooltipped btn-floating btn-small waves-effect waves-light yellow" data-tooltip="Bookmark Company" href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons">star</i></a>
                                             @endif
