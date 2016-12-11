@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col">
                                 @if($user->photo == NULL)
-                                    <img src="{{ asset('images/profile_default.jpg') }}" style="width:150px; height:150px">
+                                    <img src="{{ asset(\App\Constant::default_photo) }}" style="width:150px; height:150px">
                                 @else
                                     <img src="{{ asset('images/'.$user->photo) }}" style="width:150px; height:150px">
                                 @endif

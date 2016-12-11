@@ -16,6 +16,8 @@ class Constant
     const user_jobseeker = '2';
     const job = '3';
 
+    const default_photo = "images/profile_default.jpg";
+
     const status_inactive = '0';
     const status_active = '1';
 

@@ -164,8 +164,13 @@
                         <li class="collection-item avatar" style="padding-left:10px">
                             <div class="row" style="margin-bottom:auto">
                                 <div class="col l1">
-                                    <img src="{{ asset('images/'.$job->company->user->photo) }}" class="rounded"
+                                    @if($job->company->user->photo == null)
+                                    <img src="{{ asset(\App\Constant::default_photo) }}" class="rounded"
                                          style="width:70px; height:70px">
+                                    @else
+                                    <img src="{{ asset('images/'.$job->company->user->photo) }}" class="rounded"
+                                             style="width:70px; height:70px">
+                                    @endif
                                 </div>
                                 <div class="col s12 l11">
                                     <span class="card-title">{{ $job->name }}</span><br>
