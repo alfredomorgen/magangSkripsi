@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class JobCategory extends Model
+class Job_Category extends Model
 {
-    protected $table = 'jobcategories';
+    protected $table = 'job_categories';
     protected $primaryKey = "id";
 
     protected $fillable = [
@@ -17,5 +17,10 @@ class JobCategory extends Model
     public function job()
     {
         return $this->hasMany('\App\Job');
+    }
+
+    public function job_interest()
+    {
+        return $this->hasMany('\App\Job_Interest');
     }
 }

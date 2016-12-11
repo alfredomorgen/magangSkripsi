@@ -27,7 +27,7 @@
                     <h6>Job Category</h6>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="jobcategory_id" id="jobcategory_id">
+                            <select name="job_category_id" id="job_category_id">
                                 <option value="" disabled selected>Choose your option</option>
                                 <option value="0">IT</option>
                                 <option value="1">Accounting</option>

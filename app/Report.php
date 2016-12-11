@@ -4,21 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class JobInterest extends Model
+class Report extends Model
 {
-    protected $table = 'jobinterest';
+    protected $table = 'report';
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'user_id',
-        'jobcategory_id',
-        'name',
+        'jobseeker_id',
+        'job_id',
+        'type',
         'status',
     ];
 
-    public function user()
+    public function jobseeker()
     {
-        return $this->belongsTo('\App\User');
+        return $this->belongsTo('\App\Jobseeker');
     }
 
     public function job()

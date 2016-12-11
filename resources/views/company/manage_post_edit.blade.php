@@ -39,11 +39,11 @@
                     <h6>Job Category</h6>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="jobcategory_id" id="jobcategory_id">
-                                <option {{($job->jobcategory_id==0) ? 'selected="selected"':''}} value="0">IT</option>
-                                <option {{($job->jobcategory_id==1) ? 'selected="selected"':''}} value="1">Accounting</option>
-                                <option {{($job->jobcategory_id==2) ? 'selected="selected"':''}} value="2">Marketing</option>
-                                <option {{($job->jobcategory_id==3) ? 'selected="selected"':''}} value="3">Media/Communication</option>
+                            <select name="job_category_id" id="job_category_id">
+                                <option {{($job->job_category_id==0) ? 'selected="selected"':''}} value="0">IT</option>
+                                <option {{($job->job_category_id==1) ? 'selected="selected"':''}} value="1">Accounting</option>
+                                <option {{($job->job_category_id==2) ? 'selected="selected"':''}} value="2">Marketing</option>
+                                <option {{($job->job_category_id==3) ? 'selected="selected"':''}} value="3">Media/Communication</option>
                             </select>
                         </div>
                     </div>

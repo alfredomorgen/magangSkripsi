@@ -30,6 +30,10 @@ class Constant
     const job_notpaid = '0';
     const job_paid ='1';
 
-    const jobseeker_male ='0';
-    const jobseeker_female='1';
+    const jobseeker_male = '0';
+    const jobseeker_female= '1';
+
+    const notification_report = '0';
+    const notification_apply = '1';
+    const notification_apply_approved = '2';
 }

@@ -19,7 +19,7 @@ $factory->defineAs(App\User::class, 'jobseeker', function (Faker\Generator $fake
         'role' => \App\Constant::user_jobseeker,
         'phone' => $faker->phoneNumber,
         'location' => $faker->address,
-        'description' => $faker->paragraph,
+        'description' => $faker->catchPhrase,
         'status' => \App\Constant::status_active,
         'remember_token' => str_random(10),
     ];
@@ -43,7 +43,7 @@ $factory->defineAs(App\User::class, 'company', function (Faker\Generator $faker)
         'role' => \App\Constant::user_company,
         'phone' => $faker->phoneNumber,
         'location' => $faker->address,
-        'description' => $faker->paragraph,
+        'description' => $faker->catchPhrase,
         'status' => \App\Constant::status_active,
         'remember_token' => str_random(10),
     ];
@@ -53,20 +53,29 @@ $factory->define(App\Company::class, function(Faker\Generator $faker) use ($fact
     return [
         'website' => $faker->domainName,
         'industry' => $faker->jobTitle,
-        'size' => $faker->biasedNumberBetween(0, 500),
+        'size' => $faker->biasedNumberBetween(0, 1000),
     ];
 });
 
 $factory->define(App\Job::class, function (Faker\Generator $faker) use ($factory) {
     return [
-        'name' => $faker->sentence,
+        'name' => $faker->jobTitle,
         'deadline' => $faker->date('Y-m-d', strtotime('+30 days')),
         'type' => $faker->biasedNumberBetween(0, 1),
         'salary' => $faker->biasedNumberBetween(0, 1),
         'period' => $faker->biasedNumberBetween(1, 24),
         'benefit' => $faker->sentence,
-        'requirement' => $faker->sentence,
-        'description' => $faker->paragraph,
+        'requirement' => $faker->bs,
+        'description' => $faker->catchPhrase,
+        'status' => \App\Constant::status_active,
+    ];
+});
+
+$factory->define(App\Job_Interest::class, function (Faker\Generator $faker) use ($factory) {
+    return [
+        'jobseeker_id' => $faker->biasedNumberBetween(1, 20),
+        'job_category_id' => $faker->biasedNumberBetween(1, 14),
+        'name' => $faker->jobTitle,
         'status' => \App\Constant::status_active,
     ];
 });

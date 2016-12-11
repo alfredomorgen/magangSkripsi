@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobinterestsTable extends Migration
+class CreateReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateJobinterestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('job_interests', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('jobseeker_id')->unsigned()->index();
-            $table->integer('job_category_id')->unsigned()->index();
+            $table->integer('job_id')->unsigned()->index();
 
-            $table->string('name');
+            $table->integer('type');
             $table->integer('status');
 
             $table->timestamps();

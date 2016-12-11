@@ -14,7 +14,7 @@ class Job extends Model
 
     protected $fillable = [
         'company_id',
-        'jobcategory_id',
+        'job_category_id',
         'title',
         'type',
         'salary',

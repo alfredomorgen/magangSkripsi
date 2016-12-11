@@ -91,7 +91,7 @@ class CompanyController extends Controller
     {
         $job = new Job();
         $job->company_id = Auth::user()->company->id;
-        $job->jobcategory_id = Input::get('jobcategory_id');
+        $job->job_category_id = Input::get('job_category_id');
         $job->name = Input::get('name');
         $job->type = Input::get('type');
         $job->salary = Input::get('salary');
@@ -128,7 +128,7 @@ class CompanyController extends Controller
     public function manage_post_update($id)
     {
         $job = Job::find($id);
-        $job->jobcategory_id = Input::get('jobcategory_id');
+        $job->job_category_id = Input::get('job_category_id');
         $job->name = Input::get('name');
         $job->type = Input::get('type');
         $job->salary = Input::get('salary');

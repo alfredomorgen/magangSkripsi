@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('title', $job->company->user->name.' - '.$job->name)
 @section('content')
+    <style>
+        .card-action .row {
+            margin-bottom: 0px;
+        }
+    </style>
+
     <div class="container">
         <div class="row">
             @section('navbar')
@@ -71,9 +77,14 @@
 
                     </div>
                     <div class="card-action">
-                        <h6 class="right-align">
-                            <button class="btn btn-default orange waves-effect" id="btnApply">Apply</button>
-                        </h6>
+                        <div class="row">
+                            <div class="col s6 left-align">
+                                <a href="" class="tooltipped btn-floating waves-effect waves-light red" data-tooltip="Report"><i class="material-icons">error_outline</i></a>
+                            </div>
+                            <div class="col s6 right-align">
+                                <button class="btn btn-default orange waves-effect" id="btnApply">Apply</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

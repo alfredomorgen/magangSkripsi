@@ -63,7 +63,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         factory(App\User::class, 'jobseeker', 20)->create()->each(function ($jobseeker){
-            $jobseeker->jobseeker()->save(factory(App\Jobseeker::class)->make());
+            $jobseeker->jobseeker()->save(factory(App\Jobseeker::class)->create());
         });
 
         factory(App\User::class, 'company', 20)->create()->each(function ($u){

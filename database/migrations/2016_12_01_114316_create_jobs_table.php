@@ -15,7 +15,7 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned()->index();
-            $table->integer('jobcategory_id')->unsigned()->index();
+            $table->integer('job_category_id')->unsigned()->index();
 
             $table->string('name');
             $table->dateTime('deadline');
