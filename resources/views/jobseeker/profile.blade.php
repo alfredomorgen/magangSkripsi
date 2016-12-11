@@ -20,19 +20,19 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-content grey-text text-darken-2">
-                                @if(Auth::user()->role == \App\Constant::user_company)
-                                    <div class="right-align">
-                                        @if(\App\Bookmark::where('target','=',\App\User::find($user->id)->jobseeker->id)
-                                            ->where('user_id','=',Auth::user()->id)
-                                            ->first() == null)
-                                            <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons btn-floating btn-small waves-effect waves-light grey tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bookmark this Job Seeker">stars</i></a>
-                                        @else
-                                            <a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons btn-floating btn-small waves-effect waves-light yellow darken-2">stars</i></a>
-                                        @endif
-                                    </div>
-                                @endif
                                 <div class="row">
-                                    <br>
+                                    @if(Auth::user()->role == \App\Constant::user_company)
+                                        <div class="right-align">
+                                            @if(\App\Bookmark::where('target','=',\App\User::find($user->id)->jobseeker->id)
+                                                ->where('user_id','=',Auth::user()->id)
+                                                ->first() == null)
+                                                <a class="tooltipped btn-floating btn-small waves-effect waves-light grey" data-tooltip="Bookmark Company" href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons">star</i></a>
+                                                {{--<a href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons grey-text text-darken-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bookmark this Job Seeker">stars</i></a>--}}
+                                            @else
+                                                <a class="tooltipped btn-floating btn-small waves-effect waves-light yellow" data-tooltip="Bookmark Company" href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons">star</i></a>
+                                            @endif
+                                        </div>
+                                    @endif
                                     <div class="col l3">
                                         @if($user->photo == NULL)
                                             <img src="{{ asset('images/profile_default.jpg') }}" style="width:150px; height:150px">
@@ -57,6 +57,7 @@
                                         </p>
                                     </div>
                                 </div>
+                                <div class="row"></div>
                             </div>
                         </div>
                     </div>
