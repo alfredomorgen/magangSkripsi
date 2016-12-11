@@ -11,6 +11,10 @@
             height: 4.5rem;
         }
 
+        .pagination li a{
+            color:white;
+        }
+
     </style>
     <div class="container">
         <div class="row">
@@ -23,7 +27,7 @@
             <div class="col s12 l12 m12">
                 <nav style="background-color: white">
                     <div class="nav-wrapper">
-                        <form action="{{route('home.search') }}" role="search" method="get" accept-charset="UTF-8">
+                        <form action="{{ route('home.search') }}" role="search" method="get" accept-charset="UTF-8">
                             <div class="input-field">
                                 <input class="tooltipped" data-position="bottom" data-delay="50"
                                        data-tooltip="Search Job" name="search" id="search" placeholder="Search a job"
@@ -42,8 +46,13 @@
                                             </div>
                                             <div class="collapsible-body grey-text">
                                                 <div class="row" style="padding:10px 0px 0px 20px; margin-bottom: 0px;">
-                                                    <div class="input-field col l3">
-                                                        <label for="search"><i class=" tiny material-icons orange-text">location_on</i></label>
+                                                    <div class="input-field col l2">
+                                                        <label for="company"><i class=" tiny material-icons orange-text">work</i></label>
+                                                        <input name="company" id="company" type="text"
+                                                               class="validate" placeholder="Company">
+                                                    </div>
+                                                    <div class="input-field col l2">
+                                                        <label for="location"><i class=" tiny material-icons orange-text">location_on</i></label>
                                                         <input name="location" id="location" type="text"
                                                                class="validate" placeholder="Location">
                                                     </div>
@@ -117,19 +126,19 @@
                                          style="width:70px; height:70px">
                                 </div>
                                 <div class="col s12 l11">
-                                    <span class="title"><strong>Available Job
-                                            :</strong> <i>{{ $job->name }}</i></span><br>
-                                    <i class="material-icons">equalizer</i></a>{{ $job->company->user->name }}<br>
-                                    <p><i class="material-icons">location_on</i></a>{{ $job->company->user->location }}
-                                    </p>
-                                    <p>
-                                        <i class="material-icons">av_timer</i></a>@if($job->type == \App\Constant::job_parttime)
-                                            Part Time @else Full Time @endif
-                                    </p>
-                                    <p>
-                                        <i class="material-icons">payment</i></a>@if($job->salary == \App\Constant::job_paid)
-                                            Paid @else Not Paid @endif
-                                    </p>
+                                    <span class="card-title">{{ $job->job_name }}</span><br>
+                                    <div class="row">
+                                        <div class="col l3">
+                                            <i class="material-icons">work</i></a> {{ $job->company->user->name }}<br>
+                                            <i class="material-icons">location_on</i></a>{{ $job->job_location }}
+                                        </div>
+                                        <div class="col l3">
+                                            <i class="material-icons">av_timer</i></a>@if($job->type == \App\Constant::job_parttime)
+                                                Part Time @else Full Time @endif<br>
+                                            <i class="material-icons">payment</i></a>@if($job->salary == \App\Constant::job_paid)
+                                                Paid @else Not Paid @endif
+                                        </div>
+                                    </div>
                                     <a href="{{ route('job.index', $job->id) }}"
                                        class="waves-effect waves-light btn orange darken-2">View</a>
                                     <a href="#!"><i class="tooltipped material-icons right"
@@ -147,7 +156,7 @@
                 </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobs->render() }}</li>
+                    <li class="waves-effect">{!!  $jobs->appends(\Illuminate\Support\Facades\Input::except('page'))->render() !!}</li>
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
@@ -159,19 +168,20 @@
                                          style="width:70px; height:70px">
                                 </div>
                                 <div class="col s12 l11">
-                                    <span class="title"><strong>Available Job
-                                            :</strong> <i>{{ $job->name }}</i></span><br>
-                                    <i class="material-icons">equalizer</i></a>{{ $job->company->user->name }}<br>
-                                    <p><i class="material-icons">location_on</i></a>{{ $job->company->user->location }}
-                                    </p>
-                                    <p>
-                                        <i class="material-icons">av_timer</i></a>@if($job->type == \App\Constant::job_parttime)
-                                            Part Time @else Full Time @endif
-                                    </p>
-                                    <p>
-                                        <i class="material-icons">payment</i></a>@if($job->salary == \App\Constant::job_paid)
-                                            Paid @else Not Paid @endif
-                                    </p>
+                                    <span class="card-title">{{ $job->name }}</span><br>
+                                    <div class="row">
+                                        <div class="col l3">
+                                            <i class="material-icons">work</i></a> {{ $job->company->user->name }}<br>
+                                            <i class="material-icons">location_on</i></a>{{ $job->location }}
+                                        </div>
+                                        <div class="col l3">
+                                                <i class="material-icons">av_timer</i></a>@if($job->type == \App\Constant::job_parttime)
+                                                    Part Time @else Full Time @endif<br>
+                                                <i class="material-icons">payment</i></a>@if($job->salary == \App\Constant::job_paid)
+                                                    Paid @else Not Paid @endif
+                                        </div>
+                                    </div>
+
                                     <a href="{{ route('job.index', $job->id) }}"
                                        class="waves-effect waves-light btn orange darken-2">View</a>
                                     <a href="#!"><i class="tooltipped material-icons right"
