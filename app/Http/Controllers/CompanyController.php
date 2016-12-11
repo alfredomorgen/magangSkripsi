@@ -58,6 +58,10 @@ class CompanyController extends Controller
         if ($user != null) {
             $user->phone = $request->get('phone');
             $user->description = $request->get('description');
+            $user->location = $request->get('location');
+            $user->company->industry = $request->get('industry');
+            $user->company->website = $request->get('website');
+            $user->company->size = $request->get('size');
 
             if ($request->has('password')) {
                 $user->password = bcrypt($request->get('password'));
@@ -71,6 +75,7 @@ class CompanyController extends Controller
             }
 
             $user->save();
+            $user->company->save();
             return redirect()->route('company.index', $user_id);
         } else {
             return redirect('/');
