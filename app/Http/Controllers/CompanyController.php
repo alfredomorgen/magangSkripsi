@@ -251,7 +251,28 @@ class CompanyController extends Controller
 
         $bookmark->delete();
 
-        return redirect('company/bookmark_jobseeker')->with('success',"Bookmark Delete");
+        return redirect('company/bookmark_jobseeker')->with('success',"Bookmark Removed");
     }
+
+    public function remove_bookmark_jobseeker($id)
+    {
+
+        $jobseeker = User::find($id)->jobseeker;
+        $bookmark = Bookmark::where('target','=',User::find($id)->jobseeker->id)
+            ->where('target', '=', $jobseeker->id)
+            ->where('type', '=', Constant::user_jobseeker)
+            ->first();
+
+        if($bookmark->delete()){
+            $message = "Job Seeker bookmark successfully removed!";
+        } else {
+            $message = "Failed to remove Job Seeker bookmark...";
+        }
+
+        $data = ['message' => $message];
+        return redirect()->route('jobseeker.index', $id)->with($data)->with($message);
+
+    }
+
 
 }

@@ -200,6 +200,11 @@ Route::get('/company/delete_bookmark_jobseeker/{id}',[
     'as' => 'company.delete_bookmark_jobseeker'
 ]);
 
+Route::get('/company/remove_job/{job_id}', [
+    'uses' => 'CompanyController@remove_bookmark_jobseeker',
+    'as' => 'company.remove_bookmark_jobseeker',
+]);
+
 Route::get('/company/{user_id}', [
     'uses' => 'CompanyController@index',
     'as' => 'company.index',
