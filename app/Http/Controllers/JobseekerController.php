@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bookmark;
 use App\Company;
 use App\Constant;
+use App\Http\Requests\JobseekerRequest;
 use App\Job;
 use App\Transaction;
 use App\User;
@@ -48,7 +49,7 @@ class JobseekerController extends Controller
         }
     }
 
-    public function update($user_id, UserRequest $request){
+    public function update($user_id, JobseekerRequest $request){
         $user = User::find($user_id);
         if($user != null){
             $user->phone = $request->get('phone');
