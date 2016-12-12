@@ -94,6 +94,7 @@ class CompanyController extends Controller
         $job->company_id = Auth::user()->company->id;
         $job->job_category_id = Input::get('job_category_id');
         $job->name = Input::get('name');
+        $job->location = Input::get('location');
         $job->type = Input::get('type');
         $job->salary = Input::get('salary');
         $job->period = Input::get('period');

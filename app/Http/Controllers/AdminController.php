@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function deleteJob($id)
     {
         $job = Job::find($id);
-        $job->status= Constant::status_inactive;
+        $job->status= Constant::status_banned;
         $job->save();
         return redirect('/admin/search_job');
     }

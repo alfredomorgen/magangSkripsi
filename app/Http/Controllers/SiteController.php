@@ -14,7 +14,8 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $jobs = Job::orderBy('created_at', 'desc')->paginate(5);
+        $jobs = Job::orderBy('created_at', 'desc')
+            ->where('status','=',Constant::status_active)->paginate(5);
         $data = [
             'jobs' => $jobs,
         ];

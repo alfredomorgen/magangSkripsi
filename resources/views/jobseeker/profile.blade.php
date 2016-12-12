@@ -51,7 +51,10 @@
                                                 <h6><i class="tiny material-icons">location_on</i> {{$user->location}}</h6>
                                             @endif
                                         <h6><i class="tiny material-icons">mail</i> {{ $user->email }}</h6>
-                                        <h6><i class="tiny material-icons">phone</i> {{ $user->phone }}</h6>
+                                            @if($user->phone != null)
+                                                <h6><i class="tiny material-icons">phone</i> {{ $user->phone }}</h6>
+                                            @endif
+
 
                                     </div>
                                 </div>
@@ -76,7 +79,13 @@
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
                                     <li class="collection-header blue white-text"><h6><b>Education</b></h6></li>
-                                    <li class="collection-item"><p><span style="font-size:1.5em;">{{$user->jobseeker->university}}</span><br></p></li>
+                                    <li class="collection-item"><p><span style="font-size:1.5em;">
+                                            @if($user->jobseeker->university!= NULL)
+                                                {{$user->jobseeker->university}}
+                                            @else
+                                                    <span class="grey-text">Not filled</span>
+                                            @endif
+                                            </span></p></li>
                                 </ul>
                             </div>
                         </div>
@@ -89,7 +98,11 @@
                                     </li>
                                     <li class="collection-item"><p>
                                         <p>
-                                            {{ $user->description }}
+                                            @if($user->description!= NULL)
+                                                {{ $user->description }}
+                                            @else
+                                                <span class="grey-text">Not filled</span>
+                                            @endif
                                         </p>
                                     </li>
                                 </ul>
@@ -102,12 +115,17 @@
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
                                     <li class="collection-header  amber darken-4 white-text"><h6><b>Job Interest</b></h6>
                                     </li>
+                                    <li class="collection-item">
+                                        @if($user->jobseeker->job_interest != NULL)
 
-                                        <li class="collection-item">
                                             @foreach ($user->jobseeker->job_interest as $job_interest)
-                                            <p><span style="font-size: 1em"><i class="tiny material-icons blue-text">label</i> {{$job_interest->name}}</span></p>
+                                                <p><span style="font-size: 1em"><i class="tiny material-icons blue-text">label</i> {{$job_interest->name}}</span></p>
                                             @endforeach
-                                        </li>
+
+                                        @else
+                                            <span class="grey-text">Not filled</span>
+                                        @endif
+                                    </li>
 
                                 </ul>
                             </div>

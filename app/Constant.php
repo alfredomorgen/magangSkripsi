@@ -20,6 +20,7 @@ class Constant
 
     const status_inactive = '0';
     const status_active = '1';
+    const status_banned = '2';
 
     const gender_male = '0';
     const gender_female = '1';

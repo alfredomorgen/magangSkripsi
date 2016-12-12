@@ -54,9 +54,17 @@
                                            data-tooltip="View Profile"
                                            href="{{ route('jobseeker.index',$job->jobseeker->user->id) }}">{{ $job->jobseeker->user->name}}</a>
                                     </td>
-                                    <td><a class="btn btn-block blue"
+                                    <td>
+                                        @if($job->jobseeker->resume != NULL)
+                                            <a class="btn btn-block blue"
                                            href="{{ route('company.view_candidate_resume',$job->jobseeker->id) }}"
-                                           target="_blank">View Resume</a></td>
+                                           target="_blank">View Resume</a>
+                                            @else
+                                            <a class="btn disabled blue"
+                                                    href="{{ route('company.view_candidate_resume',$job->jobseeker->id) }}"
+                                                    target="_blank">View Resume</a>
+                                        @endif
+                                    </td>
                                     @if($job->status == \App\Constant::status_inactive)
                                         <td><a class="btn btn-block green"
                                                href="{{ route('company.transaction_approve',$job->id) }}">Approve</a>
@@ -109,6 +117,9 @@
                 {{--<h4 class="col s12 valign white-text">Manage Job</h4>--}}
             {{--</div>--}}
         {{--</div>--}}
+            <div class="row">
+                    <a class="btn waves-effect right cyan white-text" href="{{ url('/company/post_job/') }}">Create new Post Job</a>
+            </div>
     </div>
 
     <div class="container">
@@ -134,17 +145,34 @@
                     @foreach($jobs as $job)
                         <tr>
                             <td>{{ $job->id }}</td>
-                            <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job"
-                                   href="{{url('/job/'.$job->id)}}">{{ $job->name }}</a></td>
+                            <td>
+                                @if($job->status == \App\Constant::status_banned)
+                                    <span class="tooltipped grey-text" data-position="bottom" data-delay="50" data-tooltip="Banned"
+                                       href="#">{{ $job->name }}</span>
+                                @else
+                                    <a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Job"
+                                   href="{{url('/job/'.$job->id)}}">{{ $job->name }}</a>
+                                @endif
+                            </td>
                             <td>{{ date('d-m-Y', strtotime($job->created_at))}}</td>
-                            <td><a class="tooltipped linkCandidates" data-position="bottom" data-delay="50"
-                                   data-tooltip="View Candidates"
-                                   href="#modalCandidates{{$job->id}}">{{$job->transaction->count()}}</a></td>
+                            <td>
+                                @if($job->status == \App\Constant::status_banned)
+                                    <span class="tooltipped linkCandidates" data-position="bottom" data-delay="50"
+                                       data-tooltip="Banned"
+                                       href="#">{{$job->transaction->count()}}</span>
+                                @else
+                                    <a class="tooltipped linkCandidates" data-position="bottom" data-delay="50"
+                                       data-tooltip="View Candidates"
+                                       href="#modalCandidates{{$job->id}}">{{$job->transaction->count()}}</a>
+                                @endif
+                            </td>
 
                             @if($job->status == \App\Constant::status_active )
                                 <td class="green-text text-lighten-1"><b> Open </b></td>
                             @elseif($job->status == \App\Constant::status_inactive)
                                 <td class="red-text text-lighten-1"><b> Closed </b></td>
+                            @elseif($job->status == \App\Constant::status_banned)
+                                <td class="orange-text text-lighten-1"><b> Banned </b></td>
                             @endif
 
                             @if($job->status == \App\Constant::status_active)
@@ -154,6 +182,12 @@
                                        href="{{ route('company.manage_post_close',$job->id) }}">Close</a>
                                 </td>
                             @elseif($job->status == \App\Constant::status_inactive)
+                                <td><a class="btn btn-block blue"
+                                       href="{{ url('/company/post_job/edit/'.$job->id) }}" disabled>Edit</a></td>
+                                <td><a class="btn btn-block red"
+                                       href="{{ route('company.manage_post_close',$job->id) }}" disabled>Closed</a>
+                                </td>
+                            @elseif($job->status == \App\Constant::status_banned)
                                 <td><a class="btn btn-block blue"
                                        href="{{ url('/company/post_job/edit/'.$job->id) }}" disabled>Edit</a></td>
                                 <td><a class="btn btn-block red"
@@ -171,11 +205,7 @@
         </div>
         <div class="row"></div>
         <div class="row"></div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-4 center-align">
-                <a class="btn btn-block green" href="{{ url('/company/post_job/') }}">Create new Post Job</a>
-            </div>
-        </div>
+
     </div>
 
 @endsection

@@ -49,6 +49,7 @@
         #myDiv {
             display: none;
         }
+
     </style>
 
 </head>
@@ -118,7 +119,7 @@
 
 @yield('content')
 
-<footer class="page-footer" style=" background-image: url({{asset('images/footers7.jpg')}}); background-repeat:no-repeat;background-attachment: fixed; background-size: 100% 100%;">
+<footer class="page-footer" style=" background-image: url({{asset('images/footers7.jpg')}}); background-repeat:no-repeat; background-size: 100% auto;">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">

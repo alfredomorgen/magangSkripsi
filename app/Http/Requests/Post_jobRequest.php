@@ -26,11 +26,13 @@ class Post_jobRequest extends Request
         return [
             'name' => 'required',
             'job_category_id' => 'required|in:0,1,2,3,',
+            'location' => 'required',
             'type' => 'required',
             'salary' => 'required|in:0,1',
             'period' => 'required',
             'benefit' => '',
-            'requirement' => '',
+            'requirement' => 'required',
+            'description' => 'required',
         ];
     }
 }

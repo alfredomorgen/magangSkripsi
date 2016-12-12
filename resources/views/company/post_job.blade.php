@@ -16,13 +16,22 @@
                     <h6>Name</h6>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="name" type="text" name="name" placeholder="Job Title">
+                            <input id="name" type="text" name="name" placeholder="Job Title" value="{{ old('name') }}">
                             @if ($errors->has('name'))
                                 <strong>{{ $errors->first('name') }}</strong>
                             @endif
                         </div>
                     </div>
                     {{--</div>--}}
+                    <h6>Location</h6>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="location" type="text" name="location" placeholder="Location" value="{{ old('location') }}">
+                            @if ($errors->has('location'))
+                                <strong>{{ $errors->first('location') }}</strong>
+                            @endif
+                        </div>
+                    </div>
 
                     <h6>Job Category</h6>
                     <div class="row">
@@ -89,8 +98,8 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <textarea cols="50" rows="8" name="requirement" id="requirement"
-                                      class="materialize-textarea" value="{{ old('requirement') }}"
-                                      placeholder="Your requirement(s) here . . ." style="resize:none"></textarea>
+                                      class="materialize-textarea"
+                                      placeholder="Your requirement(s) here . . ." style="resize:none">{{ old('requirement') }}</textarea>
                             @if ($errors->has('requirement'))
                                 <strong>{{ $errors->first('requirement') }}</strong>
                             @endif
@@ -101,8 +110,8 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <textarea cols="50" rows="8" name="description" id="description"
-                                      class="materialize-textarea" value="{{ old('description') }}"
-                                      placeholder="Your Description here . . ." style="resize:none"></textarea>
+                                      class="materialize-textarea"
+                                      placeholder="Your Description here . . ." style="resize:none">{{ old('description') }}</textarea>
                             @if ($errors->has('description'))
                                 <strong>{{ $errors->first('description') }}</strong>
                             @endif
