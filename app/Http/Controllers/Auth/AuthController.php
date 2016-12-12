@@ -56,14 +56,14 @@ class AuthController extends Controller
                 'name' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|min:6|confirmed',
-                'role' => 'required'
+                'role' => 'required|in:2'
             ]);
         }elseif($data['role']==Constant::user_company){
             return Validator::make($data, [
                 'name' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|min:6|confirmed',
-                'role' => 'required',
+                'role' => 'required|in:1',
                 'description' => 'required',
                 'phone'=> 'required|numeric',
                 'location' => 'required',

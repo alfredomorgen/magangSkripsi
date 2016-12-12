@@ -11,6 +11,8 @@
                 <h4 class="col s12 valign grey-text text-darken-2 center">@if(($user_types)=='1')Company @elseif(($user_types)=='2') Jobseeker @endif</h4>
                 <form class="col s12" style="padding-bottom:20px;" method="POST" action="{{ url('/login') }}">
                     {{ csrf_field() }}
+                    <input type="hidden" name="user_types" value="{{ $user_types }}">
+
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <div class="row" style="margin:0px;">
                             <div class="input-field col s12">
@@ -78,6 +80,10 @@
                 $('nav').addClass('orange darken-3');
             @elseif(($user_types)=='2')
                 $('nav').addClass('light-blue lighten-1');
+            @endif
+
+            @if($errors->has('user_types'))
+                Materialize.toast('{{ $errors->first('user_types') }}', 5000, 'rounded');
             @endif
         });
     </script>
