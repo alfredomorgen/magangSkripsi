@@ -138,7 +138,7 @@ class CompanyController extends Controller
         $job->description = Input::get('description');
         $job->save();
 
-        return redirect('/company/manage_post/')->with('success','Job Updated');
+        return redirect('/company/manage_post/')->with('success','Job Updated with ID: '.$id);
     }
 
     public function manage_post_close($id)
@@ -146,7 +146,7 @@ class CompanyController extends Controller
         $job = Job::find($id);
         $job->status = Constant::status_inactive;
         $job->save();
-        return redirect('/company/manage_post/')->with('success', 'Job Closed');
+        return redirect('/company/manage_post/')->with('success', 'Job Closed with ID: '.$id);
     }
 
     public function indexJobseeker()
