@@ -32,16 +32,19 @@
                 {{session('error')}}
             </div>
         @endif
-        <div class="row center">
-            <div class="col l8 push-l2">
-                <h4 class="col s12 valign white-text">Bookmark Job Seeker</h4>
-            </div>
-        </div>
+        {{--<div class="row center">--}}
+            {{--<div class="col l8 push-l2">--}}
+                {{--<h4 class="col s12 valign white-text">Bookmark Job Seeker</h4>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 
     <div class="container">
         <div class="row">
             <ul class="collection z-depth-1 grey-text text-darken-2">
+                <div class="collection-item orange darken-1 center white-text">
+                    <h6><strong>BOOKMARK</strong></h6>
+                </div>
                 @foreach($bookmarks as $bookmark)
                 <li class="collection-item avatar" style="padding-left:10px">
                     <div class="row" style="margin-bottom:auto">

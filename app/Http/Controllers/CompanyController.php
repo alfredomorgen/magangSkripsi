@@ -166,9 +166,9 @@ class CompanyController extends Controller
         $major = $request->input('major');
         $gender = $request->input('gender');
 
-        if ($university != null || $major != null || $gender != null || $university == "" || $major == "") {
+        if ($university != null || $major != null || $gender != null || $university == "" || $major == "" || $gender =="") {
             $query = User::join('jobseekers','users.id','=','jobseekers.user_id')
-            ->where('users.name', 'LIKE', '%'.$search.'%')
+            ->where('users.name', 'LIKE', '%'. $search .'%')
             ->where('users.status',Constant::status_active)
             ->select('users.*');
         } else {
@@ -176,14 +176,14 @@ class CompanyController extends Controller
             ->where('users.status', Constant::status_active);
         }
 
-        if($university != null && $university == ""){
+        if($university != null || $university == ""){
             $query->where('jobseekers.university', 'LIKE', '%' . $university . '%');
         }
-        if($major != null && $major == ""){
+        if($major != null || $major == ""){
             $query->where('jobseekers.major','LIKE', '%' . $major . '%');
         }
         if($gender != null){
-            $query->where('jobseekers.gender',$gender);
+            $query->where('jobseekers.gender','=',$gender);
         }
 
         $users = $query->orderBy('users.id')->paginate(5);

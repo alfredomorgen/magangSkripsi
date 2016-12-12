@@ -13,7 +13,9 @@ use App\Report;
 use App\Transaction;
 use App\User;
 
+
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -281,4 +283,5 @@ class JobseekerController extends Controller
         $data = ['message' => $message];
         return redirect()->route('job.index', $job_id)->with($data);
     }
+    
 }

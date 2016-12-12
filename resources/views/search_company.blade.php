@@ -64,9 +64,6 @@
                     @endforeach
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect white">{{ $users->render() }}</li>
-                </ul>
-                <ul class="pagination center">
                     <li class="waves-effect white">{{ $users->appends(\Illuminate\Support\Facades\Input::except('page'))->render() }}</li>
                 </ul>
             @else
