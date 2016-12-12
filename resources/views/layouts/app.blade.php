@@ -25,9 +25,37 @@
     <script type="text/javascript" src="{{ asset('https://code.jquery.com/jquery-2.1.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="{{asset('/js/init.js')}}"></script>
+
+    <style>
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from { bottom:-100px; opacity:0 }
+            to { bottom:0px; opacity:1 }
+        }
+
+        @keyframes animatebottom {
+            from{ bottom:-100px; opacity:0 }
+            to{ bottom:0; opacity:1 }
+        }
+
+        #myDiv {
+            display: none;
+        }
+    </style>
+
 </head>
 
-<body style=" background-image: url({{asset('images/office2.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px; ">
+<body style=" background-image: url({{asset('images/office.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px;" onload="myFunction()">
+<div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
 <nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif" role="navigation">
     <div class="nav-wrapper container">
         <a id="logo-container" href="/" class="brand-logo">Magang</a>
@@ -116,8 +144,19 @@
         </div>
     </div>
 </footer>
-
+</div>
 @yield('scripts')
+    <script>
+        var myVar;
 
+        function myFunction() {
+            myVar = setTimeout(showPage, 100);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+        }
+    </script>
 </body>
 </html>
