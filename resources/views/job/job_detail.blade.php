@@ -15,6 +15,27 @@
         </div>
     </div>
 
+    <div id="modal" class="modal">
+        <form method="POST" action="{{ route('jobseeker.report_job', $job->id) }}" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="modal-content">
+                <h4>Report</h4>
+                <p>Please tell us why you are reporting this job:</p>
+
+                <div class="input-field col s12">
+                    <textarea class="materialize-textarea validate" id="description" name="description"></textarea>
+                    @if ($errors->has('description'))
+                        <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Submit Report</button>
+            </div>
+        </form>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -75,17 +96,14 @@
                             @endif
                             <p><i class="tiny material-icons">business</i><b> Industry :</b> {!! nl2br($job->company->industry) !!}</p>
                             <p><i class="tiny material-icons">perm_identity</i><b> Company Size :</b> {!! nl2br($job->company->size) !!} Employees</p>
-
                         </div>
-
                     </div>
                     <div class="card-action">
                         <div class="row">
                             <div class="col s6 left-align">
                                 @if(Auth::guest())
-
                                 @elseif(Auth::user()->role == App\Constant::user_jobseeker)
-                                    <a href="" class="tooltipped btn-floating waves-effect waves-light red" data-tooltip="Report"><i class="material-icons">error_outline</i></a>
+                                    <a href="#modal" class="tooltipped btn-floating waves-effect waves-light red" data-tooltip="Report"><i class="material-icons">error_outline</i></a>
                                 @endif
                             </div>
                             <div class="col s6 right-align">
@@ -119,6 +137,7 @@
             });
             @endif
 
+            $('.modal').modal();
             Materialize.toast('{{ session('message') }}', 3000, 'rounded');
         });
     </script>

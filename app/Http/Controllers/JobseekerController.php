@@ -6,14 +6,14 @@ use App\Bookmark;
 use App\Company;
 use App\Constant;
 use App\Http\Requests\JobseekerRequest;
-use App\Http\Requests\Request;
 use App\Job;
 use App\Message;
 use App\Notification;
+use App\Report;
 use App\Transaction;
 use App\User;
 
-use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -230,22 +230,28 @@ class JobseekerController extends Controller
 
     public function report_job($job_id, Request $request){
         $message = "";
-        $job = Job::find($job_id);
-        $description = $request->get('description');
-        $isNotificationExist = Notification::where('user_id', '=', Auth::user()->id)
-            ->where('');
 
-        $notification = Notification::create([
-            'user_id' => Auth::user()->id,
-            'type' => Constant::notification_report,
-            'description' => Message::notification_report_job(Auth::user()->name, $job->name, $job->company->user->name, $description),
-            'status' => Constant::status_active,
-        ]);
+        $isReportExist = Report::where('jobseeker_id', '=', Auth::user()->jobseeker->id)
+            ->where('job_id', '=', $job_id)
+            ->where('type', '=', Constant::report_job)
+            ->first();
 
-        if($notification == null){
-            $message = "Failed to report job...";
+        if($isReportExist == null){
+            $report = Report::create([
+                'jobseeker_id' => Auth::user()->jobseeker->id,
+                'job_id' => $job_id,
+                'type' => Constant::report_job,
+                'description' => $request->get('description'),
+                'status' => Constant::status_active,
+            ]);
+
+            if($report == null){
+                $message = "Failed to report job...";
+            } else {
+                $message = "Job successfully reported!";
+            }
         } else {
-            $message = "Job successfully reported!";
+            $message = "Job already reported...";
         }
 
         $data = ['message' => $message];

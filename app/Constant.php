@@ -36,4 +36,6 @@ class Constant
     const notification_report = '0';
     const notification_apply = '1';
     const notification_apply_approved = '2';
+
+    const report_job = '4';
 }

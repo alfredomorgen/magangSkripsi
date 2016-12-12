@@ -18,6 +18,7 @@ class CreateReportsTable extends Migration
             $table->integer('job_id')->unsigned()->index();
 
             $table->integer('type');
+            $table->text('description');
             $table->integer('status');
 
             $table->timestamps();
