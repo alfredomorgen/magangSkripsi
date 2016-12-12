@@ -1,6 +1,5 @@
-
 @extends('layouts.app')
-
+@section('title', 'Login as '.($user_types == \App\Constant::user_company ? 'Company' : $user_types == \App\Constant::user_jobseeker ? 'Jobseeker' : 'Admin'))
 @section('content')
 
     <div class="valign-wrapper" style="margin-top:70px">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Register Jobseeker')
 @section('content')
 
     <div class="valign-wrapper" style="margin-top:30px">

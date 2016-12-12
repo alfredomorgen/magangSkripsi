@@ -1,6 +1,5 @@
 @extends('layouts.app')
-
-
+@section('title', 'Search Company')
 @section('content')
     <style>
         ul li span{

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Applied Jobs')
 @section('content')
 <style>
     ul li span{
