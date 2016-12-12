@@ -82,8 +82,10 @@
                     <div class="card-action">
                         <div class="row">
                             <div class="col s6 left-align">
-                                @if(Auth::user()->role != \App\Constant::user_company)
-                                <a href="" class="tooltipped btn-floating waves-effect waves-light red" data-tooltip="Report"><i class="material-icons">error_outline</i></a>
+                                @if(Auth::guest())
+
+                                @elseif(Auth::user()->role == App\Constant::user_jobseeker)
+                                    <a href="" class="tooltipped btn-floating waves-effect waves-light red" data-tooltip="Report"><i class="material-icons">error_outline</i></a>
                                 @endif
                             </div>
                             <div class="col s6 right-align">
