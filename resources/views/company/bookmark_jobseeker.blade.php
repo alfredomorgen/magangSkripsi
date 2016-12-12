@@ -10,6 +10,11 @@
             padding-left: 8px;
             padding-right: 8px;
         }
+
+        .collection .collection-item.avatar .circle{
+            width:120px;
+            height:120px;
+        }
     </style>
     <div class="container">
         <div class="row">
@@ -42,9 +47,9 @@
                     <div class="row" style="margin-bottom:auto">
                         <div class="col m2 l2">
                             @if(\App\Jobseeker::find($bookmark->target)->user->photo == NULL)
-                                <img src="{{ asset('images/profile_default.jpg') }}" class="circle" style="width:120px; height:120px">
+                                <img src="{{ asset('images/profile_default.jpg') }}" class="circle materialboxed" width="650" >
                             @else
-                                <img src="{{ asset('images/'.\App\Jobseeker::find($bookmark->target)->user->photo) }}" class="circle" style="width:120px; height:120px">
+                                <img src="{{ asset('images/'.\App\Jobseeker::find($bookmark->target)->user->photo) }}" class="circle materialboxed" width="650">
                             @endif
                         </div>
 
@@ -80,4 +85,12 @@
         </div>
     </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('.materialboxed').materialbox();
+        });
+    </script>
 @endsection

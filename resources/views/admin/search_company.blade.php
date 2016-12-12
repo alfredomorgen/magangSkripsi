@@ -21,7 +21,7 @@
             <div class="col s12 l12 m12">
                 <nav style="background-color: white">
                     <div class="nav-wrapper">
-                        <form action="{{url('admin/searchCompany') }}" role="search" accept-charset="UTF-8">
+                        <form action="{{url('admin/search_company/search') }}" role="search" accept-charset="UTF-8">
                             <div class="input-field">
                                 <input class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Search Company" name="search" id="search" placeholder="Search a user" type="search" required>
                                 <label for="search"><i class="material-icons grey-text">search</i></label>

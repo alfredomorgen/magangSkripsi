@@ -31,7 +31,7 @@
                             <div class="input-field">
                                 <input class="tooltipped" data-position="bottom" data-delay="50"
                                        data-tooltip="Search Job" name="search" id="search" placeholder="Search a job"
-                                       type="search" required>
+                                       type="search">
                                 <label for="search"><i class="material-icons grey-text">search</i></label>
 
                                 <i class="material-icons">close</i>
@@ -114,7 +114,7 @@
 
         @if(!isset($message))
             @if(isset($search))
-                <span class="white-text">{{$search}}</span>
+                <span class="black-text">{{$search}}</span>
                 <ul class="collection z-depth-1 grey-text text-darken-2">
                     @foreach($jobs as $job)
                         <li class="collection-item avatar" style="padding-left:10px">
@@ -206,7 +206,7 @@
                 </ul>
             @endif
         @else
-            <span class="white-text">{{$message}}</span>
+            <span class="black-text">{{$message}}</span>
         @endif
 
     </div>

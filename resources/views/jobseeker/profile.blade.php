@@ -47,7 +47,6 @@
                                             </a>
                                         @endif
                                         <span class="card-title"><b>{{ $user->name }}</b></span>
-                                        <h6>Study at</h6>
                                         <h6><i class="tiny material-icons">location_on</i> Indonesia</h6>
                                         <h6><i class="tiny material-icons">mail</i> {{ $user->email }}</h6>
                                         <h6><i class="tiny material-icons">phone</i> {{ $user->phone }}</h6>

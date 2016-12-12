@@ -6,6 +6,7 @@ use App\Constant;
 use App\Job;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -18,6 +19,20 @@ class SiteController extends Controller
             'jobs' => $jobs,
         ];
         return view('home', $data);
+    }
+    public function indexCompany()
+    {
+        $user = User::with('company')
+            ->where('role', '=', '1')
+            ->paginate(5);
+        $data = ['users' => $user];
+        if (Auth::guest()) {
+            return view('search_company', $data);
+        } else if (Auth::user()->role == Constant::user_admin) {
+            return view('admin.search_company', $data);
+        } else if (Auth::user()->role == Constant::user_jobseeker) {
+            return view('search_company', $data);
+        }
     }
 
     public function loginType($user_type)
@@ -81,4 +96,46 @@ class SiteController extends Controller
         }
     }
 
+    public function searchCompany(Request $request)
+    {
+        $search = $request->input('search');
+        $users = User::where('name', 'LIKE', '%' . $search . '%')
+            ->Where('role', '=', '1')
+            ->orderBy('id')
+            ->paginate(5);
+        if (count($users) == 0) {
+            if(Auth::guest()){
+                return view('search_company')
+                    ->with('message', 'Company not Found')
+                    ->with('search', $search);;
+            }
+            else if(Auth::user()->role == constant::user_admin)
+            {
+                return view('admin.search_company')
+                    ->with('message', 'Company not Found')
+                    ->with('search', $search);
+            }
+            else if (Auth::user()->role == constant::user_jobseeker)
+            {
+                return view('search_company')
+                    ->with('message', 'Company not Found')
+                    ->with('search', $search);;
+            }
+        } else {
+            if(Auth::guest()){
+                return view('search_company')
+                    ->with('users', $users)
+                    ->with('search', 'Looking for' . ' ' . $search);
+            } else if(Auth::user()->role == constant:: user_admin) {
+                return view('admin.search_company')
+                    ->with('users', $users)
+                    ->with('search', 'Looking for' . ' ' . $search);
+            }elseif(Auth::user()->role== constant:: user_jobseeker){
+
+                return view('search_company')
+                    ->with('users', $users)
+                    ->with('search', 'Looking for' . ' ' . $search);
+            }
+        }
+    }
 }

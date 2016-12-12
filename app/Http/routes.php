@@ -46,16 +46,20 @@ Route::get('/home/search_job',[
     'uses' => 'SiteController@searchJob',
     'as' => 'home.search',
 ]);
+Route::get('/search_company/search',[
+    'uses' => 'SiteController@searchCompany',
+    'as' => 'search_company'
+]);
+
+Route::get('/search_company',[
+    'uses' => 'SiteController@indexCompany',
+    'as' => 'index_company',
+]);
 
 ///////////
 // Admin //
 ///////////
 Route::group(['middleware' => 'admin'], function(){
-    Route::get('admin/searchCompany', function () {
-        $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
-        $route = "admin/search_company/$search";
-        return redirect($route);
-    });
 
     Route::get('admin/searchJobseeker',function(){
         $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
@@ -70,11 +74,11 @@ Route::group(['middleware' => 'admin'], function(){
     });
 
     Route::get('/admin/search_company', [
-        'uses' => 'SearchController@indexCompany'
+        'uses' => 'SiteController@indexCompany'
     ]);
 
-    Route::get('/admin/search_company/{search}', [
-        'uses' => 'SearchController@searchCompany'
+    Route::get('/admin/search_company/search', [
+        'uses' => 'SiteController@searchCompany'
     ]);
 
     Route::get('/admin/search_jobseeker', [
@@ -241,11 +245,6 @@ Route::get('/job/{id}/apply', [
     'as' => 'jobseeker.apply'
 ]);
 
-Route::get('/jobseeker/{user_id}', [
-    'uses' => 'JobseekerController@index',
-    'as' => 'jobseeker.index',
-]);
-
 Route::get('/jobseeker/{user_id}/edit', [
     'uses' => 'JobseekerController@edit',
     'as' => 'jobseeker.edit',
@@ -254,4 +253,11 @@ Route::get('/jobseeker/{user_id}/edit', [
 Route::post('/jobseeker/{user_id}/update',[
     'uses' => 'JobseekerController@update',
     'as' => 'jobseeker.update',
+]);
+
+
+
+Route::get('/jobseeker/{user_id}', [
+    'uses' => 'JobseekerController@index',
+    'as' => 'jobseeker.index',
 ]);

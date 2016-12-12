@@ -77,7 +77,7 @@
                                                         <span><i class="material-icons tiny">av_timer</i>@if($job->type ==\App\Constant::job_fulltime) Full Time @else Part Time @endif</span><br>
                                                         <span><i class="material-icons tiny">schedule</i> {{$job->period}} Months</span><br>
                                                         <span><i class="material-icons tiny">payment</i>@if($job->salary ==\App\Constant::job_paid) Paid @else Not Paid @endif</span><br>
-                                                        <a href="{{route('job.index',$job->id)}}">Check</a>
+                                                        <button class="btn orange "><a class="white-text" href="{{route('job.index',$job->id)}}">View</a></button>
                                                         <span class="right">Posted : {{$job->created_at}}</span>
                                                     </div>
                                                     <div class="card-reveal">

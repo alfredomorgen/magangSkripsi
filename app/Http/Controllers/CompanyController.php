@@ -31,7 +31,8 @@ class CompanyController extends Controller
     {
         $user = User::find($user_id);
         if($user != null && $user->role == Constant::user_company){
-            $jobs = $user->company->job;
+            $jobs = $user->company->job()->where('status', '=', Constant::status_active)->get();
+
             $data = [
                 'user' => $user,
                 'jobs' => $jobs,

@@ -7,20 +7,14 @@ use App\Jobseeker;
 use App\Job;
 use App\User;
 use App\Constant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 
 class SearchController extends Controller
 {
-    public function indexCompany()
-    {
-        $user = User::with('company')
-            ->where('role', '=', '1')
-            ->paginate(5);
-        $data = ['users' => $user];
-        return view('admin.search_company', $data);
-    }
+    
 
     public function indexJobseeker()
     {
@@ -63,23 +57,7 @@ class SearchController extends Controller
         }
     }
 
-    public function searchCompany($search)
-    {
-
-        $users = User::where('name', 'LIKE', '%' . $search . '%')
-            ->Where('role', '=', '1')
-            ->orderBy('id')
-            ->paginate(5);
-        if (count($users) == 0) {
-            return view('admin.search_company')
-                ->with('message', 'Company not Found')
-                ->with('search', $search);
-        } else {
-            return view('admin.search_company')
-                ->with('users', $users)
-                ->with('search', 'Looking for' . ' ' . $search);
-        }
-    }
+    
 
     public function searchJobseeker($search)
     {

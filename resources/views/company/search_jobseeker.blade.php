@@ -41,19 +41,19 @@
                                             <div class="collapsible-body grey-text">
                                                 <div class="row" style="padding:10px 0px 0px 20px; margin-bottom: 0px;">
                                                     <div class="input-field col l2">
-                                                        <label for="university"><i class=" tiny material-icons orange-text">work</i></label>
+                                                        <label for="university"><i class=" tiny material-icons orange-text">business</i></label>
                                                         <input name="university" id="university" type="text"
                                                                class="validate" placeholder="University">
                                                     </div>
                                                     <div class="input-field col l2">
-                                                        <label for="major"><i class=" tiny material-icons orange-text">location_on</i></label>
+                                                        <label for="major"><i class=" tiny material-icons orange-text">class</i></label>
                                                         <input name="major" id="major" type="text"
                                                                class="validate" placeholder="Major">
                                                     </div>
                                                     <div class="input-field col l4">
                                                         <div class="row" style="margin:0px">
                                                             <div class="col l1">
-                                                                <i class=" tiny material-icons orange-text">av_timer</i>
+                                                                <i class=" tiny material-icons orange-text">perm_identity</i>
                                                             </div>
                                                             <div class="col l11">
                                                                 <select name="gender" id="gender">
