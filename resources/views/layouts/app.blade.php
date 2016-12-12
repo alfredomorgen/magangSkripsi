@@ -118,7 +118,7 @@
 
 @yield('content')
 
-<footer class="page-footer" style=" background-image: url({{asset('images/footers7.jpg')}});">
+<footer class="page-footer" style=" background-image: url({{asset('images/footers7.jpg')}}); background-repeat:no-repeat;background-attachment: fixed; background-size: 100% 100%;">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
