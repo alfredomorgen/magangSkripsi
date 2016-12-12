@@ -18,13 +18,16 @@
         @show
     </div>
 
-    <div class="container">
-        <div class="row center">
-            <h4 class="col s12 valign white-text">Bookmarks</h4>
-        </div>
-    </div>
+    {{--<div class="container">--}}
+        {{--<div class="row center">--}}
+            {{--<h4 class="col s12 valign white-text">Bookmarks</h4>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     <ul class="collection z-depth-1 grey-text text-darken-2">
+        <div class="collection-item orange darken-1 center white-text">
+            <h6><strong>BOOKMARK</strong></h6>
+        </div>
         <table class="centered bordered highlight responsive-table white">
             <thead>
                 <tr>

@@ -11,9 +11,6 @@
             height: 4.5rem;
         }
 
-        .pagination li a{
-            color:white;
-        }
 
     </style>
     <div class="container">
@@ -202,7 +199,7 @@
                 </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobs->render() }}</li>
+                    <li class="waves-effect white">{{ $jobs->render() }}</li>
                 </ul>
             @endif
         @else

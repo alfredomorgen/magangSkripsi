@@ -28,4 +28,9 @@ class Jobseeker extends Model
     {
         return $this->hasMany('\App\Transaction');
     }
+
+    public function job_interest()
+    {
+        return $this->hasMany('\App\Job_Interest');
+    }
 }

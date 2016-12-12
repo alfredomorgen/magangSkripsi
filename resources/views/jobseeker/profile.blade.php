@@ -32,14 +32,14 @@
                                             @endif
                                         </div>
                                     @endif
-                                    <div class="col l3">
+                                    <div class="col l2">
                                         @if($user->photo == NULL)
-                                            <img src="{{ asset('images/profile_default.jpg') }}" style="width:150px; height:150px">
+                                            <img src="{{ asset('images/profile_default.jpg') }}" class="responsive-img"style="width:150px; height:150px">
                                         @else
-                                            <img src="{{ asset('images/'.$user->photo) }}" style="width:150px; height:150px">
+                                            <img src="{{ asset('images/'.$user->photo) }}"class="responsive-img" style="width:150px; height:150px">
                                         @endif
                                     </div>
-                                    <div class="col s12 m12 l9">
+                                    <div class="col s12 m12 l10">
                                         @if(Auth::guest())
                                         @elseif($user->id == Auth::user()->id)
                                             <a href="{{ route('jobseeker.edit', $user->id) }}" class="btn-floating btn-large red right">
@@ -47,15 +47,14 @@
                                             </a>
                                         @endif
                                         <span class="card-title"><b>{{ $user->name }}</b></span>
-                                        <h6><i class="tiny material-icons">location_on</i> Indonesia</h6>
+                                            @if($user->location != null)
+                                                <h6><i class="tiny material-icons">location_on</i> {{$user->location}}</h6>
+                                            @endif
                                         <h6><i class="tiny material-icons">mail</i> {{ $user->email }}</h6>
                                         <h6><i class="tiny material-icons">phone</i> {{ $user->phone }}</h6>
-                                        <p>
-                                            {{ $user->description }}
-                                        </p>
+
                                     </div>
                                 </div>
-                                <div class="row"></div>
                             </div>
                         </div>
                     </div>
@@ -65,8 +64,11 @@
                     <div class="col s12">
                         <ul class="tabs red">
                             <li class="tab col s3"><a class="active white-text" href="#test1">Education</a></li>
-                            <li class="tab col s3"><a class="white-text" href="#test2">Languages</a></li>
-                            <li class="tab col s3"><a class="white-text" href="#test3">About Me</a></li>
+                            <li class="tab col s3"><a class="white-text" href="#test2">About</a></li>
+                            <li class="tab col s3" style="width:24.8%"><a class="white-text" href="#test3">Job Interest</a></li>
+                            @if($user->jobseeker->resume != NULL)
+                                <li class="tab col s3"><a class="white-text" href="#test4">Resume</a></li>
+                            @endif
                         </ul>
                     </div>
                     <div id="test1" class="col s12">
@@ -74,8 +76,7 @@
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
                                     <li class="collection-header blue white-text"><h6><b>Education</b></h6></li>
-                                    <li class="collection-item"><p><span style="font-size:1.5em;"></span><br>Bachelor's
-                                            Degree, Computer Science</p></li>
+                                    <li class="collection-item"><p><span style="font-size:1.5em;">{{$user->jobseeker->university}}</span><br></p></li>
                                 </ul>
                             </div>
                         </div>
@@ -84,11 +85,12 @@
                         <div class="row">
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
-                                    <li class="collection-header  cyan darken-1 white-text"><h6><b>Languages</b></h6>
+                                    <li class="collection-header  cyan darken-1 white-text"><h6><b>About</b></h6>
                                     </li>
                                     <li class="collection-item"><p>
-                                        <h6>Bahasa Indonesia</h6>
-                                        <h6>English</h6>
+                                        <p>
+                                            {{ $user->description }}
+                                        </p>
                                     </li>
                                 </ul>
                             </div>
@@ -98,15 +100,35 @@
                         <div class="row">
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
-                                    <li class="collection-header  amber darken-4 white-text"><h6><b>About Me</b></h6>
+                                    <li class="collection-header  amber darken-4 white-text"><h6><b>Job Interest</b></h6>
                                     </li>
-                                    <li class="collection-item">
-                                        <p><span style="font-size: 1em">GPA :</span></p>
-                                    </li>
+
+                                        <li class="collection-item">
+                                            @foreach ($user->jobseeker->job_interest as $job_interest)
+                                            <p><span style="font-size: 1em"><i class="tiny material-icons blue-text">label</i> {{$job_interest->name}}</span></p>
+                                            @endforeach
+                                        </li>
+
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    @if($user->jobseeker->resume != NULL)
+                        <div id="test4" class="col s12">
+                            <div class="row">
+                                <div class="col s12 m12">
+                                    <ul class="collection with-header grey-text text-darken-2 z-depth-1">
+                                        <li class="collection-header  amber darken-4 white-text"><h6><b>Resume</b></h6>
+                                        </li>
+                                        <li class="collection-item">
+                                            <a class="waves-effect blue btn" href="{{ asset('uploads/'.$user->jobseeker->resume) }}">View</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

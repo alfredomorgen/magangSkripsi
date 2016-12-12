@@ -24,8 +24,8 @@
                         <form action="{{ route('company.search_jobseeker') }}" role="search" method="get" accept-charset="UTF-8">
                             <div class="input-field">
                                 <input class="tooltipped" data-position="bottom" data-delay="50"
-                                       data-tooltip="Search Job" name="search" id="search" placeholder="Search a job"
-                                       type="search" required>
+                                       data-tooltip="Search Job" name="search" id="search" placeholder="Search jobseeker"
+                                       type="search">
                                 <label for="search"><i class="material-icons grey-text">search</i></label>
 
                                 <i class="material-icons">close</i>
@@ -138,7 +138,7 @@
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect white">{{ $users->render() }}</li>
+                    <li class="waves-effect white">{{ $users->appends(\Illuminate\Support\Facades\Input::except('page'))->render() }}</li>
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
@@ -200,3 +200,11 @@
         @endif
     </div>
 @endsection
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
+@endsection
+

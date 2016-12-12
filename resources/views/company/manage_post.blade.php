@@ -104,16 +104,19 @@
                 {{session('error')}}
             </div>
         @endif
-        <div class="row center">
-            <div class="col l8 push-l2">
-                <h4 class="col s12 valign white-text">Manage Job</h4>
-            </div>
-        </div>
+        {{--<div class="row center">--}}
+            {{--<div class="col l8 push-l2">--}}
+                {{--<h4 class="col s12 valign white-text">Manage Job</h4>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 
     <div class="container">
         <div class="row">
             <ul class="collection z-depth-1 grey-text text-darken-2">
+                <div class="collection-item orange darken-1 center white-text">
+                    <h6><strong>MANAGE POST</strong></h6>
+                </div>
                 <table class="centered bordered highlight responsive-table white" style="word-wrap:break-word">
                     <thead>
                     <tr>
