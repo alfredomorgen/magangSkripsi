@@ -235,6 +235,11 @@ Route::get('/jobseeker/bookmark/remove_job/{job_id}', [
     'as' => 'jobseeker.bookmark_remove_job',
 ]);
 
+Route::get('/jobseeker/bookmark/remove/{bookmark_id}', [
+    'uses' => 'JobseekerController@bookmark_remove',
+    'as' => 'jobseeker.bookmark_remove',
+]);
+
 Route::get('/jobseeker/applied_jobs', [
     'uses' => 'JobseekerController@applied_jobs',
     'as' => 'jobseeker.applied_jobs',

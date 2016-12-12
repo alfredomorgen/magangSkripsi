@@ -123,10 +123,19 @@ class JobseekerController extends Controller
 
     public function bookmark_index()
     {
-        $bookmarks = Bookmark::where('user_id', Auth::user()->id)->paginate(10);
+        $company_bookmarks = Bookmark::where('user_id', Auth::user()->id)
+            ->where('type', '=', Constant::user_company)
+            ->get();
+
+        $job_bookmarks = Bookmark::where('user_id', Auth::user()->id)
+            ->where('type', '=', Constant::job)
+            ->get();
+
         $data = [
-            'bookmarks' => $bookmarks,
+            'company_bookmarks' => $company_bookmarks,
+            'job_bookmarks' => $job_bookmarks,
         ];
+
         return view('jobseeker.bookmark', $data);
     }
 
@@ -226,6 +235,21 @@ class JobseekerController extends Controller
 
         $data = ['message' => $message];
         return redirect()->route('job.index', $job_id)->with($data);
+    }
+
+    public function bookmark_remove($bookmark_id)
+    {
+        $message = "";
+        $bookmark = Bookmark::find($bookmark_id);
+
+        if($bookmark->delete()){
+            $message = "Bookmark successfully removed!";
+        } else {
+            $message = "Failed to remove bookmark...";
+        }
+
+        $data = ['message' => $message];
+        return redirect()->route('jobseeker.bookmark_index')->with($data);
     }
 
     public function report_job($job_id, Request $request){
