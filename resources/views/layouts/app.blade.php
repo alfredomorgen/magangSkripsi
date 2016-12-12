@@ -29,6 +29,7 @@
     <style>
         /* Add animation to "page content" */
         .animate-bottom {
+            display: none;
             position: relative;
             -webkit-animation-name: animatebottom;
             -webkit-animation-duration: 1s;
@@ -46,104 +47,110 @@
             to{ bottom:0; opacity:1 }
         }
 
-        #myDiv {
-            display: none;
+        body #myDiv {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
         }
 
+        main {
+            flex: 1 0 auto;
+        }
     </style>
 
 </head>
 
-<body style=" background-image: url({{asset('images/office.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px;" onload="myFunction()">
-<div id="loader"></div>
-<div style="display:none;" id="myDiv" class="animate-bottom">
-<nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif" role="navigation">
-    <div class="nav-wrapper container">
-        <a id="logo-container" href="/" class="brand-logo">Magang</a>
-        <ul class="right hide-on-med-and-down" >
-            @if (Auth::guest())
-                <ul id="dropdown2" class="dropdown-content white" style="margin-top:64px;">
-                    <li><a href="{{ url('/login/1') }}" class="black-text"><h6>As Company</h6></a></li>
-                    <li><a href="{{ url('/login/2') }}" class="black-text"><h6>As Jobseeker</h6></a></li>
-                </ul>
+<body style="background-image: url({{asset('images/office.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px;" onload="myFunction()">
+<div id="myDiv" class="animate-bottom">
+    <nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="/" class="brand-logo">Magang</a>
+            <ul class="right hide-on-med-and-down" >
+                @if (Auth::guest())
+                    <ul id="dropdown2" class="dropdown-content white" style="margin-top:64px;">
+                        <li><a href="{{ url('/login/1') }}" class="black-text"><h6>As Company</h6></a></li>
+                        <li><a href="{{ url('/login/2') }}" class="black-text"><h6>As Jobseeker</h6></a></li>
+                    </ul>
 
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Login</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Login</a></li>
 
-                <ul id="dropdown3" class="dropdown-content white" style="margin-top:64px;">
-                    <li><a href="{{ url('/register/1') }}" class="black-text"><h6>Company</h6></a></li>
-                    <li><a href="{{ url('/register/2') }}" class="black-text"><h6>Jobseeker</h6></a></li>
-                </ul>
+                    <ul id="dropdown3" class="dropdown-content white" style="margin-top:64px;">
+                        <li><a href="{{ url('/register/1') }}" class="black-text"><h6>Company</h6></a></li>
+                        <li><a href="{{ url('/register/2') }}" class="black-text"><h6>Jobseeker</h6></a></li>
+                    </ul>
 
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Register</a></li>
-            @else
-                <ul id="dropdown2" class="dropdown-content orange lighten-4" style="margin-top:64px;">
-                    <li><a href="{{ url('/logout') }}" class="black-text">Logout</a></li>
-                </ul>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Register</a></li>
+                @else
+                    <ul id="dropdown2" class="dropdown-content orange lighten-4" style="margin-top:64px;">
+                        <li><a href="{{ url('/logout') }}" class="black-text">Logout</a></li>
+                    </ul>
 
-                <ul id="dropdownNotifications" class="dropdown-content orange lighten-4" style="margin-top:64px;">
-                    <li><a href="#!" class="black-text">Notifications</a></li>
-                </ul>
+                    <ul id="dropdownNotifications" class="dropdown-content orange lighten-4" style="margin-top:64px;">
+                        <li><a href="#!" class="black-text">Notifications</a></li>
+                    </ul>
 
-                <li><a class="dropdown-button" href="#!" data-activates="dropdownNotifications"><i class="material-icons">chat_bubble_outline</i></a></li>
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }}</a></li>
-            @endif
-        </ul>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdownNotifications"><i class="material-icons">chat_bubble_outline</i></a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }}</a></li>
+                @endif
+            </ul>
 
-        <ul id="nav-mobile" class="side-nav">
-            @if (Auth::guest())
-                <ul id="dropdown4" class="dropdown-content white" style="margin-top:64px;">
-                    <li><a href="{{ url('/login/1') }}" class="black-text"><h6>As Company</h6></a></li>
-                    <li><a href="{{ url('/login/2') }}" class="black-text"><h6>As Jobseeker</h6></a></li>
-                </ul>
+            <ul id="nav-mobile" class="side-nav">
+                @if (Auth::guest())
+                    <ul id="dropdown4" class="dropdown-content white" style="margin-top:64px;">
+                        <li><a href="{{ url('/login/1') }}" class="black-text"><h6>As Company</h6></a></li>
+                        <li><a href="{{ url('/login/2') }}" class="black-text"><h6>As Jobseeker</h6></a></li>
+                    </ul>
 
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Login</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Login</a></li>
 
-                <ul id="dropdown5" class="dropdown-content white" style="margin-top:64px;">
-                    <li><a href="{{ url('/register/1') }}" class="black-text"><h6>Company</h6></a></li>
-                    <li><a href="{{ url('/register/2') }}" class="black-text"><h6>Jobseeker</h6></a></li>
-                </ul>
+                    <ul id="dropdown5" class="dropdown-content white" style="margin-top:64px;">
+                        <li><a href="{{ url('/register/1') }}" class="black-text"><h6>Company</h6></a></li>
+                        <li><a href="{{ url('/register/2') }}" class="black-text"><h6>Jobseeker</h6></a></li>
+                    </ul>
 
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown5">Register</a></li>
-            @else
-                <ul id="dropdown6" class="dropdown-content orange lighten-4" style="margin-top:64px;">
-                    <li><a href="{{ url('/logout') }}" class="black-text">Logout</a></li>
-                </ul>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown5">Register</a></li>
+                @else
+                    <ul id="dropdown6" class="dropdown-content orange lighten-4" style="margin-top:64px;">
+                        <li><a href="{{ url('/logout') }}" class="black-text">Logout</a></li>
+                    </ul>
 
-                <a class="dropdown-button" href="#!" data-activates="dropdown6">{{ Auth::user()->name }}</a>
-            @endif
-        </ul>
+                    <a class="dropdown-button" href="#!" data-activates="dropdown6">{{ Auth::user()->name }}</a>
+                @endif
+            </ul>
 
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-</nav>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
 
-@yield('content')
+    <main>
+        @yield('content')
+    </main>
 
-<footer class="page-footer" style=" background-image: url({{asset('images/footers7.jpg')}}); background-repeat:no-repeat; background-size: 100% auto;">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Magang Internship</h5>
-                <p class="white-text text-lighten-4">We help you find the right place for Internship.</p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Contact</h5>
-                <ul>
-                    <li><a class="white-text text-lighten-4" href="https://www.facebook.com/AlfredoMorgen">Alfredo (alfredo7romero@gmail.com)</a></li>
-                    <li><a class="white-text text-lighten-4" href="https://www.facebook.com/axel.soedarsono">Axel (axelso@live.com)</a></li>
-                    <li><a class="white-text text-lighten-4" href="https://www.facebook.com/hashner.edward">Hashner (edwardhashner@gmail.com)</a></li>
-                </ul>
+    <footer class="page-footer" style=" background-image: url({{asset('images/footers7.jpg')}}); background-repeat:no-repeat; background-size: 100% auto;">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Magang Internship</h5>
+                    <p class="white-text text-lighten-4">We help you find the right place for Internship.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Contact</h5>
+                    <ul>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/AlfredoMorgen">Alfredo (alfredo7romero@gmail.com)</a></li>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/axel.soedarsono">Axel (axelso@live.com)</a></li>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/hashner.edward">Hashner (edwardhashner@gmail.com)</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="footer-copyright">
-        <div class="container white-text text-lighten-4">
-            © 2016 Copyright Magang Internship
-            <a class="white-text text-lighten-4 right" href="#!"></a>
+        <div class="footer-copyright">
+            <div class="container white-text text-lighten-4">
+                © 2016 Copyright Magang Internship
+                <a class="white-text text-lighten-4 right" href="#!"></a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 </div>
 @yield('scripts')
     <script>
@@ -154,8 +161,7 @@
         }
 
         function showPage() {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("myDiv").style.display = "block";
+            document.getElementByClass("animate-bottom").style.display = "block";
         }
     </script>
 </body>
