@@ -165,22 +165,20 @@ class CompanyController extends Controller
         $major = $request->input('major');
         $gender = $request->input('gender');
 
-
-        if ($university != null || $major != null || $gender != null) {
+        if ($university != null || $major != null || $gender != null || $university == "" || $major == "") {
             $query = User::join('jobseekers','users.id','=','jobseekers.user_id')
             ->where('users.name', 'LIKE', '%'.$search.'%')
             ->where('users.status',Constant::status_active)
             ->select('users.*');
         } else {
-
-        $query = User::where('users.name', 'LIKE', '%' . $search . '%')
+            $query = User::where('users.name', 'LIKE', '%' . $search . '%')
             ->where('users.status', Constant::status_active);
         }
 
-        if($university != null){
+        if($university != null && $university == ""){
             $query->where('jobseekers.university', 'LIKE', '%' . $university . '%');
         }
-        if($major != null){
+        if($major != null && $major == ""){
             $query->where('jobseekers.major','LIKE', '%' . $major . '%');
         }
         if($gender != null){
