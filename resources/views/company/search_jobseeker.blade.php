@@ -199,16 +199,4 @@
             {{$message}}
         @endif
     </div>
-
-    </div>
-    </div>
 @endsection
-
-@section('scripts')
-    <script>
-        $(document).ready(function () {
-            $('select').material_select();
-        });
-    </script>
-@endsection
-
