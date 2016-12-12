@@ -155,7 +155,7 @@ class CompanyController extends Controller
     {
         $users = User::select('*')
             ->where('role','=','2')
-            ->paginate(3);
+            ->paginate(5);
         $data = ['users' => $users];
         return view('company.search_jobseeker', $data);
     }
