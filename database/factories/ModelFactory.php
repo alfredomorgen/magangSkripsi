@@ -19,6 +19,7 @@ $factory->defineAs(App\User::class, 'jobseeker', function (Faker\Generator $fake
         'role' => \App\Constant::user_jobseeker,
         'phone' => $faker->phoneNumber,
         'location' => $faker->address,
+        'photo' => 'j'.$faker->biasedNumberBetween(1, 10).'.jpg',
         'description' => $faker->catchPhrase,
         'status' => \App\Constant::status_active,
         'remember_token' => str_random(10),
@@ -43,6 +44,7 @@ $factory->defineAs(App\User::class, 'company', function (Faker\Generator $faker)
         'role' => \App\Constant::user_company,
         'phone' => $faker->phoneNumber,
         'location' => $faker->address,
+        'photo' => 'c'.$faker->biasedNumberBetween(1, 10).'.png',
         'description' => $faker->catchPhrase,
         'status' => \App\Constant::status_active,
         'remember_token' => str_random(10),
@@ -61,6 +63,7 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) use ($factory
     return [
         'name' => $faker->jobTitle,
         'deadline' => $faker->date('Y-m-d', strtotime('+30 days')),
+        'location' => $faker->address,
         'type' => $faker->biasedNumberBetween(0, 1),
         'salary' => $faker->biasedNumberBetween(0, 1),
         'period' => $faker->biasedNumberBetween(1, 24),
