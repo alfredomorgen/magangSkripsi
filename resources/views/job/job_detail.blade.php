@@ -107,7 +107,7 @@
                                 @endif
                             </div>
                             <div class="col s6 right-align">
-                                <button class="btn btn-default orange waves-effect" id="btnApply">Apply</button>
+                                <a href="{{ route('jobseeker.apply', $job->id) }}" class="btn btn-default orange waves-effect" id="btnApply">Apply</a>
                             </div>
                         </div>
                     </div>
@@ -131,13 +131,10 @@
                     event.preventDefault();
                     Materialize.toast('Only Jobseeker can apply...', 3000, 'rounded');
                 });
-            @else
+            @elseif(Auth::user()->jobseeker->resume == null)
                 $('#btnApply').click(function (event) {
-                    @if(Auth::user()->jobseeker->resume == null)
-                        Materialize.toast('Please upload your CV first...', 3000, 'rounded');
-                    @else
-                        window.location.href += '/apply';
-                    @endif
+                    event.preventDefault();
+                    Materialize.toast('Please upload your CV first...', 3000, 'rounded');
                 });
             @endif
 
