@@ -114,9 +114,6 @@
                                         </div>
                                     </div>
                                     <a href="{{ route('job.index', $job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
-                                    <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Report">report_problem</i></a>
-                                    <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Share">person_pin</i></a>
-                                    <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Add to Saved Jobs">grade</i></a>
                                 </div>
                             </div>
                         </li>
@@ -152,9 +149,6 @@
                                     </div>
 
                                     <a href="{{ route('job.index', $job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
-                                    <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Report">report_problem</i></a>
-                                    <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Share">person_pin</i></a>
-                                    <a href="#!"><i class="tooltipped material-icons right" data-tooltip="Add to Saved Jobs">grade</i></a>
                                 </div>
                             </div>
                         </li>
