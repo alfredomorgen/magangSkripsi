@@ -133,8 +133,12 @@
                 });
             @else
                 $('#btnApply').click(function (event) {
-                window.location.href += '/apply';
-            });
+                    @if(Auth::user()->jobseeker->resume == null)
+                        Materialize.toast('Please upload your CV first...', 3000, 'rounded');
+                    @else
+                        window.location.href += '/apply';
+                    @endif
+                });
             @endif
 
             $('.modal').modal();
