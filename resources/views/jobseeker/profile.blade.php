@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('title', $user->name)
 @section('content')
+    <style>
+        .toast{
+            margin-top:90px;
+            margin-right:220px;
+        }
+    </style>
     <div class="container">
         <div class="row">
             @section('navbar')
@@ -164,5 +170,6 @@
 
             Materialize.toast('{{ session('message') }}', 5000, 'rounded');
         });
+        Materialize.toast('Complete your Profile to make Company interest in you!', 3000,'rounded');
     </script>
 @endsection

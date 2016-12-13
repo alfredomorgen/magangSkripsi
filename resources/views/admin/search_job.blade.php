@@ -34,7 +34,7 @@
         </div>
         @if(!isset($message))
             @if(isset($search))
-                <span class="white-text">{{$search}}</span>
+                <span class="black-text">{{$search}}</span>
 
                 <ul class="collection z-depth-1 grey-text text-darken-2">
                     <table class="centered bordered highlight responsive-table white">
@@ -80,7 +80,7 @@
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobs->render() }}</li>
+                    <li class="waves-effect white">{{ $jobs->render() }}</li>
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
@@ -127,11 +127,11 @@
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $jobs->render() }}</li>
+                    <li class="waves-effect white">{{ $jobs->render() }}</li>
                 </ul>
             @endif
         @else
-            <span class="white-text">{{$message}}</span>
+            <span class="black-text">{{$message}}</span>
         @endif
     </div>
 @endsection

@@ -60,9 +60,9 @@
                                 <td>{{ $user->jobseeker->id }}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('jobseeker.index', $user->id) }}">{{ $user->name}}</a></td>
                                 <td>{{ $user->email }}</td>
-                                <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Inactive</span> @else <span class="blue-text">Active</span> @endif</td>
+                                <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Deactived</span> @else <span class="blue-text">Active</span> @endif</td>
                                 @if($user->status == \App\Constant::status_active)<td>
-                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Inactive</a>
+                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Deactived</a>
                                     <!-- Modal Structure -->
                                     <div id="modal{{$user->id}}" class="modal">
                                         <div class="modal-content">
@@ -74,14 +74,14 @@
                                         </div>
                                     </div>
                                 </td>
-                                @else <td></td>@endif
+                                @else <td><a class="waves-effect waves-light btn red disabled" href="#">Deactived</a></td>@endif
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $users->render() }}</li>
+                    <li class="waves-effect white">{{ $users->render() }}</li>
                 </ul>
             @else
                 <ul class="collection z-depth-1 grey-text text-darken-2">
@@ -105,9 +105,9 @@
                                 <td>{{ $user->jobseeker->id }}</td>
                                 <td><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Profile" href="{{ route('jobseeker.index', $user->id) }}">{{ $user->name}}</a></td>
                                 <td>{{ $user->email }}</td>
-                                <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Inactive</span> @else <span class="blue-text">Active</span> @endif</td>
+                                <td>@if($user->status == \App\Constant::status_inactive)<span class="red-text">Deactived</span> @else <span class="blue-text">Active</span> @endif</td>
                                 @if($user->status == \App\Constant::status_active)<td>
-                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Inactive</a>
+                                    <a class="waves-effect waves-light btn red" href="#modal{{$user->id}}">Deactived</a>
                                     <!-- Modal Structure -->
                                     <div id="modal{{$user->id}}" class="modal">
                                         <div class="modal-content">
@@ -119,14 +119,14 @@
                                         </div>
                                     </div>
                                 </td>
-                                @else <td></td>@endif
+                                @else <td><a class="waves-effect waves-light btn red disabled" href="#">Deactived</a></td>@endif
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </ul>
                 <ul class="pagination center">
-                    <li class="waves-effect">{{ $users->render() }}</li>
+                    <li class="waves-effect white">{{ $users->render() }}</li>
                 </ul>
             @endif
         @else
