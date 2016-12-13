@@ -11,46 +11,6 @@
 |
 */
 
-////////////////
-// All users //
-///////////////
-Route::auth();
-
-Route::get('/', [
-    'uses' => 'SiteController@index',
-]);
-
-Route::get('/home', [
-    'uses' => 'SiteController@index',
-]);
-
-Route::get('/login/{user_type}',[
-    'uses' => 'SiteController@loginType'
-]);
-
-Route::get('/register/{user_type}',[
-    'uses' => 'SiteController@registerType'
-]);
-
-Route::get('/search_job',[
-    'uses' => 'JobController@search_job',
-    'as' => 'job.search'
-]);
-
-Route::get('/home/search_job',[
-    'uses' => 'SiteController@searchJob',
-    'as' => 'home.search',
-]);
-Route::get('/search_company/search',[
-    'uses' => 'SiteController@searchCompany',
-    'as' => 'search_company'
-]);
-
-Route::get('/search_company',[
-    'uses' => 'SiteController@indexCompany',
-    'as' => 'index_company',
-]);
-
 ///////////
 // Admin //
 ///////////
@@ -240,11 +200,6 @@ Route::post('/job/{id}/report', [
     'as' => 'jobseeker.report_job',
 ]);
 
-Route::get('/jobseeker/{user_id}', [
-    'uses' => 'JobseekerController@index',
-    'as' => 'jobseeker.index',
-]);
-
 Route::get('/jobseeker/{user_id}/edit', [
     'uses' => 'JobseekerController@edit',
     'as' => 'jobseeker.edit',
@@ -255,13 +210,45 @@ Route::post('/jobseeker/{user_id}/update',[
     'as' => 'jobseeker.update',
 ]);
 
+////////////////
+// All users //
+///////////////
+Route::auth();
 
-////////////
-// Errors //
-////////////
-Route::get('/job/{id}', [
-    'uses' => 'JobController@index',
-    'as' => 'job.index',
+Route::get('/', [
+    'uses' => 'SiteController@index',
+]);
+
+Route::get('/home', [
+    'uses' => 'SiteController@index',
+]);
+
+Route::get('/login/{user_type}',[
+    'uses' => 'SiteController@loginType'
+]);
+
+Route::get('/register/{user_type}',[
+    'uses' => 'SiteController@registerType'
+]);
+
+Route::get('/search_job',[
+    'uses' => 'JobController@search_job',
+    'as' => 'job.search'
+]);
+
+Route::get('/home/search_job',[
+    'uses' => 'SiteController@searchJob',
+    'as' => 'home.search',
+]);
+
+Route::get('/search_company/search',[
+    'uses' => 'SiteController@searchCompany',
+    'as' => 'search_company'
+]);
+
+Route::get('/search_company',[
+    'uses' => 'SiteController@indexCompany',
+    'as' => 'index_company',
 ]);
 
 Route::get('/company/{user_id}', [
@@ -269,7 +256,12 @@ Route::get('/company/{user_id}', [
     'as' => 'company.index',
 ]);
 
-Route::get('{page}', [
-    'uses' => 'SiteController@error_404',
-    'as' => 'error_404',
+Route::get('/job/{id}', [
+    'uses' => 'JobController@index',
+    'as' => 'job.index',
+]);
+
+Route::get('/jobseeker/{user_id}', [
+    'uses' => 'JobseekerController@index',
+    'as' => 'jobseeker.index',
 ]);

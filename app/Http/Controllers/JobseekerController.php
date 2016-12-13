@@ -29,8 +29,8 @@ class JobseekerController extends Controller
     }
 
     public function index($user_id){
-        $user = User::find($user_id);
-        if($user != null && $user->role == Constant::user_jobseeker){
+        $user = User::findOrFail($user_id);
+        if($user->role == Constant::user_jobseeker){
             if(Auth::guest()){
                 return redirect('/');
             } else if(Auth::user()->role == Constant::user_jobseeker && Auth::user()->id != $user->id){

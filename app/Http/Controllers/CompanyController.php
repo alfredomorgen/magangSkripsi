@@ -29,8 +29,8 @@ class CompanyController extends Controller
 
     public function index($user_id)
     {
-        $user = User::find($user_id);
-        if($user != null && $user->role == Constant::user_company){
+        $user = User::findOrFail($user_id);
+        if($user->role == Constant::user_company){
             $jobs = $user->company->job()->where('status', '=', Constant::status_active)->get();
 
             $data = [

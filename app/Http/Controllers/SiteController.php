@@ -138,9 +138,4 @@ class SiteController extends Controller
             }
         }
     }
-
-    public function error_404()
-    {
-        return view('errors.404');
-    }
 }
