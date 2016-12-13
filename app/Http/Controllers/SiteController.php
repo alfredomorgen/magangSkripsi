@@ -132,11 +132,15 @@ class SiteController extends Controller
                     ->with('users', $users)
                     ->with('search', 'Looking for' . ' ' . $search);
             }elseif(Auth::user()->role== constant:: user_jobseeker){
-
                 return view('search_company')
                     ->with('users', $users)
                     ->with('search', 'Looking for' . ' ' . $search);
             }
         }
+    }
+
+    public function error_404()
+    {
+        return view('errors.404');
     }
 }

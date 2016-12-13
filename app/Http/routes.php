@@ -37,11 +37,6 @@ Route::get('/search_job',[
     'as' => 'job.search'
 ]);
 
-Route::get('/job/{id}', [
-    'uses' => 'JobController@index',
-    'as' => 'job.index',
-]);
-
 Route::get('/home/search_job',[
     'uses' => 'SiteController@searchJob',
     'as' => 'home.search',
@@ -60,7 +55,6 @@ Route::get('/search_company',[
 // Admin //
 ///////////
 Route::group(['middleware' => 'admin'], function(){
-
     Route::get('admin/searchJobseeker',function(){
         $search = urlencode(e(\Illuminate\Support\Facades\Input::get('search')));
         $route = "admin/search_jobseeker/$search";
@@ -112,10 +106,6 @@ Route::group(['middleware' => 'admin'], function(){
 //////////////
 // Company //
 /////////////
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
 Route::get('/company/post_job', [
     'uses' => 'CompanyController@post_job',
     'as' => 'company.post_job'
@@ -202,11 +192,6 @@ Route::get('/company/remove_job/{job_id}', [
     'as' => 'company.remove_bookmark_jobseeker',
 ]);
 
-Route::get('/company/{user_id}', [
-    'uses' => 'CompanyController@index',
-    'as' => 'company.index',
-]);
-
 ///////////////
 // Jobseeker //
 ///////////////
@@ -268,4 +253,23 @@ Route::get('/jobseeker/{user_id}/edit', [
 Route::post('/jobseeker/{user_id}/update',[
     'uses' => 'JobseekerController@update',
     'as' => 'jobseeker.update',
+]);
+
+
+////////////
+// Errors //
+////////////
+Route::get('/job/{id}', [
+    'uses' => 'JobController@index',
+    'as' => 'job.index',
+]);
+
+Route::get('/company/{user_id}', [
+    'uses' => 'CompanyController@index',
+    'as' => 'company.index',
+]);
+
+Route::get('{page}', [
+    'uses' => 'SiteController@error_404',
+    'as' => 'error_404',
 ]);
