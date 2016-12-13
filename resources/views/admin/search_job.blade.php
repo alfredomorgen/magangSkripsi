@@ -134,12 +134,8 @@
             <span class="white-text">{{$message}}</span>
         @endif
     </div>
-
-    </div>
-    </div>
-
-
 @endsection
+
 @section('scripts')
     <script>
         $(document).ready(function(){
